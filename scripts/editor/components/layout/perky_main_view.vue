@@ -1,16 +1,32 @@
 <script setup>
-    import TabView from 'primevue/tabview';
-    import TabPanel from 'primevue/tabpanel';
+    import {ref, onMounted} from 'vue'
+    import TabView from 'primevue/tabview'
+    import TabPanel from 'primevue/tabpanel'
+    import Engine from '../../../engine/engine'
+    import {Graphics} from '@pixi/graphics'
+
+
+    const mainTab = ref(null);
+    onMounted(() => {
+        const engine = new Engine({parent: mainTab.value})
+        let graphics = new Graphics();
+
+        graphics.beginFill(0xFF0000)
+        graphics.drawCircle(0, 0, 1)
+        graphics.endFill()
+
+        engine.stage.addChild(graphics)
+
+    })
+    // const engine = new Engine()
+    // console.log(engine)
 </script>
 
 
 <template>
     <TabView>
         <TabPanel header="Header I">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            <div class="perky-engine-view" ref="mainTab"></div>
         </TabPanel>
         <TabPanel header="Header II">
             <p>

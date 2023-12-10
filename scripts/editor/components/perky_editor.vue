@@ -1,10 +1,10 @@
 <script setup>
     import Splitter from 'primevue/splitter';
     import SplitterPanel from 'primevue/splitterpanel';
-    import PerkyToolbar from './layout/perky_toolbar.vue';
-    import PerkyLeftbar from './layout/perky_leftbar.vue';
-    import PerkyRightbar from './layout/perky_rightbar.vue';
-    import PerkyMainview from './layout/perky_mainview.vue';
+    import PerkyToolBar from './layout/perky_tool_bar.vue';
+    import PerkyLeftBar from './layout/perky_left_bar.vue';
+    import PerkyRightBar from './layout/perky_right_bar.vue';
+    import PerkyMainView from './layout/perky_main_view.vue';
 </script>
 
 
@@ -13,22 +13,22 @@
         <Splitter layout="vertical" style="height: 100vh" :gutterSize="0">
 
             <SplitterPanel style="flex-basis: calc(3.25em + 0px); overflow: visible; background-color: #3c3c3c;">
-                <PerkyToolbar></PerkyToolbar>
+                <PerkyToolBar></PerkyToolBar>
             </SplitterPanel>
 
             <SplitterPanel style="flex-basis: calc(100vh - 3.25em);">
 
                 <Splitter :gutterSize="6">
                     <SplitterPanel :minSize="10" :size="20" style="background-color: #252526;">
-                        <PerkyLeftbar></PerkyLeftbar>
+                        <PerkyLeftBar></PerkyLeftBar>
                     </SplitterPanel>
 
                     <SplitterPanel :minSize="40" :size="60" style="background-color: #1e1e1e;">
-                        <PerkyMainview></PerkyMainview>
+                        <PerkyMainView></PerkyMainView>
                     </SplitterPanel>
 
                     <SplitterPanel :minSize="10" :size="20" style="background-color: #252526;">
-                        <PerkyRightbar></PerkyRightbar>
+                        <PerkyRightBar></PerkyRightBar>
                     </SplitterPanel>
                 </Splitter>
 
