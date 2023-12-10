@@ -1,10 +1,10 @@
 <script setup>
     import Splitter from 'primevue/splitter';
     import SplitterPanel from 'primevue/splitterpanel';
-    import PerkyToolbar from './perky_toolbar.vue';
-    import PerkyLeftbar from './perky_leftbar.vue';
-    import PerkyRightbar from './perky_rightbar.vue';
-    import PerkyMainview from './perky_mainview.vue';
+    import PerkyToolbar from './layout/perky_toolbar.vue';
+    import PerkyLeftbar from './layout/perky_leftbar.vue';
+    import PerkyRightbar from './layout/perky_rightbar.vue';
+    import PerkyMainview from './layout/perky_mainview.vue';
 </script>
 
 
