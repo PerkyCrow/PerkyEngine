@@ -1,0 +1,89 @@
+body {
+  background: #1e1e1e;
+  overflow:     hidden;
+  width:        100vw;
+  height:       100vh;
+  margin:       0;
+  padding:      0;
+  overflow:     hidden;
+  color:      #ffffff;
+  font-family: "Jacques Francois", serif;
+  line-height: 1.6;;
+}
+
+:root {
+  --font-family: "Jacques Francois", serif;
+  --font-size: 1rem;
+  --font-weight: 400;
+  --font-color: #ffffff;
+  --line-height: 1.6;
+}
+
+.p-selectbutton > .p-button,
+.p-togglebutton.p-button,
+.p-accordion .p-accordion-header .p-accordion-header-link,
+.p-tabview .p-tabview-nav li .p-tabview-nav-link,
+.p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
+  transition: none;
+}
+
+.p-toolbar,
+.p-tree,
+.p-tabview-panels,
+.p-splitter {
+  border: none;
+  background: transparent;
+}
+
+.p-toolbar {
+  padding: 0.5rem;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background: #2d2d2d;
+  border-radius: 0;
+  margin-right: 1px;
+  border: none;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link[aria-selected="true"] {
+  background: #1e1e1e;
+}
+
+.p-tabview-nav {
+  border: none;
+}
+
+.p-tabview-nav {
+  background: #252526;
+}
+
+.p-splitter-gutter {
+  background: #252526;
+}
+
+.p-splitter-gutter:hover {
+  background: #fbbf24;
+}
+
+.p-splitter-gutter-handle {
+  background: transparent;
+}
+
+.p-inputtext {
+  background: #464646;
+  padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+}
+
+.p-button {
+  padding: 0.5rem 1rem;
+}
+
+.p-button.p-button-icon-only {
+  width: 2.5rem;
+  padding: 0.5rem 0;
+}
+
+.p-inputtext:enabled:focus, .p-button:focus, .p-tree .p-tree-container .p-treenode:focus .p-treenode-content {
+  box-shadow: none;
+}

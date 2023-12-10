@@ -1,0 +1,39 @@
+{
+  "name": "perky_engine",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "start": "NODE_ENV=development rm -rf .parcel-cache && parcel",
+    "build": "rm -rf .parcel-cache && rm -rf dist/ && parcel build --no-scope-hoist --public-url .",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watchAll --verbose"
+  },
+  "source": [
+    "scripts/index.html"
+  ],
+  "alias": {
+    "vue": "vue/dist/vue.esm-bundler"
+  },
+  "jest": {
+    "moduleNameMapper": {}
+  },
+  "staticFiles": {
+    "staticPath": "scripts/assets"
+  },
+  "devDependencies": {
+    "@parcel/optimizer-terser": "^2.10.3",
+    "@parcel/transformer-vue": "^2.10.3",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.55.0",
+    "jest": "^29.7.0",
+    "jsdom": "^23.0.1",
+    "parcel": "^2.10.3",
+    "parcel-reporter-static-files-copy": "^1.5.3",
+    "pixi-filters": "^5.2.1",
+    "pixi.js": "^7.3.2",
+    "primeicons": "^6.0.1",
+    "primevue": "^3.43.0",
+    "process": "^0.11.10",
+    "tone": "^14.7.77",
+    "vue": "^3.3.11"
+  }
+}
