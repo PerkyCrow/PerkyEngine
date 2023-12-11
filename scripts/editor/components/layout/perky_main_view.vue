@@ -1,32 +1,14 @@
 <script setup>
-    import {ref, onMounted} from 'vue'
     import TabView from 'primevue/tabview'
     import TabPanel from 'primevue/tabpanel'
-    import Engine from '../../../engine/engine'
-    import {Graphics} from '@pixi/graphics'
-
-
-    const mainTab = ref(null);
-    onMounted(() => {
-        const engine = new Engine({parent: mainTab.value})
-        let graphics = new Graphics();
-
-        graphics.beginFill(0xFF0000)
-        graphics.drawCircle(0, 0, 1)
-        graphics.endFill()
-
-        engine.stage.addChild(graphics)
-
-    })
-    // const engine = new Engine()
-    // console.log(engine)
+    import PerkyViewport from './perky_viewport.vue'
 </script>
 
 
 <template>
     <TabView>
         <TabPanel header="Header I">
-            <div class="perky-engine-view" ref="mainTab"></div>
+            <PerkyViewport></PerkyViewport>
         </TabPanel>
         <TabPanel header="Header II">
             <p>

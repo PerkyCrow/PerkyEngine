@@ -16,7 +16,7 @@ function setup (params) {
     const {
         parent    = document.body,
         container = createContainer(),
-        scale     = 75
+        scale     = 1
     } = params
 
     return Object.assign(params, {
@@ -54,14 +54,14 @@ function init (engine, {
 
 function handleResize (engine) {
     function resize () {
-        const parent = engine.view.parentNode
+        const parent = engine.parent
         const width = parent.offsetWidth
         const height = parent.offsetHeight
 
         engine.renderer.resize(width, height)
 
-        engine.stage.x = engine.renderer.width / 2
-        engine.stage.y = engine.renderer.height / 2
+        // engine.stage.x = engine.renderer.width / 2
+        // engine.stage.y = engine.renderer.height / 2
     }
 
     engine.container.addEventListener('resize', resize)
