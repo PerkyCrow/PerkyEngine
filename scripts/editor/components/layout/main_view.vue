@@ -1,10 +1,11 @@
 <script setup>
     import TabView from 'primevue/tabview'
     import TabPanel from 'primevue/tabpanel'
-    import PerkyViewport from './viewport.vue'
     import Splitter from 'primevue/splitter'
     import SplitterPanel from 'primevue/splitterpanel'
-    import PerkyTopBar from './top_bar.vue'
+
+    import Viewport from '../viewport/viewport.vue'
+    import ToolBar from '../viewport/tool_bar.vue'
 </script>
 
 
@@ -13,11 +14,11 @@
         <TabPanel header="Scene">
             <Splitter layout="vertical" style="height: 100%" :gutterSize="0">
                 <SplitterPanel style="flex-basis: calc(2.75em + 0px); overflow: visible; background-color: #3c3c3c;">
-                    <PerkyTopBar></PerkyTopBar>
+                    <ToolBar></ToolBar>
                 </SplitterPanel>
 
                 <SplitterPanel style="flex-basis: calc(100% - 2.75em);">
-                    <PerkyViewport></PerkyViewport>
+                    <Viewport></Viewport>
                 </SplitterPanel>
             </Splitter>
 

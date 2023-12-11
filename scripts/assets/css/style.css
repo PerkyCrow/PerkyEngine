@@ -26,6 +26,7 @@ body {
 .p-togglebutton.p-button,
 .p-accordion .p-accordion-header .p-accordion-header-link,
 .p-tabview .p-tabview-nav li .p-tabview-nav-link,
+.p-overlaypanel,
 .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
   transition: none;
 }
@@ -84,7 +85,7 @@ body {
 }
 
 .p-button.p-button-icon-only {
-  width: 2.5rem;
+  width: 2rem;
   padding: 0.25rem 0;
 }
 
@@ -101,4 +102,38 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+}
+
+.p-button-label {
+  font-weight: 400;
+}
+
+.p-tieredmenu .p-menuitem > .p-menuitem-content .p-menuitem-link {
+  padding: 0.25rem 1rem;
+}
+
+.p-overlaypanel {
+  background: #252526;
+  border-color: #303031;
+}
+
+.p-overlaypanel:before {
+  border: none;
+}
+
+.p-inputgroup-addon {
+  color: #030712;
+  background: #fbbf24;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  min-width: 1.5rem;
+  padding: 0.25rem;
+}
+
+
+.p-checkbox .p-checkbox-box, .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  color: #030712;
+  background: #fde68a;
+  border-color: #fde68a;
 }
