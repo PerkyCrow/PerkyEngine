@@ -26,22 +26,11 @@ export function useRulers (editorUi, viewport, viewportEl) {
         verticalRuler.clear()
         textContainer.removeChildren()
 
-
-        // TODO : Use scale
-
-        let labelInterval = 100 * zoomLevel
-
-        while (labelInterval > 100) {
-            labelInterval /= 2
-        }
-
-        while (labelInterval < 50) {
-            labelInterval *= 2
-        }
+        let interval = 100 * zoomLevel
 
 
         horizontalRuler.lineStyle(1, 0x000000, 1)
-        for (let i = offsetX % labelInterval; i < width; i += labelInterval) {
+        for (let i = offsetX % interval; i < width; i += interval) {
             horizontalRuler.moveTo(i, 0)
             horizontalRuler.lineTo(i, 12)
 
@@ -49,7 +38,7 @@ export function useRulers (editorUi, viewport, viewportEl) {
         }
 
         verticalRuler.lineStyle(1, 0x000000, 1)
-        for (let j = offsetY % labelInterval; j < height; j += labelInterval) {
+        for (let j = offsetY % interval; j < height; j += interval) {
             verticalRuler.moveTo(0, j)
             verticalRuler.lineTo(12, j)
 

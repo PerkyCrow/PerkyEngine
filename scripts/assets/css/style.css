@@ -46,6 +46,7 @@ body {
   border-radius: 0;
   margin-right: 1px;
   border: none;
+  padding: 1rem;
 }
 
 .p-tabview .p-tabview-nav li .p-tabview-nav-link[aria-selected="true"] {
@@ -74,16 +75,16 @@ body {
 
 .p-inputtext {
   background: #464646;
-  padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+  padding: 0.25rem 0.25rem 0.25rem 2.25rem;
 }
 
 .p-button {
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 1rem;
 }
 
 .p-button.p-button-icon-only {
   width: 2.5rem;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
 }
 
 .p-inputtext:enabled:focus, .p-button:focus, .p-tree .p-tree-container .p-treenode:focus .p-treenode-content {

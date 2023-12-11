@@ -6,6 +6,7 @@
     import ContextMenu from 'primevue/contextmenu'
     import {useViewportControls} from '../../use/use_viewport_controls'
     import {useRulers} from '../../use/use_rulers'
+    import {useGrid} from '../../use/use_grid'
 
     const viewportEl = ref(null);
 
@@ -32,6 +33,7 @@
 
         useViewportControls(viewport, viewportEl.value)
         useRulers(editorUi, viewport, viewportEl.value)
+        useGrid(editorUi, viewport, viewportEl.value)
     })
 
 
