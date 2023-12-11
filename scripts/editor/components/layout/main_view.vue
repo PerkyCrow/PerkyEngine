@@ -1,10 +1,10 @@
 <script setup>
     import TabView from 'primevue/tabview'
     import TabPanel from 'primevue/tabpanel'
-    import PerkyViewport from './perky_viewport.vue'
+    import PerkyViewport from './viewport.vue'
     import Splitter from 'primevue/splitter'
     import SplitterPanel from 'primevue/splitterpanel'
-    import PerkyTopBar from './perky_top_bar.vue'
+    import PerkyTopBar from './top_bar.vue'
 </script>
 
 

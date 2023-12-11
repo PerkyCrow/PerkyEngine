@@ -16,7 +16,6 @@
             backgroundColor: 0xf5e8ce
         })
 
-
         const viewport = new Container()
         const editorUi = new Container()
 
