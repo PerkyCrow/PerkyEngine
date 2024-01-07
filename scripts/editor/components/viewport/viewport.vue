@@ -5,7 +5,6 @@
     import {Container} from '@pixi/display'
     import ContextMenu from 'primevue/contextmenu'
     import {useViewportControls} from '../../use/use_viewport_controls'
-    import {useGrid} from '../../use/use_grid'
     import Grid from '../../grid'
     import Viewport from '../../viewport'
 
@@ -42,13 +41,11 @@
         })
 
         window.addEventListener('resize', (e) => {
-
             viewport.resize({
                 width: viewportEl.value.clientWidth,
                 height: viewportEl.value.clientHeight
             })
         })
-        // // useGrid(editorUi, viewport, viewportEl.value)
     })
 
 
