@@ -1,5 +1,3 @@
-let uid = 0
-
 
 export default class Node {
 
@@ -8,12 +6,10 @@ export default class Node {
     onDetach  () {}
     onReady   () {}
     onUpdate  () {}
-    onRender  () {}
     onDestroy () {}
 
 
     constructor () {
-        this.id        = uid++
         this.ready     = false
         this.destroyed = false
         this.children  = []
@@ -104,10 +100,10 @@ export default class Node {
     }
 
 
-    update (delta) {
+    update (...args) {
         if (this.ready) {
-            this.onUpdate(delta)
-            this.children.forEach(child => child.update(delta))
+            this.onUpdate(...args)
+            this.children.forEach(child => child.update(...args))
         }
     }
 

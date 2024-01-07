@@ -11,18 +11,7 @@ describe(Node, () => {
     })
 
 
-    // Needs to be first because id is a global variable
-    test('id', () => {
-        expect(node.id).toBe(0)
-
-        const child = new Node()
-        node.attachChild(child)
-
-        expect(child.id).toBe(1)
-    })
-
-
-    test('name', () => {
+    test('type', () => {
         expect(node.type).toBe('Node')
 
         class Foo extends Node {}
