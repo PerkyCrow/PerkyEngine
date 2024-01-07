@@ -5,10 +5,12 @@
     import {Container} from '@pixi/display'
     import ContextMenu from 'primevue/contextmenu'
     import {useViewportControls} from '../../use/use_viewport_controls'
-    import {useRulers} from '../../use/use_rulers'
     import {useGrid} from '../../use/use_grid'
+    import Grid from '../../grid'
+    import Viewport from '../../viewport'
 
     const viewportEl = ref(null);
+    console.log(Viewport)
 
     onMounted(() => {
         const engine = new Engine({
@@ -16,13 +18,13 @@
             backgroundColor: 0xf5e8ce
         })
 
-        const viewport = new Container()
+        const viewport = Viewport.fromElement(viewportEl.value)
         const editorUi = new Container()
 
-        engine.stage.addChild(viewport)
+        engine.stage.addChild(viewport.container)
         engine.stage.addChild(editorUi)
 
-        let graphics = new Graphics();
+        const graphics = new Graphics()
 
         graphics.beginFill(0xFF0000)
         graphics.drawCircle(0, 0, 75)
@@ -30,9 +32,23 @@
 
         viewport.addChild(graphics)
 
-        useViewportControls(viewport, viewportEl.value)
-        useRulers(editorUi, viewport, viewportEl.value)
-        useGrid(editorUi, viewport, viewportEl.value)
+        useViewportControls(viewport.container, viewportEl.value)
+
+        const grid = new Grid()
+        editorUi.addChild(grid.container)
+
+        engine.ticker.add(() => {
+            grid.update(viewport)
+        })
+
+        window.addEventListener('resize', (e) => {
+
+            viewport.resize({
+                width: viewportEl.value.clientWidth,
+                height: viewportEl.value.clientHeight
+            })
+        })
+        // // useGrid(editorUi, viewport, viewportEl.value)
     })
 
 
