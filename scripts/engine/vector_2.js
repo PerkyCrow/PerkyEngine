@@ -10,6 +10,13 @@ export default class Vector2 {
         this.y = (typeof y === 'undefined' ? x : y) || 0
     }
 
+    export () {
+        return {
+            x: this.x,
+            y: this.y
+        }
+    }
+
     static toVector2 (...args) {
         if (args[0] instanceof Vector2) {
             return args[0]
