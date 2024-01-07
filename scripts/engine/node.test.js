@@ -75,25 +75,6 @@ describe(Node, () => {
     })
 
 
-    test('onAttach', () => {
-        const child = new Node()
-        child.onAttach = jest.fn()
-        node.attachChild(child)
-
-        expect(child.onAttach).toHaveBeenCalledWith(node)
-    })
-
-
-    test('onDetach', () => {
-        const child = new Node()
-        child.onDetach = jest.fn()
-        node.attachChild(child)
-        node.detachChild(child)
-
-        expect(child.onDetach).toHaveBeenCalledWith(node)
-    })
-
-
     test('removeChild', () => {
         const child = new Node()
         node.attachChild(child)
@@ -137,6 +118,93 @@ describe(Node, () => {
         node.attachChild(child)
 
         expect(child.ready).toBe(true)
+    })
+
+
+    describe('events', () => {
+
+
+        test('ready', () => {
+            const child = new Node()
+            const listener = jest.fn()
+            child.on('ready', listener)
+
+            node.ready = true
+            node.attachChild(child)
+            expect(listener).toHaveBeenCalled()
+        })
+
+
+        test('attached', () => {
+            const child = new Node()
+            const listener = jest.fn()
+            child.on('attached', listener)
+
+            node.attachChild(child)
+            expect(listener).toHaveBeenCalledWith(node)
+        })
+
+
+        test('detached', () => {
+            const child = new Node()
+            const listener = jest.fn()
+            child.on('detached', listener)
+
+            node.attachChild(child)
+            node.detachChild(child)
+            expect(listener).toHaveBeenCalledWith(node)
+        })
+
+
+        test('destroyed', () => {
+            const child = new Node()
+            const listener = jest.fn()
+            child.on('destroyed', listener)
+
+            node.attachChild(child)
+            child.destroy()
+            expect(listener).toHaveBeenCalledWith(node)
+        })
+
+
+        test('destroyed (nested)', () => {
+            const child = new Node()
+            const grandchild = new Node()
+            const listener = jest.fn()
+            grandchild.on('destroyed', listener)
+
+            node.attachChild(child)
+            child.attachChild(grandchild)
+            child.destroy()
+            expect(listener).toHaveBeenCalledWith(child)
+        })
+
+
+        test('update', () => {
+            const listener = jest.fn()
+            node.on('update', listener)
+            node.ready = false
+            node.update()
+            expect(listener).not.toHaveBeenCalled()
+
+            node.ready = true
+            node.update()
+            expect(listener).toHaveBeenCalled()
+        })
+
+
+        test('updated', () => {
+            const listener = jest.fn()
+            node.on('updated', listener)
+            node.ready = false
+            node.update()
+            expect(listener).not.toHaveBeenCalled()
+
+            node.ready = true
+            node.update()
+            expect(listener).toHaveBeenCalled()
+        })
+
     })
 
 })

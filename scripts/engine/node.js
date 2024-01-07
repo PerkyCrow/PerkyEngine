@@ -1,15 +1,10 @@
+import Notifier from './notifier'
 
-export default class Node {
 
-    onInit    () {}
-    onAttach  () {}
-    onDetach  () {}
-    onReady   () {}
-    onUpdate  () {}
-    onDestroy () {}
-
+export default class Node extends Notifier {
 
     constructor () {
+        super()
         this.ready     = false
         this.destroyed = false
         this.children  = []
@@ -35,7 +30,7 @@ export default class Node {
         if (!node.parent) {
             this.children.push(node)
             node.parent = this
-            node.onAttach(this)
+            node.emit('attached', this)
 
             if (this.ready) {
                 node.setReady()
@@ -63,8 +58,7 @@ export default class Node {
         if (index !== -1) {
             this.children.splice(index, 1)
             node.parent = null
-            node.onDetach(this)
-
+            node.emit('detached', this)
 
             return true
         }
@@ -74,10 +68,8 @@ export default class Node {
 
 
     removeChild (node) {
-        if (this.detachChild(node)) {
-            node.destroy()
-
-            return true
+        if (node.parent === this) {
+            return node.destroy()
         }
 
         return false
@@ -102,29 +94,42 @@ export default class Node {
 
     update (...args) {
         if (this.ready) {
-            this.onUpdate(...args)
+            this.emit('update', ...args)
             this.children.forEach(child => child.update(...args))
+            this.emit('updated', ...args)
         }
     }
 
 
     destroy () {
-        Array.from(this.children).forEach(child => this.removeChild(child))
+        if (this.destroyed) {
+            return false
+        }
+
+        this.safeCallOnChildren('destroy')
+
+        const {parent} = this
+        if (parent) {
+            parent.detachChild(this)
+        }
 
         this.children.length = 0
         this.destroyed       = true
         this.ready           = false
 
-        this.onDestroy()
+        this.emit('destroyed', parent)
 
-        if (this.parent) {
-            this.parent.removeChild(this)
-        }
+        return true
     }
 
 
-    notifyChildren (method, ...args) {
+    callOnChildren (method, ...args) {
         this.children.forEach(child => child[method](...args))
+    }
+
+
+    safeCallOnChildren (method, ...args) {
+        Array.from(this.children).forEach(child => child[method](...args))
     }
 
 
@@ -132,8 +137,8 @@ export default class Node {
         if (!this.ready) {
             this.ready = true
 
-            this.notifyChildren('setReady')
-            this.onReady()
+            this.callOnChildren('setReady')
+            this.emit('ready')
         }
     }
 
