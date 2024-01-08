@@ -1,60 +1,11 @@
 import Notifier from './notifier'
-import Vector2 from './vector_2'
-
+import {getDataType} from './data_types'
 
 
 export default class Model extends Notifier {
 
-
-    // TODO array, object with smart traversal export
-    static types = {
-        vector2: {
-            export:  vector => vector.export(),
-            restore: data   => Vector2.toVector2(data)
-        },
-        object: {
-            export: object => {
-                if (object.export) {
-                    return object.export()
-                }
-
-                // TODO smart copy detecting vectors and other stuff
-                return Object.assign({}, object)
-            }
-        }
-    }
-
-
-    static setType (type, accessor) {
-        this.types[type] = accessor
-    }
-
-
-    static exportAttribute (attribute) {
-        const {value, type} = attribute
-        const accessor = this.types[type]
-
-        if (accessor && accessor.export) {
-            return accessor.export(value)
-        }
-
-        return value
-    }
-
-
-    static restoreAttribute (attribute) {
-        const {value, type} = attribute
-        const accessor = this.types[type]
-
-        if (accessor && accessor.restore) {
-            return accessor.restore(value)
-        }
-
-        return value
-    }
-
-
     constructor () {
+        super()
         this.attributes = {}
     }
 
@@ -81,7 +32,7 @@ export default class Model extends Notifier {
         accessor   = false,
         defaultValue,
         value      = typeof defaultValue === 'function' ? defaultValue() : defaultValue,
-        type       = typeof value
+        type       = (typeof value === 'object' && value.type) || typeof value
     } = {}) {
         if (typeof key === 'string') {
             const attribute = {type, exposable, exportable, watch, accessor, defaultValue}
@@ -91,8 +42,11 @@ export default class Model extends Notifier {
                 enumerable: true,
                 get: () => value,
                 set:  v => {
-                    if (attribute.watch) {
-                        this.emit(`changed:${key}`, v, value)
+                    let oldValue = value
+                    value = v
+
+                    if (attribute.watch && oldValue !== value) {
+                        this.emit(`changed:${key}`, value, oldValue)
                     }
 
                     return v
@@ -102,7 +56,7 @@ export default class Model extends Notifier {
             if (accessor) {
                 Object.defineProperty(this, key, {
                     enumerable: true,
-                    get: () => value,
+                    get: () => attribute.value,
                     set:  v => {
                         attribute.value = v
                     }
@@ -132,14 +86,8 @@ export default class Model extends Notifier {
         const attribute = this.getAttribute(key)
 
         if (attribute) {
-            const {value, watch} = attribute
-
-            if (watch) {
-                this.emit(`changed:${key}`, newValue, value)
-            }
+            attribute.value = newValue
         }
-
-        return newValue
     }
 
 
@@ -165,7 +113,7 @@ export default class Model extends Notifier {
             const attribute = this.attributes[key]
 
             if (attribute.exportable) {
-                data[key] = Model.exportAttribute(attribute.value, attribute.type)
+                data[key] = exportAttribute(attribute)
             }
         }
 
@@ -178,11 +126,36 @@ export default class Model extends Notifier {
             const attribute = this.attributes[key]
 
             if (attribute && attribute.exportable) {
-                this.attributes[key] = Model.restoreAttribute(data[key], attribute.type)
+                attribute.value = restoreAttribute(attribute, data[key])
             }
         }
 
         this.emit('restored')
     }
 
+}
+
+
+
+function exportAttribute (attribute) {
+    const {value, type} = attribute
+    const DataType = getDataType(type)
+
+    if (DataType && DataType.export) {
+        return DataType.export(value)
+    }
+
+    return value
+}
+
+
+function restoreAttribute (attribute, value) {
+    const {type} = attribute
+    const DataType = getDataType(type)
+
+    if (DataType && DataType.restore) {
+        return DataType.restore(value)
+    }
+
+    return value
 }

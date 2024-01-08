@@ -56,6 +56,10 @@ export default class Vector2 {
         return new Vector2(0, 0)
     }
 
+    get type () {
+        return 'Vector2'
+    }
+
     get magnitude () {
         return Math.sqrt(this.x * this.x + this.y * this.y)
     }
