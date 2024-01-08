@@ -1,13 +1,17 @@
-import Notifier from './notifier'
+import Model from './model'
 
 
-export default class Node extends Notifier {
+export default class Node extends Model {
 
     constructor () {
         super()
         this.ready     = false
         this.destroyed = false
         this.children  = []
+        this.parent    = null
+        this.root      = this
+
+        registerEvents(this)
     }
 
 
@@ -16,13 +20,13 @@ export default class Node extends Notifier {
     }
 
 
-    get root () {
-        return this.parent ? this.parent.root : this
+    get isNode () {
+        return true
     }
 
 
-    isRoot () {
-        return !this.parent
+    get isRoot () {
+        return this.root === this
     }
 
 
@@ -143,3 +147,24 @@ export default class Node extends Notifier {
     }
 
 }
+
+
+function registerEvents (node) {
+
+    node.on('attached', (parent) => {
+        node.parent = parent
+        node.root   = getRoot(parent)
+    })
+
+    node.on('detached', () => {
+        node.parent = null
+        node.root   = node
+    })
+
+}
+
+
+function getRoot (node) {
+    return node.parent ? getRoot(node.parent) : node
+}
+

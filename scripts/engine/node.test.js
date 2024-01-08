@@ -28,16 +28,26 @@ describe(Node, () => {
         node.attachChild(child)
 
         expect(child.root).toBe(node)
+
+        const grandchild = new Node()
+        child.attachChild(grandchild)
+
+        expect(grandchild.root).toBe(node)
     })
 
 
     test('isRoot', () => {
-        expect(node.isRoot()).toBe(true)
+        expect(node.isRoot).toBe(true)
 
         const child = new Node()
         node.attachChild(child)
 
-        expect(child.isRoot()).toBe(false)
+        expect(child.isRoot).toBe(false)
+
+        const grandchild = new Node()
+        child.attachChild(grandchild)
+
+        expect(grandchild.isRoot).toBe(false)
     })
 
 
