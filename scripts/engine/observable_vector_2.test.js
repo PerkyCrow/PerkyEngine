@@ -54,4 +54,21 @@ describe(ObservableVector2, () => {
         expect(ObservableVector2.toObservableVector2(1, 2, onChange)).toEqual(vector)
     })
 
+
+    test('cast', () => {
+        const onChange = jest.fn()
+        const vector = new ObservableVector2(1, 2, onChange)
+        expect(ObservableVector2.cast(vector)).toEqual(vector)
+        expect(ObservableVector2.cast(new Vector2(1, 2), onChange)).toEqual(vector)
+        expect(ObservableVector2.cast([1, 2], onChange)).toEqual(vector)
+        expect(ObservableVector2.cast({x: 1, y: 2}, onChange)).toEqual(vector)
+    })
+
+
+    test('serialize', () => {
+        const onChange = jest.fn()
+        const vector = new ObservableVector2(1, 2, onChange)
+        expect(ObservableVector2.serialize(vector)).toEqual({x: 1, y: 2})
+    })
+
 })

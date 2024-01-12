@@ -71,8 +71,6 @@ export default class ObservableVector2 extends Vector2 {
         return new ObservableVector2(...args)
     }
 
-
-
     get type () {
         return 'ObservableVector2'
     }

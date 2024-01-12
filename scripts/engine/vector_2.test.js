@@ -253,4 +253,27 @@ describe(Vector2, () => {
     })
 
 
+    test('cast', () => {
+        expect(Vector2.cast(new Vector2(1, 2))).toEqual(new Vector2(1, 2))
+        expect(Vector2.cast({x: 1, y: 2})).toEqual(new Vector2(1, 2))
+        expect(Vector2.cast([1, 2])).toEqual(new Vector2(1, 2))
+        expect(Vector2.cast(1)).toEqual(new Vector2(1, 1))
+        expect(Vector2.cast('1,2')).toEqual(new Vector2(1, 2))
+    })
+
+
+    test('serialize', () => {
+        expect(Vector2.serialize(new Vector2(1, 2))).toEqual({x: 1, y: 2})
+    })
+
+
+    test('is', () => {
+        expect(Vector2.is(new Vector2(1, 2))).toBe(true)
+        expect(Vector2.is({x: 1, y: 2})).toBe(false)
+        expect(Vector2.is([1, 2])).toBe(false)
+        expect(Vector2.is(1)).toBe(false)
+        expect(Vector2.is('1,2')).toBe(false)
+    })
+
+
 })

@@ -28,14 +28,20 @@ export default class Node2D extends Node {
             accessor: true,
             serializable: true,
             exposable: true,
-            defaultValue: new ObservableVector2(1, 1, this.emitter('changed:scale'))
+            defaultValue: new ObservableVector2(1, 1),
+            options: {
+                onChange: this.emitter('changed:scale')
+            }
         })
 
         this.setAttribute('pivot', {
             accessor: true,
             serializable: true,
             exposable: true,
-            defaultValue: new ObservableVector2(0, 0, this.emitter('changed:pivot'))
+            defaultValue: new ObservableVector2(0, 0),
+            options: {
+                onChange: this.emitter('changed:pivot')
+            }
         })
 
         this.parent2D = null
@@ -66,31 +72,26 @@ export default class Node2D extends Node {
 
 
     applyScale (ratio) {
-        ratio = Vector2.toVector2(ratio)
         this.scale = this.scale.multiply(ratio)
     }
 
 
     getAngleTo (target) {
-        target = Vector2.toVector2(target)
         return Math.atan2(target.y - this.position.y, target.x - this.position.x)
     }
 
 
     getDistanceTo (target) {
-        target = Vector2.toVector2(target)
         return target.subtract(this.position).magnitude
     }
 
 
     getDirectionTo (target) {
-        target = Vector2.toVector2(target)
         return target.subtract(this.position).normalize()
     }
 
 
     lookAt (target) {
-        target = Vector2.toVector2(target)
         this.rotation = this.getAngleTo(target)
     }
 
