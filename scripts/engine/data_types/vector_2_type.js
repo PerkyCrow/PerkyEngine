@@ -26,12 +26,8 @@ export default class Vector2Type extends AnyType {
         return Vector2.zero
     }
 
-    static export (value) {
-        return value.export()
-    }
-
-    static restore (value) {
-        return Vector2.toVector2(value)
+    static serialize (value) {
+        return value.serialize()
     }
 
     static is (value) {

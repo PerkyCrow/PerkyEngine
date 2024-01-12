@@ -1,5 +1,5 @@
 import Notifier from './notifier'
-import {getDataType} from './data_types'
+import {getDataType} from './types'
 
 
 export default class Model extends Notifier {
@@ -15,8 +15,8 @@ export default class Model extends Notifier {
     }
 
 
-    get exportableKeys () {
-        return this.keys.filter(key => this.attributes[key].exportable)
+    get serializableKeys () {
+        return this.keys.filter(key => this.attributes[key].serializable)
     }
 
 
@@ -27,23 +27,30 @@ export default class Model extends Notifier {
 
     setAttribute (key, {
         exposable  = true,
-        exportable = true,
+        serializable = true,
         watch      = false,
         accessor   = false,
         defaultValue,
         value      = typeof defaultValue === 'function' ? defaultValue() : defaultValue,
-        type       = (typeof value === 'object' && value.type) || typeof value
+        type       = (typeof value === 'object' && value.type) || typeof value,
+        options    = {}
     } = {}) {
         if (typeof key === 'string') {
-            const attribute = {type, exposable, exportable, watch, accessor, defaultValue}
+            const attribute = {type, exposable, serializable, watch, accessor, defaultValue, options}
             this.attributes[key] = attribute
+
+            const DataType = getDataType(type)
 
             Object.defineProperty(attribute, 'value', {
                 enumerable: true,
                 get: () => value,
                 set:  v => {
                     let oldValue = value
-                    value = v
+                    if (oldValue !== v && DataType && DataType.cast) {
+                        value = DataType.cast(v, options)
+                    } else {
+                        value = v
+                    }
 
                     if (attribute.watch && oldValue !== value) {
                         this.emit(`changed:${key}`, value, oldValue)
@@ -106,14 +113,14 @@ export default class Model extends Notifier {
     }
 
 
-    export () {
+    serialize () {
         const data = {}
 
         for (let key in this.attributes) {
             const attribute = this.attributes[key]
 
-            if (attribute.exportable) {
-                data[key] = exportAttribute(attribute)
+            if (attribute.serializable) {
+                data[key] = serializeAttribute(attribute)
             }
         }
 
@@ -125,8 +132,8 @@ export default class Model extends Notifier {
         for (let key in data) {
             const attribute = this.attributes[key]
 
-            if (attribute && attribute.exportable) {
-                attribute.value = restoreAttribute(attribute, data[key])
+            if (attribute && attribute.serializable) {
+                attribute.value = data[key]
             }
         }
 
@@ -137,24 +144,12 @@ export default class Model extends Notifier {
 
 
 
-function exportAttribute (attribute) {
+function serializeAttribute (attribute) {
     const {value, type} = attribute
     const DataType = getDataType(type)
 
-    if (DataType && DataType.export) {
-        return DataType.export(value)
-    }
-
-    return value
-}
-
-
-function restoreAttribute (attribute, value) {
-    const {type} = attribute
-    const DataType = getDataType(type)
-
-    if (DataType && DataType.restore) {
-        return DataType.restore(value)
+    if (DataType && DataType.serialize) {
+        return DataType.serialize(value, attribute.options)
     }
 
     return value

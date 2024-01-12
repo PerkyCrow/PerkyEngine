@@ -29,18 +29,18 @@ describe(Model, () => {
     })
 
 
-    test('exportableKeys', () => {
+    test('serializableKeys', () => {
         model.setAttribute('foo', {
             value: 'bar',
-            exportable: true
+            serializable: true
         })
 
         model.setAttribute('baz', {
             value: 'qux',
-            exportable: false
+            serializable: false
         })
 
-        expect(model.exportableKeys).toEqual(['foo'])
+        expect(model.serializableKeys).toEqual(['foo'])
     })
 
 
@@ -119,29 +119,29 @@ describe(Model, () => {
     })
 
 
-    test('export', () => {
+    test('serialize', () => {
         model.setAttribute('foo', {
             value: 'bar',
-            exportable: true
+            serializable: true
         })
 
-        expect(model.export()).toEqual({foo: 'bar'})
+        expect(model.serialize()).toEqual({foo: 'bar'})
 
 
         model.setAttribute('bar', {
             value: new Vector2(1, 2),
-            exportable: true
+            serializable: true
         })
 
 
-        expect(model.export()).toEqual({foo: 'bar', bar: {x: 1, y: 2}})
+        expect(model.serialize()).toEqual({foo: 'bar', bar: {x: 1, y: 2}})
     })
 
 
     test('restore', () => {
         model.setAttribute('foo', {
             value: 'bar',
-            exportable: true
+            serializable: true
         })
 
         model.restore({foo: 'baz'})
@@ -151,13 +151,13 @@ describe(Model, () => {
 
         model.setAttribute('bar', {
             value: new Vector2(1, 2),
-            exportable: true
+            serializable: true
         })
 
         model.restore({bar: {x: 3, y: 4}})
 
         expect(model.attributes.bar.value).toEqual(new Vector2(3, 4))
-        expect(model.export()).toEqual({foo: 'baz', bar: {x: 3, y: 4}})
+        expect(model.serialize()).toEqual({foo: 'baz', bar: {x: 3, y: 4}})
 
     })
 

@@ -2,7 +2,7 @@ export default class AnyType {
 
     static name = 'Any'
 
-    static export (value) {
+    static serialize (value) {
         return value
     }
 

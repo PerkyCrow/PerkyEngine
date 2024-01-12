@@ -11,7 +11,6 @@
     import Node2D from '../../../engine/nodes/node_2d'
 
     const viewportEl = ref(null);
-    console.log(Node2D)
 
     onMounted(() => {
         const engine = new Engine({
@@ -50,7 +49,6 @@
         })
 
         const node = new Node2D()
-        console.log(node)
     })
 
 

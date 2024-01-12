@@ -18,11 +18,6 @@ describe('Vector2Type', () => {
     })
 
 
-    test('restore', () => {
-        expect(Vector2Type.restore({x: 1, y: 2})).toEqual(new Vector2(1, 2))
-    })
-
-
     test('is', () => {
         expect(Vector2Type.is(new Vector2(1, 2))).toBe(true)
         expect(Vector2Type.is({x: 1, y: 2})).toBe(false)

@@ -1,5 +1,5 @@
 import Node from '../node'
-import Vector2 from '../vector_2'
+import ObservableVector2 from '../observable_vector_2'
 
 
 export default class Node2D extends Node {
@@ -9,30 +9,33 @@ export default class Node2D extends Node {
 
         this.setAttribute('position', {
             accessor: true,
-            exportable: true,
+            serializable: true,
             exposable: true,
-            defaultValue: new Vector2(0, 0)
+            defaultValue: new ObservableVector2(0, 0),
+            options: {
+                onChange: this.emitter('changed:position')
+            }
         })
 
         this.setAttribute('rotation', {
             accessor: true,
-            exportable: true,
+            serializable: true,
             exposable: true,
             defaultValue: 0
         })
 
         this.setAttribute('scale', {
             accessor: true,
-            exportable: true,
+            serializable: true,
             exposable: true,
-            defaultValue: new Vector2(1, 1)
+            defaultValue: new ObservableVector2(1, 1, this.emitter('changed:scale'))
         })
 
         this.setAttribute('pivot', {
             accessor: true,
-            exportable: true,
+            serializable: true,
             exposable: true,
-            defaultValue: new Vector2(0, 0)
+            defaultValue: new ObservableVector2(0, 0, this.emitter('changed:pivot'))
         })
 
         this.parent2D = null

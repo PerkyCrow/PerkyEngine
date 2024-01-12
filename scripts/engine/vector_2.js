@@ -10,7 +10,7 @@ export default class Vector2 {
         this.y = (typeof y === 'undefined' ? x : y) || 0
     }
 
-    export () {
+    serialize () {
         return {
             x: this.x,
             y: this.y
@@ -22,6 +22,34 @@ export default class Vector2 {
             return args[0]
         }
         return new Vector2(...args)
+    }
+
+    static cast (value) {
+        if (value instanceof Vector2) {
+            return value
+        }
+
+        if (Array.isArray(value)) {
+            return new Vector2(value[0], value[1])
+        }
+
+        if (typeof value === 'object' || typeof value === 'number') {
+            return new Vector2(value)
+        }
+
+        if (typeof value === 'string') {
+            return new Vector2(...value.split(',').map(parseFloat))
+        }
+
+        return Vector2.zero
+    }
+
+    static serialize (value) {
+        return value.serialize()
+    }
+
+    static is (value) {
+        return value instanceof Vector2
     }
 
     static get down () {

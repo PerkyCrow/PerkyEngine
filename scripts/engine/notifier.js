@@ -47,6 +47,10 @@ export default class Notifier {
         }
     }
 
+    emitter (name) {
+        return (...args) => this.emit(name, ...args)
+    }
+
 
     removeListeners () {
         Object.keys(this.listenersFor).forEach(name => this.removeListenersFor(name))
