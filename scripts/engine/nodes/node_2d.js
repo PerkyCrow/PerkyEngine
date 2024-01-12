@@ -9,17 +9,30 @@ export default class Node2D extends Node {
 
         this.setAttribute('position', {
             accessor: true,
+            exportable: true,
+            exposable: true,
             defaultValue: new Vector2(0, 0)
         })
 
         this.setAttribute('rotation', {
             accessor: true,
+            exportable: true,
+            exposable: true,
             defaultValue: 0
         })
 
         this.setAttribute('scale', {
             accessor: true,
+            exportable: true,
+            exposable: true,
             defaultValue: new Vector2(1, 1)
+        })
+
+        this.setAttribute('pivot', {
+            accessor: true,
+            exportable: true,
+            exposable: true,
+            defaultValue: new Vector2(0, 0)
         })
 
         this.parent2D = null

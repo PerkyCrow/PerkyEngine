@@ -9,9 +9,8 @@ export default class Node extends Model {
         this.destroyed = false
         this.children  = []
         this.parent    = null
+        this.world     = null
         this.root      = this
-
-        registerEvents(this)
     }
 
 
@@ -34,10 +33,11 @@ export default class Node extends Model {
         if (!node.parent) {
             this.children.push(node)
             node.parent = this
+            node.root   = getRoot(this)
             node.emit('attached', this)
 
             if (this.ready) {
-                node.setReady()
+                node.setReady(this.world)
             }
 
             return true
@@ -62,6 +62,8 @@ export default class Node extends Model {
         if (index !== -1) {
             this.children.splice(index, 1)
             node.parent = null
+            node.world  = null
+            node.root   = node
             node.emit('detached', this)
 
             return true
@@ -137,31 +139,18 @@ export default class Node extends Model {
     }
 
 
-    setReady () {
+    setReady (world) {
         if (!this.ready) {
             this.ready = true
+            this.world = world
 
+            this.emit('ready', world)
             this.callOnChildren('setReady')
-            this.emit('ready')
         }
     }
 
 }
 
-
-function registerEvents (node) {
-
-    node.on('attached', (parent) => {
-        node.parent = parent
-        node.root   = getRoot(parent)
-    })
-
-    node.on('detached', () => {
-        node.parent = null
-        node.root   = node
-    })
-
-}
 
 
 function getRoot (node) {

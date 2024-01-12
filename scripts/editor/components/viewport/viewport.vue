@@ -8,8 +8,10 @@
     import Grid from '../../grid'
     import Viewport from '../../viewport'
 
+    import Node2D from '../../../engine/nodes/node_2d'
+
     const viewportEl = ref(null);
-    console.log(Viewport)
+    console.log(Node2D)
 
     onMounted(() => {
         const engine = new Engine({
@@ -46,6 +48,9 @@
                 height: viewportEl.value.clientHeight
             })
         })
+
+        const node = new Node2D()
+        console.log(node)
     })
 
 
