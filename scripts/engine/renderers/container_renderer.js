@@ -9,8 +9,4 @@ export default class ContainerRenderer extends DisplayRenderer {
         this.display = new Container()
     }
 
-    static isValid (node) {
-        return node.is2D
-    }
-
 }

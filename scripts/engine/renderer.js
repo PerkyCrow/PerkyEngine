@@ -38,8 +38,4 @@ export default class Renderer {
     }
 
 
-    static isValid () {
-        return false
-    }
-
 }

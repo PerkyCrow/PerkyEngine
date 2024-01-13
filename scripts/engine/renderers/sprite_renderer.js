@@ -26,8 +26,4 @@ export default class SpriteRenderer extends DisplayRenderer {
         })
     }
 
-    static isValid (node) {
-        return node.isSprite
-    }
-
 }

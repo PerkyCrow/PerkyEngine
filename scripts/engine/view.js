@@ -1,17 +1,14 @@
 import Notifier from './notifier'
-import {Sprite} from '@pixi/sprite'
-import ContainerRenderer from './renderers/container_renderer'
+import renderersRegistry from './registries/renderers_registry'
+import {Container} from '@pixi/display'
 
 
 export default class View extends Notifier {
 
-    static renderers = [
-        ContainerRenderer
-    ]
-
     constructor () {
+        this.container = createDomContainer()
         this.renderers = new WeakMap()
-        this.targets = {}
+        this.stage = new Container()
     }
 
 
@@ -38,16 +35,20 @@ export default class View extends Notifier {
 }
 
 
+function getRendererFor (node) {
+    return node.renderable && renderersRegistry.get(node.rendererName)
+}
+
+
 function createRendererFrom (view, node) {
-    const Renderer = view.constructor.renderers.find(({isValid}) => isValid(node))
+    const Renderer = getRendererFor(node)
 
     if (Renderer) {
-        return Renderer.create(node)
+        return new Renderer(node)
     }
 
     return null
 }
-
 
 
 function addToParent (view, node, renderer) {
@@ -59,4 +60,12 @@ function addToParent (view, node, renderer) {
         const parentRenderer = this.renderers.get(parent2D)
         parentRenderer.addChild(renderer)
     }
+}
+
+
+function createDomContainer () {
+    const container = document.createElement('div')
+    container.classList.add('perky_view')
+
+    return container
 }

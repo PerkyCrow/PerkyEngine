@@ -7,10 +7,15 @@ export default class Node2D extends Node {
     constructor () {
         super()
 
+        this.is2D = true
+        this.renderable = true
+        this.rendererName = 'Container'
+
         this.setAttribute('position', {
             accessor: true,
             serializable: true,
             exposable: true,
+            watch: true,
             defaultValue: new ObservableVector2(0, 0),
             options: {
                 onChange: this.emitter('changed:position')
@@ -21,6 +26,7 @@ export default class Node2D extends Node {
             accessor: true,
             serializable: true,
             exposable: true,
+            watch: true,
             defaultValue: 0
         })
 
@@ -28,6 +34,7 @@ export default class Node2D extends Node {
             accessor: true,
             serializable: true,
             exposable: true,
+            watch: true,
             defaultValue: new ObservableVector2(1, 1),
             options: {
                 onChange: this.emitter('changed:scale')
@@ -38,6 +45,7 @@ export default class Node2D extends Node {
             accessor: true,
             serializable: true,
             exposable: true,
+            watch: true,
             defaultValue: new ObservableVector2(0, 0),
             options: {
                 onChange: this.emitter('changed:pivot')
@@ -48,11 +56,6 @@ export default class Node2D extends Node {
         this.root2D   = this
 
         registerEvents(this)
-    }
-
-
-    get is2D () {
-        return true
     }
 
 

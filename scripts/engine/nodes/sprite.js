@@ -1,39 +1,51 @@
-import Node from '../node'
-import Vector2 from '../types/vector_2'
+import Node2D from '../node_2d'
+import ObservableVector2 from '../types/observable_vector_2'
 
 
-export default class Sprite extends Node {
+export default class Sprite extends Node2D {
 
     constructor () {
         super()
 
+        this.isSprite = true
+        this.rendererName = 'Sprite'
+
         this.setAttribute('texture', {
             accessor: true,
+            serializable: true,
+            exposable: true,
+            watch: true,
             type: 'Texture'
         })
 
         this.setAttribute('width', {
             accessor: true,
-            defaultValue: 0
+            serializable: true,
+            exposable: true,
+            watch: true,
+            defaultValue: 1
         })
 
         this.setAttribute('height', {
             accessor: true,
-            defaultValue: 0
+            serializable: true,
+            exposable: true,
+            watch: true,
+            defaultValue: 1
         })
 
         this.setAttribute('anchor', {
             accessor: true,
-            defaultValue: new Vector2(1, 1)
+            serializable: true,
+            exposable: true,
+            defaultValue: new ObservableVector2(1, 1),
+            watch: true,
+            options: {
+                onChange: this.emitter('changed:anchor')
+            }
         })
 
     }
-
-
-    get isSprite () {
-        return true
-    }
-
 
 }
 

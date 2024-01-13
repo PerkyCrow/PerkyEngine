@@ -9,4 +9,5 @@ registry.addClass(
     Node2D
 )
 
+
 export default registry
