@@ -5,14 +5,15 @@ export default class Engine {
         this.view  = null
     }
 
-
 }
 
 
 function attach (engine, {world, view} = {}) {
+
     engine.world = world
 
     if (view) {
         engine.view = view
     }
+
 }

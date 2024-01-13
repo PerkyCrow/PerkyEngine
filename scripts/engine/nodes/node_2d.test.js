@@ -1,6 +1,6 @@
 import Node from '../node'
 import Node2D from './node_2d'
-import ObservableVector2 from '../observable_vector_2'
+import ObservableVector2 from '../types/observable_vector_2'
 import jest from 'jest-mock'
 
 

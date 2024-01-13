@@ -6,7 +6,7 @@ export default class Registry extends Map {
             this.set(Item.name, Item)
         })
     }
-    
+
 
     instantiate (name, ...args) {
         const Item = this.get(name)
@@ -38,6 +38,17 @@ export default class Registry extends Map {
         }
 
         return null
+    }
+
+
+    toObject () {
+        const object = {}
+
+        this.forEach((value, key) => {
+            object[key] = value
+        })
+
+        return object
     }
 
 }

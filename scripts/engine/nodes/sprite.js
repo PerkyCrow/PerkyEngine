@@ -1,5 +1,5 @@
 import Node from '../node'
-import Vector2 from '../vector_2'
+import Vector2 from '../types/vector_2'
 
 
 export default class Sprite extends Node {
