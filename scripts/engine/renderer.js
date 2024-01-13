@@ -4,17 +4,15 @@ export default class Renderer {
     constructor (node) {
         this.node = node
         this.nodeListeners = {}
-        this.init()
-    }
-
-
-    init () {
-
     }
 
 
     onNode (eventName, listener) {
         const {node, nodeListeners} = this
+
+        if (nodeListeners[eventName]) {
+            this.offNode(eventName)
+        }
 
         nodeListeners[eventName] = listener
         node.on(eventName, listener)

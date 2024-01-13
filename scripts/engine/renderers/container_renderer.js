@@ -1,27 +1,16 @@
+import DisplayRenderer from './display_renderer'
 import {Container} from '@pixi/display'
 
 
-function isValid (node) {
-    return node.is2D
-}
+export default class ContainerRenderer extends DisplayRenderer {
 
+    constructor (node) {
+        super(node)
+        this.display = new Container()
+    }
 
-function create (node) {
-    const container = new Container()
-    init(node, container)
+    static isValid (node) {
+        return node.is2D
+    }
 
-    return container
-}
-
-
-function init (node, container) {
-    container.x = node.position.x
-    container.y = node.position.y
-}
-
-
-export default {
-    isValid,
-    create,
-    init
 }
