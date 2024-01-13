@@ -13,3 +13,10 @@ yarn
 ```bash
 yarn start
 ```
+
+
+## Test
+
+```bash
+yarn test
+```
