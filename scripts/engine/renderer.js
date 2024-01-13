@@ -1,47 +1,47 @@
-import {Renderer as PixiRenderer} from '@pixi/core'
-
 
 export default class Renderer {
 
-    constructor (baseParams = {}) {
-        const params = getParams(baseParams)
-        this.adapter = new PixiRenderer(params)
-        init(this, params)
+    constructor (node) {
+        this.node = node
+        this.nodeListeners = {}
+        this.init()
     }
 
-}
+
+    init () {
+
+    }
 
 
-function getParams (baseParams) {
-    const {
-        parent    = document.body,
-        container = createContainer()
-    } = baseParams
+    onNode (eventName, listener) {
+        const {node, nodeListeners} = this
 
-    return Object.assign({}, baseParams, {
-        container,
-        resizeTo: container,
-        parent
-    })
-
-}
+        nodeListeners[eventName] = listener
+        node.on(eventName, listener)
+    }
 
 
-function createContainer () {
-    const container = document.createElement('div')
-    container.classList.add('perky-renderer')
+    offNode (eventName) {
+        const {node, nodeListeners} = this
+        const listener = nodeListeners[eventName]
 
-    return container
-}
+        if (listener) {
+            node.off(eventName, listener)
+        }
+    }
 
 
-function init (renderer, {
-    parent,
-    container
-}) {
-    parent.appendChild(container)
-    container.appendChild(renderer.view)
+    destroy () {
+        const {nodeListeners} = this
 
-    renderer.parent = parent
-    renderer.container = container
+        for (const eventName in nodeListeners) {
+            this.offNode(eventName)
+        }
+    }
+
+
+    static isValid () {
+        return false
+    }
+
 }
