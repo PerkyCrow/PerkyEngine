@@ -54,12 +54,11 @@ function createRendererFrom (view, node) {
 
 function addToParent (view, node, renderer) {
     const {parent2D, isRoot2D} = node
-    console.log('addToParent', renderer.display)
+
     if (isRoot2D) {
         view.scene.addChild(renderer.display)
     } else if (parent2D) {
         const parentRenderer = view.renderers.get(parent2D)
-        console.log(parent2D, parentRenderer.display)
         parentRenderer.display.addChild(renderer.display)
     }
 }

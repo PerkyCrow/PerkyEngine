@@ -25,6 +25,7 @@ export default class Model extends Notifier {
     }
 
 
+    // eslint-disable-next-line complexity
     setAttribute (key, {
         exposable  = true,
         serializable = true,
@@ -68,6 +69,10 @@ export default class Model extends Notifier {
                     attribute.value = v
                 }
             })
+        }
+
+        if (cast) {
+            value = cast(value, options)
         }
     }
 

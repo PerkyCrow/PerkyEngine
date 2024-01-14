@@ -150,7 +150,6 @@ export default class Node extends Model {
             this.world = world
 
             this.emit('ready', world)
-            console.log('NODE READY', this, this.world)
             this.world.emit('node:ready', this)
             this.callOnChildren('setReady', world)
         }
