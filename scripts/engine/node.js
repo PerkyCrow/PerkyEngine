@@ -29,6 +29,11 @@ export default class Node extends Model {
     }
 
 
+    get isWorldRoot () {
+        return this.world && this.world.root === this
+    }
+
+
     attachChild (node) {
         if (!node.parent) {
             this.children.push(node)
@@ -36,7 +41,7 @@ export default class Node extends Model {
             node.root   = getRoot(this)
             node.emit('attached', this)
 
-            if (this.ready) {
+            if (this.ready && this.world) {
                 node.setReady(this.world)
             }
 
@@ -140,12 +145,14 @@ export default class Node extends Model {
 
 
     setReady (world) {
-        if (!this.ready) {
+        if (!this.ready && world) {
             this.ready = true
             this.world = world
 
             this.emit('ready', world)
-            this.callOnChildren('setReady')
+            console.log('NODE READY', this, this.world)
+            this.world.emit('node:ready', this)
+            this.callOnChildren('setReady', world)
         }
     }
 

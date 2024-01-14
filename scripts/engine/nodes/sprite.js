@@ -1,4 +1,4 @@
-import Node2D from '../node_2d'
+import Node2D from './node_2d'
 import ObservableVector2 from '../types/observable_vector_2'
 
 
@@ -44,6 +44,8 @@ export default class Sprite extends Node2D {
                 onChange: this.emitter('changed:anchor')
             }
         })
+
+
 
     }
 

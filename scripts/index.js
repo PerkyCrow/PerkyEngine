@@ -1,9 +1,3 @@
-import World from './engine/world'
-import Node from './engine/node'
+import initSample from './sample'
 
-const world = new World()
-const root = new Node()
-
-world.attachRoot(root)
-
-console.log(world)
+initSample()

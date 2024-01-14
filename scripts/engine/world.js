@@ -6,12 +6,8 @@ export default class World extends Notifier {
 
     constructor () {
         super()
+        this.isWorld = true
         this.root = null
-    }
-
-
-    get isWorld () {
-        return true
     }
 
 

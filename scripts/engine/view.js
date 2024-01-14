@@ -3,17 +3,18 @@ import renderersRegistry from './registries/renderers_registry'
 import {Container} from '@pixi/display'
 
 
+
 export default class View extends Notifier {
 
     constructor () {
-        this.container = createDomContainer()
+        super()
         this.renderers = new WeakMap()
-        this.stage = new Container()
+        this.scene = new Container()
     }
 
 
-    addNode (node) {
-        const renderer = createRendererFrom(node)
+    addRendererFor (node) {
+        const renderer = createRendererFrom(this, node)
 
         if (renderer) {
             this.renderers.set(node, renderer)
@@ -22,7 +23,7 @@ export default class View extends Notifier {
     }
 
 
-    removeNode (node) {
+    removeRendererFor (node) {
         const renderer = this.renderers.get(node)
 
         if (renderer) {
@@ -53,19 +54,12 @@ function createRendererFrom (view, node) {
 
 function addToParent (view, node, renderer) {
     const {parent2D, isRoot2D} = node
-
+    console.log('addToParent', renderer.display)
     if (isRoot2D) {
-        view.stage.addChild(renderer)
+        view.scene.addChild(renderer.display)
     } else if (parent2D) {
-        const parentRenderer = this.renderers.get(parent2D)
-        parentRenderer.addChild(renderer)
+        const parentRenderer = view.renderers.get(parent2D)
+        console.log(parent2D, parentRenderer.display)
+        parentRenderer.display.addChild(renderer.display)
     }
-}
-
-
-function createDomContainer () {
-    const container = document.createElement('div')
-    container.classList.add('perky_view')
-
-    return container
 }
