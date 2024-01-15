@@ -1,12 +1,13 @@
 import DisplayRenderer from './display_renderer'
 import {Sprite} from '@pixi/sprite'
-import {Texture} from '@pixi/core'
+import Texture from '../types/texture'
 
 export default class SpriteRenderer extends DisplayRenderer {
 
     constructor (node) {
         super(node)
         const t = Texture.from('https://pixijs.com/assets/flowerTop.png')
+        console.log(t)
         this.display = new Sprite(t)
 
         this.onNode('changed:texture', texture => {

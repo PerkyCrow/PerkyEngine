@@ -14,6 +14,7 @@ export default class ObservableVector2 extends Vector2 {
         y = (typeof y === 'undefined' ? x : y) || 0
 
         this.onChange = onChange
+        this.type = 'ObservableVector2'
 
         Object.defineProperty(this, 'x', {
             enumerable: true,
@@ -69,10 +70,6 @@ export default class ObservableVector2 extends Vector2 {
             return args[0]
         }
         return new ObservableVector2(...args)
-    }
-
-    get type () {
-        return 'ObservableVector2'
     }
 
 }

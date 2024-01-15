@@ -8,6 +8,7 @@ export default class Vector2 {
 
         this.x = x || 0
         this.y = (typeof y === 'undefined' ? x : y) || 0
+        this.type = 'Vector2'
     }
 
     serialize () {
@@ -82,10 +83,6 @@ export default class Vector2 {
 
     static get zero () {
         return new Vector2(0, 0)
-    }
-
-    get type () {
-        return 'Vector2'
     }
 
     get magnitude () {

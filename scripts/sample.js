@@ -22,7 +22,6 @@ export default function init () {
 
 
     world.on('node:ready', node => {
-        console.log('NODE READY', node)
         view.addRendererFor(node)
     })
 
@@ -58,8 +57,6 @@ export default function init () {
     let time
     let delta
 
-    console.log('SCENE', view.scene)
-
     function animate (timestamp) {
         if (!time) {
             time = timestamp
@@ -68,6 +65,9 @@ export default function init () {
         delta = (timestamp - time) * 0.001
         time = timestamp
 
+        base.position.x = Math.sin(time * 0.001) * 100
+
+        sprite.width = 100 + Math.sin(time * 0.001) * 100
         world.update(delta)
 
         renderer.render(view.scene)

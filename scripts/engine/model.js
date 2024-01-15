@@ -74,6 +74,8 @@ export default class Model extends Notifier {
         if (cast) {
             value = cast(value, options)
         }
+
+        this.emit('attribute:set', key, attribute)
     }
 
 

@@ -5,9 +5,14 @@ import jest from 'jest-mock'
 describe(Node, () => {
 
     let node
+    let world
 
     beforeEach(() => {
         node = new Node()
+        world = {
+            on: jest.fn(),
+            emit: jest.fn()
+        }
     })
 
 
@@ -108,19 +113,19 @@ describe(Node, () => {
 
     test('setReady', () => {
         const child = new Node()
-        child.setReady = jest.fn()
+
         node.attachChild(child)
+        expect(child.ready).toBe(false)
 
-        node.setReady()
-
-        expect(child.setReady).toHaveBeenCalled()
+        node.setReady(world)
+        expect(child.ready).toBe(true)
     })
 
 
     test('ready', () => {
         expect(node.ready).toBe(false)
 
-        node.setReady()
+        node.setReady(world)
 
         expect(node.ready).toBe(true)
 
@@ -133,13 +138,13 @@ describe(Node, () => {
 
     describe('events', () => {
 
-
         test('ready', () => {
             const child = new Node()
             const listener = jest.fn()
             child.on('ready', listener)
 
             node.ready = true
+            node.world = world
             node.attachChild(child)
             expect(listener).toHaveBeenCalled()
         })
