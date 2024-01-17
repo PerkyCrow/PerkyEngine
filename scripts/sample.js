@@ -9,7 +9,7 @@ import {Renderer} from '@pixi/core'
 
 export default function init () {
     const engine = new Engine()
-    const {root, view} = engine
+    const {root, view, viewport} = engine
 
     const base = new Node2D()
     const sprite = new Sprite()
@@ -18,31 +18,26 @@ export default function init () {
     base.addChild(sprite)
 
 
+    console.log(viewport)
 
-    const container = document.createElement('div')
-    container.classList.add('perky_view')
-    container.style.position = 'absolute'
-    container.style.width = '100vw'
-    container.style.height = '100vh'
-
-    document.body.appendChild(container)
+    document.body.appendChild(viewport.container)
 
     let renderer = new Renderer({
-        width: container.offsetWidth,
-        height: container.offsetHeight,
+        width: viewport.container.offsetWidth,
+        height: viewport.container.offsetHeight,
         antialias: true,
         transparent: false,
         resolution: window.devicePixelRatio || 1
     })
 
 
-    container.appendChild(renderer.view)
+    viewport.container.appendChild(renderer.view)
 
 
     window.addEventListener('resize', resize)
 
     function resize () {
-        renderer.resize(container.offsetWidth, container.offsetHeight)
+        renderer.resize(viewport.container.offsetWidth, viewport.container.offsetHeight)
     }
 
     engine.on('update', animate)

@@ -1,6 +1,7 @@
 import World from './world'
 import Node from './node'
 import View from './view'
+import Viewport from './viewport'
 import AnimationLoop from './animation_loop'
 import Notifier from './notifier'
 
@@ -12,6 +13,7 @@ export default class Engine extends Notifier {
         this.world = new World()
         this.root  = new Node()
         this.view  = new View()
+        this.viewport = new Viewport()
 
         this.animationLoop = new AnimationLoop({
             autoStart: false,
