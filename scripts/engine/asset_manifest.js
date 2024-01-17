@@ -7,13 +7,6 @@ import textLoader from './loaders/text_loader'
 import textureLoader from './loaders/texture_loader'
 
 
-AssetManifest.setLoader(httpLoader)
-AssetManifest.setLoader(imageLoader)
-AssetManifest.setLoader(jsonLoader)
-AssetManifest.setLoader(textLoader)
-AssetManifest.setLoader(textureLoader)
-
-
 export default class AssetManifest {
 
     static loaders = {}
@@ -143,3 +136,10 @@ function setAssetName (params) {
 function isValidAssetParams (params) {
     return params.name && params.type && (params.path || params.source)
 }
+
+
+AssetManifest.setLoader(httpLoader)
+AssetManifest.setLoader(imageLoader)
+AssetManifest.setLoader(jsonLoader)
+AssetManifest.setLoader(textLoader)
+AssetManifest.setLoader(textureLoader)

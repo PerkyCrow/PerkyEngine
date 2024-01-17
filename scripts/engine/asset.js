@@ -1,7 +1,8 @@
 
 export default class Asset {
 
-    constructor ({path, source, ext, loader, type}) {
+    constructor ({name, path, source, ext, loader, type}) {
+        this.name   = name
         this.path   = path
         this.source = source
         this.ext    = ext
