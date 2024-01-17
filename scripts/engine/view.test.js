@@ -1,7 +1,7 @@
 import View from './view'
-import jest from 'jest-mock'
 import Node2D from './nodes/node_2d'
 import Renderer from './renderer'
+
 
 describe(View, () => {
 
