@@ -1,9 +1,8 @@
 
-export const type = 'http'
-
-export const extensions = []
-
-
-export function load (path, options = {}) {
-    return fetch(path, options)
+export default {
+    type: 'http',
+    extensions: [],
+    load (path, options = {}) {
+        return fetch(path, options)
+    }
 }
