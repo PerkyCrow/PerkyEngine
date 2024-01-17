@@ -3,7 +3,6 @@ import renderersRegistry from './registries/renderers_registry'
 import {Container} from '@pixi/display'
 
 
-
 export default class View extends Notifier {
 
     constructor () {
@@ -20,6 +19,8 @@ export default class View extends Notifier {
             this.renderers.set(node, renderer)
             addToParent(this, node, renderer)
         }
+
+        return renderer
     }
 
 
@@ -31,7 +32,6 @@ export default class View extends Notifier {
             this.renderers.delete(node)
         }
     }
-
 
 }
 

@@ -35,6 +35,10 @@ export default class Renderer {
         for (const eventName in nodeListeners) {
             this.offNode(eventName)
         }
+
+        if (this.display && this.display.destroy) {
+            this.display.destroy()
+        }
     }
 
 
