@@ -4,6 +4,7 @@ import View from './engine/view'
 
 import Node2D from './engine/nodes/node_2d'
 import Sprite from './engine/nodes/sprite'
+import AnimationLoop from './engine/animation_loop'
 
 import {Renderer} from '@pixi/core'
 
@@ -54,26 +55,18 @@ export default function init () {
     }
 
 
-    let time
-    let delta
 
-    function animate (timestamp) {
-        if (!time) {
-            time = timestamp
-        }
+    new AnimationLoop({
+        callback: animate
+    })
 
-        delta = (timestamp - time) * 0.001
-        time = timestamp
+    function animate (deltaTime, elapsedTime) {
+        base.position.x = Math.sin(elapsedTime) * 100
 
-        base.position.x = Math.sin(time * 0.001) * 100
-
-        sprite.width = 100 + Math.sin(time * 0.001) * 100
-        world.update(delta)
+        sprite.width = 100 + Math.sin(elapsedTime) * 100
+        world.update(deltaTime)
 
         renderer.render(view.scene)
-
-        requestAnimationFrame(animate)
     }
 
-    requestAnimationFrame(animate)
 }

@@ -45,8 +45,6 @@ export default class Sprite extends Node2D {
             }
         })
 
-
-
     }
 
 }
