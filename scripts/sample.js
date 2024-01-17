@@ -1,19 +1,15 @@
-import World from './engine/world'
-import Node from './engine/node'
-import View from './engine/view'
-
+import Engine from './engine/engine'
 import Node2D from './engine/nodes/node_2d'
 import Sprite from './engine/nodes/sprite'
-import AnimationLoop from './engine/animation_loop'
+
 
 import {Renderer} from '@pixi/core'
 
 
 
 export default function init () {
-    const world = new World()
-    const root = new Node()
-    const view = new View()
+    const engine = new Engine()
+    const {root, view} = engine
 
     const base = new Node2D()
     const sprite = new Sprite()
@@ -22,11 +18,6 @@ export default function init () {
     base.addChild(sprite)
 
 
-    world.on('node:ready', node => {
-        view.addRendererFor(node)
-    })
-
-    world.attachRoot(root)
 
     const container = document.createElement('div')
     container.classList.add('perky_view')
@@ -54,17 +45,13 @@ export default function init () {
         renderer.resize(container.offsetWidth, container.offsetHeight)
     }
 
+    engine.on('update', animate)
 
-
-    new AnimationLoop({
-        callback: animate
-    })
 
     function animate (deltaTime, elapsedTime) {
         base.position.x = Math.sin(elapsedTime) * 100
 
         sprite.width = 100 + Math.sin(elapsedTime) * 100
-        world.update(deltaTime)
 
         renderer.render(view.scene)
     }

@@ -113,13 +113,19 @@ export default class Node extends Model {
 
 
     destroy () {
-        if (this.destroyed) {
+
+        const {destroyed, parent, world} = this
+
+        if (destroyed) {
             return false
         }
 
         this.safeCallOnChildren('destroy')
 
-        const {parent} = this
+        if (world) {
+            world.emit('node:destroy', this)
+        }
+
         if (parent) {
             parent.detachChild(this)
         }

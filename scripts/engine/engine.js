@@ -1,75 +1,46 @@
-import {Application} from '@pixi/app'
+import World from './world'
+import Node from './node'
+import View from './view'
+import AnimationLoop from './animation_loop'
+import Notifier from './notifier'
 
 
-export default class Engine extends Application {
+export default class Engine extends Notifier {
 
-    constructor (params = {}) {
-        params = setup(params)
-        super(params)
-        init(this, params)
+    constructor () {
+        super()
+        this.world = new World()
+        this.root  = new Node()
+        this.view  = new View()
+
+        this.animationLoop = new AnimationLoop({
+            autoStart: false,
+            callback: (deltaTime, elapsedTime) => this.update(deltaTime, elapsedTime)
+        })
+
+        init(this)
+    }
+
+    update (deltaTime, elapsedTime) {
+        this.world.update(deltaTime, elapsedTime)
+        this.emit('update', deltaTime, elapsedTime)
     }
 
 }
 
 
-function setup (params) {
-    const {
-        parent    = document.body,
-        container = createContainer(),
-        scale     = 1
-    } = params
+function init (engine) {
+    const {world, root, view, animationLoop} = engine
 
-    return Object.assign(params, {
-        container,
-        resizeTo: container,
-        scale,
-        parent
+    world.on('node:ready', node => {
+        view.addRendererFor(node)
     })
-}
 
+    world.on('node:destroy', node => {
+        view.removeRendererFor(node)
+    })
 
-function createContainer () {
-    const container = document.createElement('div')
-    container.classList.add('perky-engine')
+    world.attachRoot(root)
 
-    return container
-}
-
-
-function init (engine, {
-    parent,
-    container,
-    scale
-}) {
-    parent.appendChild(container)
-    container.appendChild(engine.view)
-
-    engine.parent = parent
-    engine.container = container
-
-    handleResize(engine)
-    handleScale(engine, {scale})
-}
-
-
-function handleResize (engine) {
-    function resize () {
-        const parent = engine.parent
-        const width = parent.offsetWidth
-        const height = parent.offsetHeight
-
-        engine.renderer.resize(width, height)
-
-        // engine.stage.x = engine.renderer.width / 2
-        // engine.stage.y = engine.renderer.height / 2
-    }
-
-    engine.container.addEventListener('resize', resize)
-
-    setTimeout(resize)
-}
-
-
-function handleScale (engine, {scale}) {
-    engine.stage.scale.set(scale)
+    animationLoop.start()
 }
