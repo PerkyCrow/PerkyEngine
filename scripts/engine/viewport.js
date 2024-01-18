@@ -1,3 +1,5 @@
+import {Renderer} from '@pixi/core'
+
 
 export default class Viewport {
 
@@ -9,6 +11,26 @@ export default class Viewport {
         if (!this.container.classList.contains('perky_view')) {
             this.container.classList.add('perky_view')
         }
+
+        this.pixiRenderer = new Renderer({
+            width: container.offsetWidth,
+            height: container.offsetHeight,
+            antialias: true,
+            transparent: false,
+            resolution: window.devicePixelRatio || 1
+        })
+
+        this.container.appendChild(this.pixiRenderer.view)
+    }
+
+
+    resize () {
+        this.pixiRenderer.resize(this.container.offsetWidth, this.container.offsetHeight)
+    }
+
+
+    render (scene) {
+        this.pixiRenderer.render(scene)
     }
 
 }

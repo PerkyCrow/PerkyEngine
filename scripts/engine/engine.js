@@ -10,9 +10,9 @@ export default class Engine extends Notifier {
 
     constructor () {
         super()
-        this.world = new World()
-        this.root  = new Node()
-        this.view  = new View()
+        this.world    = new World()
+        this.root     = new Node()
+        this.view     = new View()
         this.viewport = new Viewport()
 
         this.animationLoop = new AnimationLoop({
@@ -26,6 +26,7 @@ export default class Engine extends Notifier {
     update (deltaTime, elapsedTime) {
         this.world.update(deltaTime, elapsedTime)
         this.emit('update', deltaTime, elapsedTime)
+        this.viewport.render(this.view.scene)
     }
 
 }
