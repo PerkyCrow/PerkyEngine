@@ -1,5 +1,5 @@
 import DisplayRenderer from './display_renderer'
-import {Sprite} from '@pixi/sprite'
+import {Sprite} from 'pixi.js'
 import Texture from '../types/texture'
 
 export default class SpriteRenderer extends DisplayRenderer {

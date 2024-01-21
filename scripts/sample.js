@@ -19,8 +19,6 @@ export default function init () {
     engine.on('update', animate)
 
 
-    console.log(engine)
-
     function animate (deltaTime, elapsedTime) {
         // base.position.x = Math.sin(elapsedTime) * 100
         // sprite.width = 100 + Math.sin(elapsedTime) * 100
