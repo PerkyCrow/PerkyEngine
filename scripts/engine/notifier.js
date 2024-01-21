@@ -26,7 +26,9 @@ export default class Notifier {
     off (name, listener) {
         const listeners = this.getListenersFor(name)
 
-        if (Array.isArray(listeners)) {
+        if (typeof listener === 'undefined') {
+            return this.removeListenersFor(name)
+        } else if (Array.isArray(listeners)) {
             const index = listeners.indexOf(listener)
 
             if (index !== -1) {
@@ -46,6 +48,7 @@ export default class Notifier {
             listener.apply(this, args)
         }
     }
+
 
     emitter (name) {
         return (...args) => this.emit(name, ...args)
