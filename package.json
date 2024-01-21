@@ -14,7 +14,8 @@
     "vue": "vue/dist/vue.esm-bundler"
   },
   "jest": {
-    "moduleNameMapper": {}
+    "moduleNameMapper": {},
+    "setupFiles": ["jest-webgl-canvas-mock"]
   },
   "staticFiles": {
     "staticPath": "scripts/assets"
@@ -25,6 +26,8 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.55.0",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-webgl-canvas-mock": "^2.5.3",
     "jsdom": "^23.0.1",
     "parcel": "^2.10.3",
     "parcel-reporter-static-files-copy": "^1.5.3",
