@@ -2,6 +2,7 @@ import DisplayRenderer from './display_renderer'
 import {Sprite} from 'pixi.js'
 import Texture from '../types/texture'
 
+
 export default class SpriteRenderer extends DisplayRenderer {
 
     constructor (node) {
@@ -9,7 +10,6 @@ export default class SpriteRenderer extends DisplayRenderer {
 
         const t = Texture.from('https://pixijs.com/assets/flowerTop.png')
         this.display = new Sprite(t)
-        console.log(this.display)
 
         this.onNode('changed:texture', texture => {
             this.display.texture = texture
@@ -27,10 +27,6 @@ export default class SpriteRenderer extends DisplayRenderer {
             this.display.anchor.x = x
             this.display.anchor.y = y
         })
-
-
-        this.display.on('click', (event) => { alert('clicked!'); });
-        this.display.eventMode = 'dynamic';
 
     }
 
