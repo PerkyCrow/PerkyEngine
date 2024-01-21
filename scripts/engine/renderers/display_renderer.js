@@ -1,6 +1,7 @@
 import Renderer from '../renderer'
 import NotifierProxy from '../notifier_proxy'
 
+
 export default class DisplayRenderer extends Renderer {
 
     constructor (node) {
@@ -38,7 +39,6 @@ export default class DisplayRenderer extends Renderer {
 
 
     enableDisplayEvents (type = 'dynamic') {
-        this.display.interactive = true
         this.display.eventMode = type
 
         if (!this.displayNotifier) {
@@ -48,7 +48,6 @@ export default class DisplayRenderer extends Renderer {
 
 
     disasbleDisplayEvents () {
-        this.display.interactive = false
         this.display.eventMode = 'auto'
     }
 

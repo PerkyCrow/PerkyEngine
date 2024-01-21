@@ -38,7 +38,7 @@ export default class Sprite extends Node2D {
             accessor: true,
             serializable: true,
             exposable: true,
-            defaultValue: new ObservableVector2(1, 1),
+            defaultValue: new ObservableVector2(0, 0),
             watch: true,
             options: {
                 onChange: this.emitter('changed:anchor')
