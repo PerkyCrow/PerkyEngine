@@ -4,8 +4,7 @@ import {Container} from 'pixi.js'
 
 export default class ContainerRenderer extends DisplayRenderer {
 
-    constructor (node) {
-        super(node)
+    initDisplay () {
         this.display = new Container()
     }
 

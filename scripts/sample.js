@@ -1,7 +1,7 @@
 import Engine from './engine/engine'
 import Node2D from './engine/nodes/node_2d'
 import Sprite from './engine/nodes/sprite'
-
+import Rectangle from './engine/nodes/rectangle'
 
 export default function init () {
     const engine = new Engine()
@@ -9,9 +9,17 @@ export default function init () {
 
     const base = new Node2D()
     const sprite = new Sprite()
+    const rectangle = new Rectangle()
 
     root.addChild(base)
-    base.addChild(sprite)
+    base.addChild(rectangle)
+    rectangle.addChild(sprite)
+
+    rectangle.width = 100
+    rectangle.height = 100
+
+    rectangle.anchor.x = 0.5
+    rectangle.anchor.y = 0.5
 
     document.body.appendChild(viewport.container)
     window.addEventListener('resize', () => viewport.resize())
@@ -20,7 +28,8 @@ export default function init () {
 
 
     function animate (deltaTime, elapsedTime) {
-        // base.position.x = Math.sin(elapsedTime) * 100
-        // sprite.width = 100 + Math.sin(elapsedTime) * 100
+        base.position.x = Math.sin(elapsedTime) * 100
+        sprite.width = 100 + Math.sin(elapsedTime) * 100
+        rectangle.width = 100 + Math.sin(elapsedTime) * 100
     }
 }

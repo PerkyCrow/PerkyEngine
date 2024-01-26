@@ -1,8 +1,7 @@
-import Node2D from './node_2d'
-import ObservableVector2 from '../types/observable_vector_2'
+import Rectangle from './rectangle'
 
 
-export default class Sprite extends Node2D {
+export default class Sprite extends Rectangle {
 
     constructor () {
         super()
@@ -18,34 +17,6 @@ export default class Sprite extends Node2D {
             type: 'Texture'
         })
 
-        this.setAttribute('width', {
-            accessor: true,
-            serializable: true,
-            exposable: true,
-            watch: true,
-            defaultValue: 1
-        })
-
-        this.setAttribute('height', {
-            accessor: true,
-            serializable: true,
-            exposable: true,
-            watch: true,
-            defaultValue: 1
-        })
-
-        this.setAttribute('anchor', {
-            accessor: true,
-            serializable: true,
-            exposable: true,
-            defaultValue: new ObservableVector2(0, 0),
-            watch: true,
-            options: {
-                onChange: this.emitter('changed:anchor')
-            }
-        })
-
     }
 
 }
-
