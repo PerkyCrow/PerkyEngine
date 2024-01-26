@@ -2,6 +2,7 @@ import Model from './model'
 import Vector2 from './types/vector_2'
 import jest from 'jest-mock'
 
+
 describe(Model, () => {
 
     let model
@@ -116,6 +117,29 @@ describe(Model, () => {
         })
 
         expect(model.attributes.bar.type).toEqual('Vector2')
+    })
+
+
+    test('updateAttribute', () => {
+        model.setAttribute('foo', {
+            value: 'bar',
+            accessor: true
+        })
+
+        expect(model.foo).toEqual('bar')
+
+        model.foo = 'baz'
+
+        expect(model.attributes.foo.value).toEqual('baz')
+
+        model.updateAttribute('foo', {
+            value: 'baz',
+            accessor: false
+        })
+
+        expect(model.foo).toBe(undefined)
+
+        expect(model.attributes.foo.value).toEqual('baz')
     })
 
 

@@ -4,6 +4,7 @@ export default class ObservableVector2 extends Vector2 {
 
     constructor (x, y, onChange) {
         super()
+
         if (typeof x === 'object') {
             onChange = y
             y = x.y
@@ -52,6 +53,11 @@ export default class ObservableVector2 extends Vector2 {
         }
 
         return value
+    }
+
+
+    static free (value) {
+        delete value.onChange
     }
     
 

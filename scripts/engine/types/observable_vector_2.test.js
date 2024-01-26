@@ -65,6 +65,15 @@ describe(ObservableVector2, () => {
     })
 
 
+    test('free', () => {
+        const onChange = jest.fn()
+        const vector = new ObservableVector2(1, 2, onChange)
+        expect(vector.onChange).toEqual(onChange)
+        ObservableVector2.free(vector)
+        expect(vector.onChange).toBe(undefined)
+    })
+
+
     test('serialize', () => {
         const onChange = jest.fn()
         const vector = new ObservableVector2(1, 2, onChange)
