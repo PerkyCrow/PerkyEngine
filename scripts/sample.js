@@ -1,7 +1,6 @@
 import Engine from './engine/engine'
 import Camera from './engine/nodes/camera'
 import Sprite from './engine/nodes/sprite'
-import Rectangle from './engine/nodes/rectangle'
 
 export default function init () {
     const engine = new Engine()
@@ -9,10 +8,9 @@ export default function init () {
 
     const camera = new Camera()
     const sprite = new Sprite()
-    const rectangle = new Rectangle()
 
     root.addChild(camera)
-    
+
     // camera.addChild(rectangle)
     camera.addChild(sprite)
 
@@ -26,10 +24,6 @@ export default function init () {
 
     camera.width = 10
     camera.height = 6
-
-    rectangle.width = 10
-    rectangle.height = 6
-    rectangle.setCenter({x: 0, y: 0})
 
     sprite.renderer.onDisplay('click', () => {
         console.log('click')

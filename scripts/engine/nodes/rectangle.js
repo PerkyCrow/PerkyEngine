@@ -32,12 +32,4 @@ export default class Rectangle extends Node2D {
         return this.width / this.height
     }
 
-
-    setCenter ({x, y}) {
-        this.position = {
-            x: x - this.width  / 2,
-            y: y - this.height / 2
-        }
-    }
-
 }
