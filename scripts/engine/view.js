@@ -17,6 +17,7 @@ export default class View extends Notifier {
 
         if (renderer) {
             this.renderers.set(node, renderer)
+            node.renderer = renderer
             addToParent(this, node, renderer)
         }
 
@@ -29,6 +30,7 @@ export default class View extends Notifier {
 
         if (renderer) {
             renderer.destroy()
+            delete node.renderer
             this.renderers.delete(node)
         }
     }
