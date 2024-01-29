@@ -26,32 +26,27 @@ export default function init () {
 
     rectangle.width = 10
     rectangle.height = 6
-    rectangle.position.x = -5
-    rectangle.position.y = -3
+    rectangle.setCenter({x: 0, y: 0})
 
-    camera.scaleToFit(viewport.getSize())
+
 
     camera.position.x = 0
 
     document.body.appendChild(viewport.container)
-    window.addEventListener('resize', () => viewport.resize())
+
 
     engine.on('update', animate)
 
-
-
-    Object.assign(camera.position, viewport.getCenter())
-
-
-
-
-    window.addEventListener('resize', () => {
+    function resize () {
         viewport.resize()
-        const center = viewport.getCenter()
-
         camera.scaleToFit(viewport.getSize())
         Object.assign(camera.position, viewport.getCenter())
-    })
+    }
+
+
+    window.addEventListener('resize', resize)
+
+    resize()
 
     function animate (deltaTime, elapsedTime) {
         // camera.position.x += deltaTime * 10

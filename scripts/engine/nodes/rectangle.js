@@ -27,4 +27,11 @@ export default class Rectangle extends Node2D {
 
     }
 
+    setCenter ({x, y}) {
+        this.position = {
+            x: x - this.width  / 2,
+            y: y - this.height / 2
+        }
+    }
+
 }

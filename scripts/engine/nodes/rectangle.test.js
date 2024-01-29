@@ -20,4 +20,11 @@ describe(Rectangle, () => {
         expect(node.isRectangle).toBe(true)
     })
 
+
+    test('setCenter', () => {
+        node.setCenter({x: 10, y: 20})
+        expect(node.position.x).toBe(5)
+        expect(node.position.y).toBe(15)
+    })
+
 })
