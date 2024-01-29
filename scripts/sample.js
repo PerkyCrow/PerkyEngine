@@ -28,7 +28,9 @@ export default function init () {
     rectangle.height = 6
     rectangle.setCenter({x: 0, y: 0})
 
-
+    sprite.renderer.onDisplay('click', () => {
+        console.log('click')
+    })
 
     camera.position.x = 0
 

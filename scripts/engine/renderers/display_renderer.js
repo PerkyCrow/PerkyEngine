@@ -59,6 +59,10 @@ export default class DisplayRenderer extends Renderer {
 
 
     onDisplay (eventName, listener) {
+        if (this.display.eventMode !== 'dynamic' || this.display.eventMode !== 'static') {
+            this.enableDisplayEvents()
+        }
+
         return this.displayNotifier.on(eventName, listener)
     }
 
