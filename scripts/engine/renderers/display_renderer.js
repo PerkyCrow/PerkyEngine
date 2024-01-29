@@ -8,6 +8,7 @@ export default class DisplayRenderer extends Renderer {
         super(node)
 
         this.initDisplay()
+        this.syncAttributes()
 
         this.onNode('changed:position', position => this.syncPosition(position))
 
@@ -21,6 +22,16 @@ export default class DisplayRenderer extends Renderer {
 
     initDisplay () {
 
+    }
+
+
+    syncAttributes () {
+        if (this.display) {
+            this.syncPosition(this.node.position)
+            this.syncRotation(this.node.rotation)
+            this.syncScale(this.node.scale)
+            this.syncPivot(this.node.pivot)
+        }
     }
 
 

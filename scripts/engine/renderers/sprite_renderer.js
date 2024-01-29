@@ -10,12 +10,35 @@ export default class SpriteRenderer extends RectangleRenderer {
         super(node)
 
         this.onNode('changed:texture', texture => this.syncTexture(texture))
+
+        this.onNode('changed:anchor', anchor => this.syncAnchor(anchor))
     }
 
 
     initDisplay () {
         const t = Texture.from('https://pixijs.com/assets/flowerTop.png')
         this.display = new Sprite(t)
+    }
+
+
+    syncAttributes () {
+        super.syncAttributes()
+
+        this.syncTexture(this.node.texture)
+        this.syncAnchor(this.node.anchor)
+    }
+
+
+    syncTexture (texture) {
+        if (texture) {
+            this.display.texture = texture
+        }
+    }
+
+
+    syncAnchor ({x, y}) {
+        this.display.anchor.x = x
+        this.display.anchor.y = y
     }
 
 
@@ -32,12 +55,6 @@ export default class SpriteRenderer extends RectangleRenderer {
 
     syncHeight (height) {
         this.display.height = height
-    }
-
-
-    syncAnchor ({x, y}) {
-        this.display.anchor.x = x
-        this.display.anchor.y = y
     }
 
 }

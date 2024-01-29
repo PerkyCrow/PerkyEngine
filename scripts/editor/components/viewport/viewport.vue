@@ -43,7 +43,7 @@
 
         window.addEventListener('resize', (e) => {
             viewport.resize({
-                width: viewportEl.value.clientWidth,
+                width:  viewportEl.value.clientWidth,
                 height: viewportEl.value.clientHeight
             })
         })

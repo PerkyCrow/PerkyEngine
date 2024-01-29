@@ -16,11 +16,28 @@ export default class Viewport {
             width: container.offsetWidth,
             height: container.offsetHeight,
             antialias: true,
-            transparent: false,
-            resolution: window.devicePixelRatio || 1
+            transparent: false
         })
 
         this.container.appendChild(this.pixiRenderer.view)
+    }
+
+
+    getSize () {
+        return {
+            width:  this.container.offsetWidth,
+            height: this.container.offsetHeight
+        }
+    }
+
+
+    getCenter () {
+        const {width, height} = this.getSize()
+
+        return {
+            x: width  / 2,
+            y: height / 2
+        }
     }
 
 
