@@ -51,8 +51,6 @@ export default class Viewport {
 
     static fromElement (element) {
         const {width, height} = element.getBoundingClientRect()
-        console.log(element.offsetWidth, element.offsetHeight)
-        console.log(element.width, element.height)
         return new Viewport({width, height})
     }
 

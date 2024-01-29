@@ -38,7 +38,6 @@ export default class AssetManifest {
 
     add (params) {
         const assetParams = prepareAssetParams(this, params)
-        console.log(assetParams)
         if (isValidAssetParams(assetParams)) {
             let asset = new Asset(assetParams)
             this.assets[asset.name] = asset

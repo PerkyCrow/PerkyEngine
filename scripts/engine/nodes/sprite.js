@@ -30,8 +30,6 @@ export default class Sprite extends Rectangle {
             }
         })
 
-
-        console.log(this)
     }
 
 }
