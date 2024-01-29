@@ -23,7 +23,7 @@ export default class AssetManifest {
     }
 
 
-    getSource (name) {
+    getResource (name) {
         const asset = this.get(name)
         return asset && asset.source
     }
@@ -38,7 +38,7 @@ export default class AssetManifest {
 
     add (params) {
         const assetParams = prepareAssetParams(this, params)
-
+        console.log(assetParams)
         if (isValidAssetParams(assetParams)) {
             let asset = new Asset(assetParams)
             this.assets[asset.name] = asset

@@ -4,7 +4,7 @@ import ObservableVector2 from '../types/observable_vector_2'
 
 export default class Sprite extends Rectangle {
 
-    constructor () {
+    constructor ({texture} = {}) {
         super()
 
         this.isSprite = true
@@ -15,6 +15,7 @@ export default class Sprite extends Rectangle {
             serializable: true,
             exposable: true,
             watch: true,
+            value: texture,
             type: 'Texture'
         })
 
@@ -29,6 +30,8 @@ export default class Sprite extends Rectangle {
             }
         })
 
+
+        console.log(this)
     }
 
 }

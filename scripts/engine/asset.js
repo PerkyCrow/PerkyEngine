@@ -21,6 +21,10 @@ export default class Asset {
             return Promise.resolve(this.source)
         }
 
+        if (!this.loader) {
+            return Promise.reject(new Error(`No loader for asset ${this.path}`))
+        }
+
         return this.loader.load(this.path).then(source => {
             this.source = source
             return this.source

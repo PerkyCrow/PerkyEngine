@@ -1,7 +1,5 @@
 import RectangleRenderer from './rectangle_renderer'
 import {Sprite} from 'pixi.js'
-import Texture from '../types/texture'
-
 
 
 export default class SpriteRenderer extends RectangleRenderer {
@@ -16,8 +14,7 @@ export default class SpriteRenderer extends RectangleRenderer {
 
 
     initDisplay () {
-        const t = Texture.from('../../images/shroom_test.png')
-        this.display = new Sprite(t)
+        this.display = new Sprite()
     }
 
 

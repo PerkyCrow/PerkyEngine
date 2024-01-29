@@ -30,11 +30,11 @@ describe(AssetManifest, () => {
     })
 
 
-    test('getSource', () => {
+    test('getResource', () => {
         const asset = new Asset({name: 'foo', source: 'source'})
         manifest.assets.foo = asset
 
-        expect(manifest.getSource('foo')).toBe('source')
+        expect(manifest.getResource('foo')).toBe('source')
     })
 
 

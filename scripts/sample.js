@@ -1,13 +1,24 @@
 import Engine from './engine/engine'
 import Camera from './engine/nodes/camera'
 import Sprite from './engine/nodes/sprite'
+import AssetManifest from './engine/asset_manifest'
 
-export default function init () {
-    const engine = new Engine()
+export default async function init () {
+    const assetManifest = new AssetManifest()
+    assetManifest.add({
+        path: 'images/shroom_test.png',
+        type: 'texture'
+    })
+
+    await assetManifest.loadAll()
+
+    const engine = new Engine({assetManifest})
     const {root, viewport} = engine
 
     const camera = new Camera()
-    const sprite = new Sprite()
+    const sprite = new Sprite({
+        texture: engine.getResource('images/shroom_test.png')
+    })
 
     root.addChild(camera)
 

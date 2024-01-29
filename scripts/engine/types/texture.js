@@ -21,4 +21,19 @@ export default class Texture extends PixiTexture {
         return value.textureCacheIds[0]
     }
 
+
+    get originalWidth () {
+        return this.baseTexture ? this.baseTexture.width : 1
+    }
+
+
+    get originalHeight () {
+        return this.baseTexture ? this.baseTexture.height : 1
+    }
+
+
+    get aspectRatio () {
+        return this.originalWidth / this.originalHeight
+    }
+
 }
