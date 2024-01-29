@@ -12,14 +12,17 @@ export default function init () {
     const rectangle = new Rectangle()
 
     root.addChild(camera)
-    camera.addChild(rectangle)
+    
+    // camera.addChild(rectangle)
     camera.addChild(sprite)
 
     sprite.anchor.x = 0.5
     sprite.anchor.y = 0.5
 
+    const aspectRatio = 380 / 450
+
     sprite.width  = 1
-    sprite.height = 1
+    sprite.height = 1 / aspectRatio
 
     camera.width = 10
     camera.height = 6

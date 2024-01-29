@@ -16,7 +16,7 @@ export default class SpriteRenderer extends RectangleRenderer {
 
 
     initDisplay () {
-        const t = Texture.from('https://pixijs.com/assets/flowerTop.png')
+        const t = Texture.from('../../images/shroom_test.png')
         this.display = new Sprite(t)
     }
 

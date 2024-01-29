@@ -27,6 +27,12 @@ export default class Rectangle extends Node2D {
 
     }
 
+
+    get aspectRatio () {
+        return this.width / this.height
+    }
+
+
     setCenter ({x, y}) {
         this.position = {
             x: x - this.width  / 2,
