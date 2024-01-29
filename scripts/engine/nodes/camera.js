@@ -3,7 +3,7 @@ import Rectangle from './rectangle'
 
 export default class Camera extends Rectangle {
 
-    constructor (params) {
+    constructor (params = {}) {
         super(params)
 
         this.isCamera = true

@@ -4,7 +4,7 @@ import ObservableVector2 from '../types/observable_vector_2'
 
 export default class Sprite extends Rectangle {
 
-    constructor (params) {
+    constructor (params = {}) {
         super(params)
 
         this.isSprite = true
