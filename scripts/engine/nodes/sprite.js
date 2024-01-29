@@ -4,8 +4,8 @@ import ObservableVector2 from '../types/observable_vector_2'
 
 export default class Sprite extends Rectangle {
 
-    constructor ({texture} = {}) {
-        super()
+    constructor (params) {
+        super(params)
 
         this.isSprite = true
         this.rendererName = 'Sprite'
@@ -15,7 +15,7 @@ export default class Sprite extends Rectangle {
             serializable: true,
             exposable: true,
             watch: true,
-            value: texture,
+            value: params.texture,
             type: 'Texture'
         })
 
@@ -24,6 +24,7 @@ export default class Sprite extends Rectangle {
             serializable: true,
             exposable: true,
             defaultValue: new ObservableVector2(0, 0),
+            value: params.anchor,
             watch: true,
             options: {
                 onChange: this.emitter('changed:anchor')

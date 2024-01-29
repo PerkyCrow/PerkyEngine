@@ -1,5 +1,5 @@
 import imageLoader from './image_loader'
-import {Texture} from '@pixi/core'
+import Texture from '../types/texture'
 
 
 export default {

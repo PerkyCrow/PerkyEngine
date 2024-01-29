@@ -3,8 +3,8 @@ import Node2D from './node_2d'
 
 export default class Rectangle extends Node2D {
 
-    constructor () {
-        super()
+    constructor (params) {
+        super(params)
 
         this.isRectangle = true
         this.rendererName = 'Rectangle'
@@ -14,7 +14,8 @@ export default class Rectangle extends Node2D {
             serializable: true,
             exposable: true,
             watch: true,
-            defaultValue: 1
+            defaultValue: 1,
+            value: params.width
         })
 
         this.setAttribute('height', {
@@ -22,7 +23,8 @@ export default class Rectangle extends Node2D {
             serializable: true,
             exposable: true,
             watch: true,
-            defaultValue: 1
+            defaultValue: 1,
+            value: params.height
         })
 
     }

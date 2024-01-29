@@ -3,8 +3,8 @@ import Rectangle from './rectangle'
 
 export default class Camera extends Rectangle {
 
-    constructor () {
-        super()
+    constructor (params) {
+        super(params)
 
         this.isCamera = true
         this.rendererName = 'Camera'

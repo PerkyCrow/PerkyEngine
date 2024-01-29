@@ -4,13 +4,13 @@ import {Texture as PixiTexture} from '@pixi/core'
 export default class Texture extends PixiTexture {
 
     static is (value) {
-        return value instanceof PixiTexture
+        return value instanceof Texture
     }
 
 
     static cast (value) {
         if (!Texture.is(value)) {
-            value = new Texture(value)
+            value = new PixiTexture(value)
         }
 
         return value
@@ -19,6 +19,11 @@ export default class Texture extends PixiTexture {
 
     static serialize (value) {
         return value.textureCacheIds[0]
+    }
+
+
+    static from (value) {
+        return new Texture(PixiTexture.from(value))
     }
 
 

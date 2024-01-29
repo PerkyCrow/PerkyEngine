@@ -4,8 +4,8 @@ import ObservableVector2 from '../types/observable_vector_2'
 
 export default class Node2D extends Node {
 
-    constructor () {
-        super()
+    constructor (params = {}) {
+        super(params)
 
         this.is2D = true
         this.renderable = true
@@ -17,6 +17,7 @@ export default class Node2D extends Node {
             exposable: true,
             watch: true,
             defaultValue: new ObservableVector2(0, 0),
+            value: params.position,
             options: {
                 onChange: this.emitter('changed:position')
             }
@@ -27,7 +28,8 @@ export default class Node2D extends Node {
             serializable: true,
             exposable: true,
             watch: true,
-            defaultValue: 0
+            defaultValue: 0,
+            value: params.rotation
         })
 
         this.setAttribute('scale', {
@@ -36,6 +38,7 @@ export default class Node2D extends Node {
             exposable: true,
             watch: true,
             defaultValue: new ObservableVector2(1, 1),
+            value: params.scale,
             options: {
                 onChange: this.emitter('changed:scale')
             }
@@ -47,6 +50,7 @@ export default class Node2D extends Node {
             exposable: true,
             watch: true,
             defaultValue: new ObservableVector2(0, 0),
+            value: params.pivot,
             options: {
                 onChange: this.emitter('changed:pivot')
             }

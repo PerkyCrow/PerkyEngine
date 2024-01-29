@@ -15,32 +15,48 @@ export default async function init () {
     const engine = new Engine({assetManifest})
     const {root, viewport} = engine
 
-    const camera = new Camera()
+    const camera = new Camera({
+        width: 10,
+        height: 6
+    })
+
+    const mushroomTexture = engine.getResource('images/shroom_test.png')
+    const aspectRatio = mushroomTexture.aspectRatio
+    console.log({
+        texture: engine.getResource('images/shroom_test.png'),
+        anchor: {
+            x: 0.5,
+            y: 0.5
+        },
+        width: 1,
+        height: 1 / aspectRatio
+    })
+
     const sprite = new Sprite({
-        texture: engine.getResource('images/shroom_test.png')
+        texture: engine.getResource('images/shroom_test.png'),
+        anchor: {
+            x: 0.5,
+            y: 0.5
+        },
+        width: 1,
+        height: 1 / aspectRatio
     })
 
     root.addChild(camera)
-
-    // camera.addChild(rectangle)
     camera.addChild(sprite)
 
-    sprite.anchor.x = 0.5
-    sprite.anchor.y = 0.5
 
-    const aspectRatio = 380 / 450
 
-    sprite.width  = 1
-    sprite.height = 1 / aspectRatio
+    // const aspectRatio = 380 / 450
 
-    camera.width = 10
-    camera.height = 6
+    // sprite.width  = 1
+    // sprite.height = 1 / aspectRatio
+
+
 
     sprite.renderer.onDisplay('click', () => {
         console.log('click')
     })
-
-    camera.position.x = 0
 
     document.body.appendChild(viewport.container)
 
