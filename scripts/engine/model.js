@@ -105,7 +105,7 @@ export default class Model extends Notifier {
 
         this.setAttribute(key, params)
 
-        if (wasAccessor && !params.accessor) {
+        if (wasAccessor && !params.accessor && this[key] === attribute.value) {
             removeAccessor(this, key, attribute)
         }
     }

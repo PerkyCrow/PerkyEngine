@@ -11,7 +11,8 @@
     "scripts/index.html"
   ],
   "alias": {
-    "vue": "vue/dist/vue.esm-bundler"
+    "vue": "vue/dist/vue.esm-bundler",
+    "engine": "./scripts/engine"
   },
   "jest": {
     "moduleNameMapper": {},

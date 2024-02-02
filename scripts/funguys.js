@@ -1,6 +1,9 @@
-import Engine from './engine/engine'
-import Camera from './engine/nodes/camera'
-import Sprite from './engine/nodes/sprite'
+import Engine from 'engine/engine'
+import Camera from 'engine/nodes/camera'
+import Mushroom from './funguys/nodes/mushroom'
+
+import './funguys/initialize'
+
 
 export default async function init ({assetManifest}) {
 
@@ -22,7 +25,7 @@ export default async function init ({assetManifest}) {
     const mushroomTexture = engine.getResource('images/shroom_test.png')
     const aspectRatio = mushroomTexture.aspectRatio
 
-    const sprite = new Sprite({
+    const mushroom = new Mushroom({
         texture: engine.getResource('images/shroom_test.png'),
         anchor: {
             x: 0.5,
@@ -33,12 +36,7 @@ export default async function init ({assetManifest}) {
     })
 
     root.addChild(camera)
-    camera.addChild(sprite)
-
-
-    sprite.renderer.onDisplay('click', () => {
-        console.log('click')
-    })
+    camera.addChild(mushroom)
 
     document.body.appendChild(viewport.container)
 

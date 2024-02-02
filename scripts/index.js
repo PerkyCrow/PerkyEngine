@@ -1,3 +1,7 @@
-import initSample from './sample'
+import AssetManifest from './engine/asset_manifest'
 
-initSample()
+import initFunguys from './funguys'
+
+const assetManifest = new AssetManifest()
+
+initFunguys({assetManifest})
