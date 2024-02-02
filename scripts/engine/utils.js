@@ -37,13 +37,13 @@ export function normalize (value, min, max) {
 
 
 export function remap (value, sourceMin, sourceMax, destMin, destMax) { // eslint-disable-line max-params
-    return destMin + ((destMax - destMin) * (value - sourceMin) / (sourceMax - sourceMin))
+    return destMin + ((destMax - destMin) * normalize(value, sourceMin, sourceMax))
 }
 
 
-export function smoothstep (edge0, edge1, x) {
-    const t = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0)
-    return t * t * (3.0 - 2.0 * t)
+export function smoothstep (value, start, end) {
+    const ratio = clamp(normalize(value, start, end), 0, 1)
+    return easeInOut(ratio)
 }
 
 

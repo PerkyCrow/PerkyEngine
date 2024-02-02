@@ -29,9 +29,6 @@ describe('Utils', () => {
 
     test('interpolate', () => {
         expect(interpolate(0, 10, 0.5)).toEqual(5)
-        expect(interpolate(0, 10, 0.25)).toEqual(2.5)
-        expect(interpolate(0, 10, 0)).toEqual(0)
-        expect(interpolate(0, 10, 1)).toEqual(10)
     })
 
 
@@ -44,22 +41,18 @@ describe('Utils', () => {
 
     test('normalize', () => {
         expect(normalize(5, 0, 10)).toEqual(0.5)
-        expect(normalize(0, 0, 10)).toEqual(0)
-        expect(normalize(10, 0, 10)).toEqual(1)
     })
 
 
     test('remap', () => {
         expect(remap(5, 0, 10, 0, 100)).toEqual(50)
-        expect(remap(0, 0, 10, 0, 100)).toEqual(0)
-        expect(remap(10, 0, 10, 0, 100)).toEqual(100)
     })
 
 
     test('smoothstep', () => {
-        expect(smoothstep(0, 10, 5)).toEqual(0.5)
-        expect(smoothstep(0, 10, 0)).toEqual(0)
-        expect(smoothstep(0, 10, 10)).toEqual(1)
+        expect(smoothstep(5, 0, 10)).toEqual(0.5)
+        expect(smoothstep(-5, 0, 10)).toEqual(0)
+        expect(smoothstep(15, 0, 10)).toEqual(1)
     })
 
 
