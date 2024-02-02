@@ -26,7 +26,7 @@ export default async function init ({assetManifest}) {
     const aspectRatio = mushroomTexture.aspectRatio
 
     const mushroom = new Mushroom({
-        texture: engine.getResource('images/shroom_test.png'),
+        texture: 'images/shroom_test.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -56,7 +56,7 @@ export default async function init ({assetManifest}) {
 
     function animate (deltaTime, elapsedTime) {
         // camera.position.x += deltaTime * 10
-        // sprite.width = 100 + Math.sin(elapsedTime) * 100
-        // rectangle.width = 100 + Math.sin(elapsedTime) * 100
+        // mushroom.width = Math.sin(elapsedTime)
+        // mushroom.scale.x = Math.sin(elapsedTime)
     }
 }

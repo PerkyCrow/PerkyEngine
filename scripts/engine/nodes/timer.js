@@ -30,7 +30,7 @@ export default class Timer extends Node {
             this.elapsedTime = elapsedTime
             this.started = true
             this.iteration = 0
-            this.emit('timer:start')
+            this.emit('start')
         }
     }
 
@@ -38,7 +38,7 @@ export default class Timer extends Node {
     stop () {
         if (this.started) {
             this.started = false
-            this.emit('timer:stop')
+            this.emit('stop')
         }
     }
 
@@ -56,7 +56,7 @@ export default class Timer extends Node {
             if (this.elapsedTime >= this.duration) {
                 this.elapsedTime = 0
                 this.iteration += 1
-                this.emit('timer:repeat')
+                this.emit('reached')
 
                 if (this.iteration >= this.reapeat) {
                     this.end()
@@ -70,7 +70,7 @@ export default class Timer extends Node {
     end () {
         if (this.started && !this.ended) {
             this.ended = true
-            this.emit('timer:end')
+            this.emit('end')
             this.stop()
         }
     }
