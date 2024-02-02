@@ -1,7 +1,7 @@
 import RectangleRenderer from './rectangle_renderer'
 import {Sprite} from 'pixi.js'
 import Vector2 from '../types/vector_2'
-import assetManifest from '../../asset_manifest'
+import assets from '../assets'
 
 export default class SpriteRenderer extends RectangleRenderer {
 
@@ -39,7 +39,7 @@ export default class SpriteRenderer extends RectangleRenderer {
     syncTexture (texture) {
         if (texture) {
             if (typeof texture === 'string') {
-                texture = assetManifest.getResource(texture)
+                texture = assets.getResource(texture)
             }
             this.display.texture = texture
         }

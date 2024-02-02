@@ -1,17 +1,18 @@
 import Engine from './engine/engine'
 import Camera from './engine/nodes/camera'
 import Sprite from './engine/nodes/sprite'
+import assets from './engine/assets'
 
-export default async function init ({assetManifest}) {
+export default async function init () {
 
-    assetManifest.add({
+    assets.add({
         path: 'images/shroom_test.png',
         type: 'texture'
     })
 
-    await assetManifest.loadAll()
+    await assets.loadAll()
 
-    const engine = new Engine({assetManifest})
+    const engine = new Engine()
     const {root, viewport} = engine
 
     const camera = new Camera({
@@ -19,11 +20,11 @@ export default async function init ({assetManifest}) {
         height: 6
     })
 
-    const mushroomTexture = engine.getResource('images/shroom_test.png')
+    const mushroomTexture = assets.getResource('images/shroom_test.png')
     const aspectRatio = mushroomTexture.aspectRatio
 
     const sprite = new Sprite({
-        texture: engine.getResource('images/shroom_test.png'),
+        texture: assets.getResource('images/shroom_test.png'),
         anchor: {
             x: 0.5,
             y: 0.5

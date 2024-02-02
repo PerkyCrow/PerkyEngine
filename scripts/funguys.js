@@ -1,20 +1,22 @@
 import Engine from 'engine/engine'
 import Camera from 'engine/nodes/camera'
 import Mushroom from './funguys/nodes/mushroom'
+import assets from 'engine/assets'
+
 
 import './funguys/initialize'
 
 
-export default async function init ({assetManifest}) {
+export default async function init () {
 
-    assetManifest.add({
+    assets.add({
         path: 'images/shroom_test.png',
         type: 'texture'
     })
 
-    await assetManifest.loadAll()
+    await assets.loadAll()
 
-    const engine = new Engine({assetManifest})
+    const engine = new Engine()
     const {root, viewport} = engine
 
     const camera = new Camera({
@@ -22,7 +24,7 @@ export default async function init ({assetManifest}) {
         height: 6
     })
 
-    const mushroomTexture = engine.getResource('images/shroom_test.png')
+    const mushroomTexture = assets.getResource('images/shroom_test.png')
     const aspectRatio = mushroomTexture.aspectRatio
 
     const mushroom = new Mushroom({
