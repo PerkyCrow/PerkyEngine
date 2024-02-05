@@ -1,5 +1,4 @@
-import nodesRegistry from '../../engine/registries/nodes_registry'
-
+import Node from 'engine/node'
 import Mushroom from '../nodes/mushroom'
 
-nodesRegistry.addClass(Mushroom)
+Node.addType(Mushroom)

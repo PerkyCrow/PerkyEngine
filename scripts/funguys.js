@@ -3,6 +3,12 @@ import Camera from 'engine/nodes/camera'
 import Mushroom from './funguys/nodes/mushroom'
 import assets from 'engine/assets'
 
+import {
+    normalize,
+    remap,
+    smoothstep
+} from 'engine/utils'
+
 
 import './funguys/initialize'
 
@@ -57,8 +63,10 @@ export default async function init () {
     resize()
 
     function animate (deltaTime, elapsedTime) {
+        // console.log(smoothstep(elapsedTime, 0, 1))
         // camera.position.x += deltaTime * 10
         // mushroom.width = Math.sin(elapsedTime)
-        // mushroom.scale.x = Math.sin(elapsedTime)
+        mushroom.scale.x = smoothstep(elapsedTime, 0, 0.2)
     }
+
 }

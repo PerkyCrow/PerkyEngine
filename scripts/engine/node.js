@@ -1,7 +1,13 @@
 import Model from './model'
+import Registry from './registry'
 
 
 export default class Node extends Model {
+
+    static registry = new Registry()
+
+    static isNodeClass = true
+
 
     constructor () {
         super()
@@ -31,6 +37,18 @@ export default class Node extends Model {
 
     get isWorldRoot () {
         return this.world && this.world.root === this
+    }
+
+
+    create (data, params) {
+        const node = this.constructor.instantiateNode(data, params)
+
+        return node && this.attachChild(node)
+    }
+
+
+    add (node) {
+        return this.attachChild(node)
     }
 
 
@@ -161,6 +179,34 @@ export default class Node extends Model {
         }
     }
 
+
+    static addType (...Items) {
+        Items.forEach((Item) => {
+            this.registry.set(Item.name, Item)
+        })
+    }
+
+
+    static instantiate (data, params) {
+        const {registry} = this
+
+        let node
+
+        if (typeof data === 'string') {
+            node = registry.instantiate(data, params)
+        } else if (typeof data === 'function' && data.isNodeClass) {
+            node = new data(params)
+        } else {
+            node = registry.instantiate(data.type, data)
+        }
+
+        if (node) {
+            node.children.forEach(child => node.attachChild(this.instantiate(child)))
+        }
+
+        return node
+    }
+
 }
 
 
@@ -169,3 +215,5 @@ function getRoot (node) {
     return node.parent ? getRoot(node.parent) : node
 }
 
+
+Node.addType(Node)

@@ -1,5 +1,5 @@
 import Notifier from './notifier'
-import nodesRegistry from './registries/nodes_registry'
+import Node from './node'
 
 
 export default class World extends Notifier {
@@ -44,7 +44,7 @@ export default class World extends Notifier {
         const world = new World()
 
         if (data.root) {
-            const root = instantiateNode(data.root)
+            const root = Node.instantiate(data.root)
 
             if (root) {
                 world.attachRoot(root)
@@ -54,16 +54,4 @@ export default class World extends Notifier {
         return world
     }
 
-}
-
-
-
-function instantiateNode (data) {
-    const node = nodesRegistry.instantiate(data.type, data)
-
-    if (node) {
-        node.children.forEach(child => node.attachChild(instantiateNode(child)))
-    }
-
-    return node
 }
