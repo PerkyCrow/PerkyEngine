@@ -73,11 +73,6 @@ export default class Animation {
     }
 
 
-    tick (deltaTime) {
-        this.elapsedTime += deltaTime
-    }
-
-
     play (params) {
         if (!this.playing) {
             this.playing = true
