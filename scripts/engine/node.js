@@ -41,14 +41,14 @@ export default class Node extends Model {
 
 
     create (data, params) {
-        const node = this.constructor.instantiateNode(data, params)
+        const node = this.constructor.instantiate(data, params)
 
         return node && this.attachChild(node)
     }
 
 
     add (node) {
-        return this.attachChild(node)
+        return this.addChild(node)
     }
 
 
@@ -63,7 +63,7 @@ export default class Node extends Model {
                 node.setReady(this.world)
             }
 
-            return true
+            return node
         }
 
         return false
@@ -75,6 +75,7 @@ export default class Node extends Model {
             node.parent.detachChild(node)
         }
 
+        console.log('addChild', node)
         return this.attachChild(node)
     }
 
@@ -187,7 +188,7 @@ export default class Node extends Model {
     }
 
 
-    static instantiate (data, params) {
+    static instantiate (data, params) { // eslint-disable-line complexity
         const {registry} = this
 
         let node
@@ -196,12 +197,13 @@ export default class Node extends Model {
             node = registry.instantiate(data, params)
         } else if (typeof data === 'function' && data.isNodeClass) {
             node = new data(params)
-        } else {
+        } else if (typeof data === 'object') {
+            const {children} = data
             node = registry.instantiate(data.type, data)
-        }
 
-        if (node) {
-            node.children.forEach(child => node.attachChild(this.instantiate(child)))
+            if (node && children) {
+                children.forEach(child => node.attachChild(this.instantiate(child)))
+            }
         }
 
         return node

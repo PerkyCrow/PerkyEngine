@@ -25,15 +25,28 @@ export default async function init () {
     const engine = new Engine()
     const {root, viewport} = engine
 
-    const camera = new Camera({
-        width: 10,
-        height: 6
-    })
 
     const mushroomTexture = assets.getResource('images/shroom_test.png')
     const aspectRatio = mushroomTexture.aspectRatio
 
-    const mushroom = new Mushroom({
+    // const mushroom = new Mushroom({
+    //     texture: 'images/shroom_test.png',
+    //     anchor: {
+    //         x: 0.5,
+    //         y: 0.5
+    //     },
+    //     width: 1,
+    //     height: 1 / aspectRatio
+    // })
+
+    const camera = root.create('Camera', {
+        width: 10,
+        height: 6
+    })
+
+    console.log(camera)
+
+    const mushroom = camera.create('Mushroom', {
         texture: 'images/shroom_test.png',
         anchor: {
             x: 0.5,
@@ -43,8 +56,7 @@ export default async function init () {
         height: 1 / aspectRatio
     })
 
-    root.addChild(camera)
-    camera.addChild(mushroom)
+    // camera.addChild(mushroom)
 
     document.body.appendChild(viewport.container)
 

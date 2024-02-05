@@ -1,5 +1,4 @@
 import Sprite from 'engine/nodes/sprite'
-import Timer from 'engine/nodes/timer'
 
 
 export default class Mushroom extends Sprite {
@@ -8,20 +7,17 @@ export default class Mushroom extends Sprite {
         super(options)
         this.rendererName = 'Mushroom'
 
-        this.timer = new Timer({
+        this.timer = this.create('Timer', {
             autoStart: true,
             duration: 1,
             repeat: Infinity
         })
 
 
-        this.timer.on('reached', () => {
-            // console.log(this.scale)
-        })
+        // this.timer.on('reached', () => {
+        //     console.log(this.scale)
+        // })
 
-        this.addChild(this.timer)
-
-        console.log(this.timer)
     }
 
 }

@@ -59,7 +59,7 @@ describe(Node, () => {
     test('attachChild', () => {
         const child = new Node()
 
-        expect(node.attachChild(child)).toBe(true)
+        expect(node.attachChild(child)).toBe(child)
         expect(node.children).toContain(child)
         expect(child.parent).toBe(node)
 
@@ -70,11 +70,11 @@ describe(Node, () => {
     test('addChild', () => {
         const child = new Node()
 
-        expect(node.addChild(child)).toBe(true)
+        expect(node.addChild(child)).toBe(child)
         expect(node.children).toContain(child)
         expect(child.parent).toBe(node)
 
-        expect(node.addChild(child)).toBe(true)
+        expect(node.addChild(child)).toBe(child)
     })
 
 
