@@ -1,5 +1,5 @@
 import Notifier from './notifier'
-import renderersRegistry from './registries/renderers_registry'
+import RendererRegistry from './renderer'
 import {Container} from '@pixi/display'
 
 
@@ -39,7 +39,7 @@ export default class View extends Notifier {
 
 
 function getRendererFor (node) {
-    return node.renderable && renderersRegistry.get(node.rendererName)
+    return node.renderable && RendererRegistry.getRenderer(node.rendererName)
 }
 
 

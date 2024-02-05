@@ -1,6 +1,9 @@
 import View from './view'
 import Node2D from './nodes/node_2d'
 import Renderer from './renderer'
+import ContainerRenderer from './renderers/container_renderer'
+
+Renderer.setRenderer('Container', ContainerRenderer)
 
 
 describe(View, () => {
