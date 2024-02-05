@@ -1,6 +1,7 @@
 import Model from './model'
 import Vector2 from './types/vector_2'
 import jest from 'jest-mock'
+import './initializers/engine_initializer'
 
 
 describe(Model, () => {

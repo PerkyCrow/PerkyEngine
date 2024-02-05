@@ -3,6 +3,8 @@ import Node2D from '../nodes/node_2d'
 import {Container} from 'pixi.js'
 import jest from 'jest-mock'
 
+import '../initializers/engine_initializer'
+
 
 describe(DisplayRenderer, () => {
 

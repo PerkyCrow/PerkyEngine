@@ -3,6 +3,8 @@ import Node2D from './node_2d'
 import ObservableVector2 from '../types/observable_vector_2'
 import jest from 'jest-mock'
 
+import '../initializers/engine_initializer'
+
 
 describe(Node2D, () => {
 

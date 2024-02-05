@@ -1,5 +1,5 @@
 import Notifier from './notifier'
-import typesRegistry from './registries/types_registry'
+import TypeRegistry from './type'
 import {filterKeys} from './utils'
 
 
@@ -53,7 +53,7 @@ export default class Model extends Notifier {
         const attribute = {type, exposable, serializable, watch, accessor, defaultValue, options}
         this.attributes[key] = attribute
 
-        const Type = typesRegistry.get(type)
+        const Type = TypeRegistry.getType(type)
         const cast = Type && Type.cast
         const free = Type && Type.free
 
@@ -184,7 +184,7 @@ export default class Model extends Notifier {
 
 function serializeAttribute (attribute) {
     const {value, type} = attribute
-    const Type = typesRegistry.get(type)
+    const Type = TypeRegistry.getType(type)
 
     if (Type && Type.serialize) {
         return Type.serialize(value, attribute.options)
