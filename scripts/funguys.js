@@ -1,6 +1,4 @@
 import Engine from 'engine/engine'
-import Camera from 'engine/nodes/camera'
-import Mushroom from './funguys/nodes/mushroom'
 import assets from 'engine/assets'
 
 import {
@@ -26,37 +24,18 @@ export default async function init () {
     const {root, viewport} = engine
 
 
-    const mushroomTexture = assets.getResource('images/shroom_test.png')
-    const aspectRatio = mushroomTexture.aspectRatio
-
-    // const mushroom = new Mushroom({
-    //     texture: 'images/shroom_test.png',
-    //     anchor: {
-    //         x: 0.5,
-    //         y: 0.5
-    //     },
-    //     width: 1,
-    //     height: 1 / aspectRatio
-    // })
-
     const camera = root.create('Camera', {
         width: 10,
         height: 6
     })
 
-    console.log(camera)
 
     const mushroom = camera.create('Mushroom', {
-        texture: 'images/shroom_test.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
-        },
-        width: 1,
-        height: 1 / aspectRatio
+        position: {
+            x: 1,
+            y: 1
+        }
     })
-
-    // camera.addChild(mushroom)
 
     document.body.appendChild(viewport.container)
 
@@ -74,11 +53,15 @@ export default async function init () {
 
     resize()
 
+
     function animate (deltaTime, elapsedTime) {
         // console.log(smoothstep(elapsedTime, 0, 1))
         // camera.position.x += deltaTime * 10
         // mushroom.width = Math.sin(elapsedTime)
-        mushroom.scale.x = smoothstep(elapsedTime, 0, 0.2)
+        mushroom.scale.x = smoothstep(elapsedTime, 0, 1)
+
+        // camera.position.x = 5
+        // mushroomSprite.position.x += deltaTime * 2
     }
 
 }

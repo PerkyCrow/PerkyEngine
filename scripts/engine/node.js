@@ -8,15 +8,20 @@ export default class Node extends Model {
 
     static isNodeClass = true
 
+    static renderable = false
 
-    constructor () {
+    static rendererName = null
+
+    constructor ({renderable, rendererName} = {}) {
         super()
-        this.ready     = false
-        this.destroyed = false
-        this.children  = []
-        this.parent    = null
-        this.world     = null
-        this.root      = this
+        this.ready        = false
+        this.destroyed    = false
+        this.children     = []
+        this.parent       = null
+        this.world        = null
+        this.root         = this
+        this.renderable   = renderable || this.constructor.renderable
+        this.rendererName = rendererName || this.constructor.rendererName
     }
 
 
@@ -75,7 +80,6 @@ export default class Node extends Model {
             node.parent.detachChild(node)
         }
 
-        console.log('addChild', node)
         return this.attachChild(node)
     }
 
@@ -131,6 +135,11 @@ export default class Node extends Model {
     }
 
 
+    onDestroy () {
+
+    }
+
+
     destroy () {
 
         const {destroyed, parent, world} = this
@@ -153,6 +162,7 @@ export default class Node extends Model {
         this.destroyed       = true
         this.ready           = false
 
+        this.onDestroy()
         this.emit('destroyed', parent)
 
         return true
@@ -169,13 +179,19 @@ export default class Node extends Model {
     }
 
 
+    onReady () {
+
+    }
+
+
     setReady (world) {
         if (!this.ready && world) {
             this.ready = true
             this.world = world
 
-            this.emit('ready', world)
             this.world.emit('node:ready', this)
+            this.onReady()
+            this.emit('ready', world)
             this.callOnChildren('setReady', world)
         }
     }

@@ -3,6 +3,11 @@ import Rectangle from './rectangle'
 
 export default class Camera extends Rectangle {
 
+    static renderable = true
+
+    static rendererName = 'Camera'
+
+
     constructor (params = {}) {
         super(params)
 

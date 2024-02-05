@@ -21,8 +21,6 @@ export default class MushroomSprite extends Sprite {
         })
 
         this.addChild(this.timer)
-
-        console.log(this.timer)
     }
 
 }

@@ -4,12 +4,15 @@ import ObservableVector2 from '../types/observable_vector_2'
 
 export default class Node2D extends Node {
 
+    static renderable = true
+
+    static rendererName = 'Container'
+
+
     constructor (params = {}) {
         super(params)
 
         this.is2D = true
-        this.renderable = true
-        this.rendererName = 'Container'
 
         this.setAttribute('position', {
             accessor: true,
