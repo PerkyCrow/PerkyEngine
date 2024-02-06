@@ -15,7 +15,7 @@ export default class Timer extends Node {
         this.isTimer     = true
 
         this.duration    = duration
-        this.reapeat     = repeat
+        this.repeat     = repeat
         this.elapsedTime = 0
         this.iteration   = 0
 
@@ -58,7 +58,7 @@ export default class Timer extends Node {
                 this.iteration += 1
                 this.emit('reached')
 
-                if (this.iteration >= this.reapeat) {
+                if (this.iteration >= this.repeat) {
                     this.end()
                 }
             }
