@@ -2,7 +2,7 @@ import Timer from './timer'
 import jest from 'jest-mock'
 
 
-describe('Timer', () => {
+describe(Timer, () => {
 
 
     let timer

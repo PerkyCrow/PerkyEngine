@@ -4,6 +4,7 @@ import Rectangle from '../nodes/rectangle'
 import Camera from '../nodes/camera'
 import Sprite from '../nodes/sprite'
 import Timer from '../nodes/timer'
+import Animation from '../nodes/animation'
 
 
 Node.addType(
@@ -12,5 +13,6 @@ Node.addType(
     Rectangle,
     Camera,
     Sprite,
-    Timer
+    Timer,
+    Animation
 )

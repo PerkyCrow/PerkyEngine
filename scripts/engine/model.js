@@ -41,7 +41,7 @@ export default class Model extends Notifier {
     // eslint-disable-next-line complexity
     setAttribute (key, {
         exposable  = true,
-        serializable = true,
+        serializable = false,
         watch      = false,
         accessor   = false,
         defaultValue,

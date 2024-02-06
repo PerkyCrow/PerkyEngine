@@ -6,22 +6,18 @@ export default class Mushroom extends Node2D {
 
     onReady () {
 
-        this.on('ready', () => {
-            console.log('Mushroom ready')
-        })
-
         this.timer = this.create('Timer', {
             autoStart: true,
             duration: 1,
             repeat: Infinity
         })
 
-        const mushroomTexture = assets.getResource('images/shroom_test.png')
-        const aspectRatio = mushroomTexture.aspectRatio
+        const texture = assets.getResource('images/shroom_test.png')
+        const aspectRatio = texture.aspectRatio
 
         this.sprite = this.create('Sprite', {
             rendererName: 'Mushroom',
-            texture: 'images/shroom_test.png',
+            texture,
             anchor: {
                 x: 0.5,
                 y: 0.5
@@ -32,7 +28,7 @@ export default class Mushroom extends Node2D {
 
 
         // this.timer.on('reached', () => {
-        //     console.log(this.scale)
+        //     console.log('timer reached')
         // })
 
     }
