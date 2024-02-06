@@ -47,6 +47,11 @@ export function smoothstep (value, start, end) {
 }
 
 
+export function linear (t) {
+    return t
+}
+
+
 export function easeIn (t) {
     return t * t
 }
@@ -59,6 +64,14 @@ export function easeOut (t) {
 
 export function easeInOut (t) {
     return t * t * (3 - 2 * t)
+}
+
+
+export const easingFunctions = {
+    linear,
+    easeIn,
+    easeOut,
+    easeInOut
 }
 
 

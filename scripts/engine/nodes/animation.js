@@ -89,7 +89,11 @@ export default class Animation extends Node {
                 this.notifyStop()
                 delete this.notifyStop
             }
+
+            return true
         }
+
+        return false
     }
 
 }
