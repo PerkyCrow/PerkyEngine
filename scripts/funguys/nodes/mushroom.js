@@ -26,9 +26,16 @@ export default class Mushroom extends Node2D {
             height: 1 / aspectRatio
         })
 
-        this.squish = this.create('AnimationTrack')
+        this.squish = this.create('AnimationSequence')
 
-        this.squish.addStep({
+        this.squish.on('changed:duration', () => {
+            console.log('duration changed')
+        })
+
+
+        const trackA = this.squish.addTrack()
+
+        trackA.addStep({
             getter: () => this.scale.y,
             change: value => {
                 this.scale.y = value
@@ -38,17 +45,50 @@ export default class Mushroom extends Node2D {
             target: 0.5
         })
 
-        this.squish.addStep({
+        trackA.addStep({
             getter: () => this.scale.y,
             change: value => {
                 this.scale.y = value
             },
             duration: 1,
             easing: 'easeOut',
-            target: 2
+            target: 1
         })
 
-        console.log(this.squish.duration)
+
+
+        const trackB = this.squish.addTrack()
+
+        trackB.addStep({
+            getter: () => this.scale.x,
+            change: value => {
+                this.scale.x = value
+            },
+            duration: 0.5,
+            easing: 'easeInOut',
+            target: 3
+        })
+
+        trackB.addStep({
+            getter: () => this.scale.x,
+            change: value => {
+                this.scale.x = value
+            },
+            duration: 1,
+            easing: 'easeOut',
+            target: 0.5
+        })
+
+        trackB.addStep({
+            getter: () => this.scale.x,
+            change: value => {
+                this.scale.x = value
+            },
+            duration: 1,
+            easing: 'easeOut',
+            target: 1
+        })
+
 
         // this.squish1 = this.create('SmoothAnimation', {
         //     value: () => this.scale.y,

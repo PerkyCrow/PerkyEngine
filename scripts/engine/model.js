@@ -47,8 +47,7 @@ export default class Model extends Notifier {
         defaultValue,
         value      = typeof defaultValue === 'function' ? defaultValue() : defaultValue,
         type       = (typeof value === 'object' && value.type) || typeof value,
-        options    = {},
-        getter
+        options    = {}
     } = {}) {
 
         const attribute = {type, exposable, serializable, watch, accessor, defaultValue, options}

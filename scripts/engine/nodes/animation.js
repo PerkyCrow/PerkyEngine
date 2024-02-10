@@ -13,6 +13,7 @@ export default class Animation extends Node {
         this.setAttribute('duration', {
             accessor: true,
             defaultValue: 1,
+            watch: true,
             value: params.duration
         })
 
@@ -64,17 +65,17 @@ export default class Animation extends Node {
 
 
     play (params) {
-        if (!this.playing) {
-            this.playing = true
-            setParams(this, params)
-            this.emit('play', params)
-
-            return new Promise(resolve => {
-                this.notifyStop = resolve
-            })
+        if (this.playing) {
+            this.stop()
         }
 
-        return false
+        this.playing = true
+        setParams(this, params)
+        this.emit('play', params)
+
+        return new Promise(resolve => {
+            this.notifyStop = resolve
+        })
     }
 
 

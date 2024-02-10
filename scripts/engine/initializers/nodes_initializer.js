@@ -7,6 +7,7 @@ import Timer from '../nodes/timer'
 import Animation from '../nodes/animation'
 import SmoothAnimation from '../nodes/smooth_animation'
 import AnimationTrack from '../nodes/animation_track'
+import AnimationSequence from '../nodes/animation_sequence'
 
 
 Node.addType(
@@ -18,5 +19,6 @@ Node.addType(
     Timer,
     Animation,
     SmoothAnimation,
-    AnimationTrack
+    AnimationTrack,
+    AnimationSequence
 )

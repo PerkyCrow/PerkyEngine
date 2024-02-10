@@ -13,6 +13,7 @@ export default class AnimationTrack extends Animation {
             value: params.label
         })
 
+        this.isAnimationTrack = true
         this.duration         = 0
         this.steps            = []
         this.currentStepIndex = 0
@@ -66,32 +67,30 @@ export default class AnimationTrack extends Animation {
 }
 
 
+
 function registerEvents (track) {
 
     function syncDuration () {
-        track.duration = getDuration(track)
+        track.syncDuration()
     }
-
 
     track.on('attached:child', child => {
         if (child.isAnimation) {
             track.steps.push(child)
-            track.emit('step:added', child)
-            track.syncDuration()
+            track.emit('added:step', child)
+            syncDuration()
+            child.on('changed:duration', syncDuration)
         }
-
-        child.on('change:duration', syncDuration)
     })
-
 
     track.on('detached:child', child => {
         if (child.isAnimation) {
             const index = track.steps.indexOf(child)
             if (index > -1) {
                 track.steps.splice(index, 1)
-                child.off('change:duration', syncDuration)
-                track.emit('step:removed', child)
-                track.syncDuration()
+                child.off('changed:duration', syncDuration)
+                track.emit('removed:step', child)
+                syncDuration()
             }
         }
     })

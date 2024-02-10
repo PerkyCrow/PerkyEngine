@@ -29,7 +29,6 @@ describe(AnimationTrack, () => {
                 duration: 1,
                 easing: 'linear',
                 target: 0
-
             }]
         })
 
