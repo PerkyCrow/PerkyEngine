@@ -12,12 +12,17 @@ export default class Mushroom extends Node2D {
             repeat: Infinity
         })
 
-        const texture = assets.getResource('images/shroom_test.png')
-        const aspectRatio = texture.aspectRatio
+        const textures = {
+            idle: assets.getResource('shroom_scared_idle'),
+            shrink: assets.getResource('shroom_scared_shrink'),
+            stretch: assets.getResource('shroom_scared_stretch')
+        }
+
+        const aspectRatio = textures.idle.aspectRatio
 
         this.sprite = this.create('Sprite', {
             rendererName: 'Mushroom',
-            texture,
+            texture: textures.idle,
             anchor: {
                 x: 0.5,
                 y: 1
@@ -34,11 +39,15 @@ export default class Mushroom extends Node2D {
                     this.scale.y = value
                 },
                 steps: [{
-                    duration: 0.5,
-                    easing: 'easeInOut',
+                    duration: 0.25,
+                    easing: 'easeOut',
                     target: 0.5
                 }, {
-                    duration: 1,
+                    duration: 0.25,
+                    easing: 'easeInOut',
+                    target: 1.25
+                }, {
+                    duration: 0.75,
                     easing: 'easeOut',
                     target: 1
                 }]
@@ -49,19 +58,29 @@ export default class Mushroom extends Node2D {
                     this.scale.x = value
                 },
                 steps: [{
-                    duration: 0.5,
-                    easing: 'easeInOut',
-                    target: 3
-                }, {
-                    duration: 1,
+                    duration: 0.25,
                     easing: 'easeOut',
-                    target: 0.5
+                    target: 1.5
                 }, {
-                    duration: 1,
+                    duration: 0.25,
+                    easing: 'easeInOut',
+                    target: 0.75
+                }, {
+                    duration: 0.75,
                     easing: 'easeOut',
                     target: 1
                 }]
             }]
+        })
+
+        this.on('update', () => {
+            const scaleAspect = this.scale.y / this.scale.x
+
+            if (scaleAspect < 0.9) {
+                this.sprite.texture = textures.shrink
+            } else {
+                this.sprite.texture = textures.idle
+            }
         })
 
     }

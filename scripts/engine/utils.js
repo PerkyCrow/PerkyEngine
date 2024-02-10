@@ -67,11 +67,73 @@ export function easeInOut (t) {
 }
 
 
+export function easeInCubic (t) {
+    return t * t * t
+}
+
+
+export function easeOutCubic (t) {
+    return (--t) * t * t + 1
+}
+
+
+export function easeInOutCubic (t) {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
+}
+
+
+export function easeInElastic (t) {
+    return (0.04 - 0.04 / t) * Math.sin(25 * t) + 1
+}
+
+
+export function easeOutElastic (t) {
+    return 0.04 * t / (--t) * Math.sin(25 * t)
+}
+
+
+export function easeInOutElastic (t) {
+    return (t -= 0.5) < 0 ? (0.02 + 0.01 / t) * Math.sin(50 * t) : (0.02 - 0.01 / t) * Math.sin(50 * t) + 1
+}
+
+
+export function easeInBounce (t) {
+    return 1 - easeOutBounce(1 - t)
+}
+
+
+export function easeOutBounce (t) {
+    if (t < 1 / 2.75) {
+        return 7.5625 * t * t
+    } else if (t < 2 / 2.75) {
+        return 7.5625 * (t -= 1.5 / 2.75) * t + 0.75
+    } else if (t < 2.5 / 2.75) {
+        return 7.5625 * (t -= 2.25 / 2.75) * t + 0.9375
+    } else {
+        return 7.5625 * (t -= 2.625 / 2.75) * t + 0.984375
+    }
+}
+
+
+export function easeInOutBounce (t) {
+    return t < 0.5 ? (1 - easeOutBounce(1 - 2 * t)) / 2 : (1 + easeOutBounce(2 * t - 1)) / 2
+}
+
+
 export const easingFunctions = {
     linear,
     easeIn,
     easeOut,
-    easeInOut
+    easeInOut,
+    easeInCubic,
+    easeOutCubic,
+    easeInOutCubic,
+    easeInElastic,
+    easeOutElastic,
+    easeInOutElastic,
+    easeInBounce,
+    easeOutBounce,
+    easeInOutBounce
 }
 
 

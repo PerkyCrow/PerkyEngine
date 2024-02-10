@@ -18,6 +18,24 @@ export default async function init () {
         type: 'texture'
     })
 
+    assets.add({
+        name: 'shroom_scared_idle',
+        path: 'images/funguys/shroom_scared_idle.png',
+        type: 'texture'
+    })
+
+    assets.add({
+        name: 'shroom_scared_shrink',
+        path: 'images/funguys/shroom_scared_shrink.png',
+        type: 'texture'
+    })
+
+    assets.add({
+        name: 'shroom_scared_stretch',
+        path: 'images/funguys/shroom_scared_stretch.png',
+        type: 'texture'
+    })
+
     await assets.loadAll()
 
     const engine = new Engine()
