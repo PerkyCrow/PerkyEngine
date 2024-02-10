@@ -9,7 +9,6 @@ export default class Animation extends Node {
         this.parentAnimation = null
         this.rootAnimation   = this
         this.playing         = false
-        this.actor           = params.actor
 
         this.setAttribute('duration', {
             accessor: true,
@@ -22,7 +21,6 @@ export default class Animation extends Node {
             defaultValue: 0,
             value: params.elapsedTime
         })
-
 
         registerEvents(this)
     }
@@ -82,6 +80,13 @@ export default class Animation extends Node {
 
     stop () {
         if (this.playing) {
+
+            for (let child of this.children) {
+                if (child.isAnimation) {
+                    child.stop()
+                }
+            }
+
             this.playing = false
             this.emit('stop')
 
@@ -100,14 +105,12 @@ export default class Animation extends Node {
 
 
 
-function setParams (animation, {duration, elapsedTime} = {}) {
+function setParams (animation, {duration, elapsedTime = 0} = {}) {
     if (typeof duration === 'number') {
         animation.duration = duration
     }
 
-    if (typeof elapsedTime === 'number') {
-        animation.elapsedTimeCache = elapsedTime
-    }
+    animation.elapsedTime = elapsedTime
 }
 
 

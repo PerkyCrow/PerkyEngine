@@ -5,6 +5,8 @@ import Camera from '../nodes/camera'
 import Sprite from '../nodes/sprite'
 import Timer from '../nodes/timer'
 import Animation from '../nodes/animation'
+import SmoothAnimation from '../nodes/smooth_animation'
+import AnimationTrack from '../nodes/animation_track'
 
 
 Node.addType(
@@ -14,5 +16,7 @@ Node.addType(
     Camera,
     Sprite,
     Timer,
-    Animation
+    Animation,
+    SmoothAnimation,
+    AnimationTrack
 )

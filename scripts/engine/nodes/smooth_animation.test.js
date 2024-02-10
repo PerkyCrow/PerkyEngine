@@ -8,13 +8,14 @@ describe(SmoothAnimation, () => {
 
     beforeEach(() => {
         actor = {x: 0, y: 0}
-
         animation = new SmoothAnimation({
-            actor,
+            getter: () => actor.x,
+            change: value => {
+                actor.x = value
+            },
             duration: 1,
             easing: 'linear',
-            targetKey: 'x',
-            targetValue: 1
+            target: 1
         })
     })
 

@@ -6,25 +6,21 @@ export default class SmoothAnimation extends Animation {
 
     constructor (params) {
         super(params)
-        
+
+        this.getValue       = params.getter || (typeof params.value === 'function' ? params.value : () => params.value)
+        this.onValueChanged = params.change || (() => {})
+        this.value          = this.getValue()
+
         this.setAttribute('easing', {
             accessor: true,
-            exposable: true,
             defaultValue: 'easeInOut',
             value: params.easing
         })
 
-        this.setAttribute('targetKey', {
+        this.setAttribute('target', {
             accessor: true,
-            exposable: true,
-            value: params.targetKey
-        })
-
-        this.setAttribute('targetValue', {
-            accessor: true,
-            exposable: true,
-            defaultValue: this.actor[this.targetKey],
-            value: params.targetValue
+            defaultValue: 1,
+            value: params.target
         })
     }
 
@@ -44,7 +40,9 @@ export default class SmoothAnimation extends Animation {
         super.update(...args)
 
         if (this.playing) {
-            const {targetKey, targetValue, actor, elapsedTime, duration, easing} = this
+
+            const {target, elapsedTime, duration, easing} = this
+            const currentValue = this.getValue()
 
             const ratio = remap(elapsedTime, {
                 start:  0,
@@ -52,8 +50,11 @@ export default class SmoothAnimation extends Animation {
                 easing: easing
             })
 
-            if (targetKey in actor) {
-                actor[targetKey] = interpolate(actor[targetKey], targetValue, ratio)
+            const nextValue = interpolate(currentValue, target, ratio)
+
+            if (nextValue !== currentValue) {
+                this.value = nextValue
+                this.onValueChanged(nextValue)
             }
         }
     }
@@ -63,10 +64,9 @@ export default class SmoothAnimation extends Animation {
         const stop = super.stop()
 
         if (stop) {
-            const {targetKey, targetValue, actor} = this
-
-            if (targetKey in actor) {
-                actor[targetKey] = targetValue
+            if (this.value !== this.target) {
+                this.value = this.target
+                this.onValueChanged(this.target)
             }
         }
 
@@ -76,13 +76,9 @@ export default class SmoothAnimation extends Animation {
 }
 
 
-function setParams (animation, {targetKey, targetValue, easing} = {}) {
-    if (typeof targetKey === 'string') {
-        animation.targetKey = targetKey
-    }
-
-    if (typeof targetValue === 'number') {
-        animation.targetValue = targetValue
+function setParams (animation, {target, easing} = {}) {
+    if (typeof target === 'number') {
+        animation.target = target
     }
 
     if (easing) {

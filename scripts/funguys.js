@@ -58,7 +58,7 @@ export default async function init () {
         // console.log(smoothstep(elapsedTime, 0, 1))
         // camera.position.x += deltaTime * 10
         // mushroom.width = Math.sin(elapsedTime)
-        mushroom.scale.x = smoothstep(elapsedTime, 0, 1)
+        // mushroom.scale.x = smoothstep(elapsedTime, 0, 1)
 
         // camera.position.x = 5
         // mushroomSprite.position.x += deltaTime * 2

@@ -17,7 +17,6 @@ export default class Sprite extends Rectangle {
         this.setAttribute('texture', {
             accessor: true,
             serializable: true,
-            exposable: true,
             watch: true,
             value: params.texture,
             type: 'Texture'
@@ -26,7 +25,6 @@ export default class Sprite extends Rectangle {
         this.setAttribute('anchor', {
             accessor: true,
             serializable: true,
-            exposable: true,
             defaultValue: new ObservableVector2(0, 0),
             value: params.anchor,
             watch: true,

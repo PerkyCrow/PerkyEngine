@@ -63,6 +63,7 @@ export default class Node extends Model {
             node.parent = this
             node.root   = getRoot(this)
             node.emit('attached', this)
+            this.emit('attached:child', node)
 
             if (this.ready && this.world) {
                 node.setReady(this.world)
@@ -93,6 +94,7 @@ export default class Node extends Model {
             node.world  = null
             node.root   = node
             node.emit('detached', this)
+            this.emit('detached:child', node)
 
             return true
         }
