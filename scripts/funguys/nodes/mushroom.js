@@ -26,79 +26,43 @@ export default class Mushroom extends Node2D {
             height: 1 / aspectRatio
         })
 
-        this.squish = this.create('AnimationSequence')
-
-        this.squish.on('changed:duration', () => {
-            console.log('duration changed')
+        this.squish = this.create('AnimationSequence', {
+            tracks: [{
+                label: 'scaleY',
+                getter: () => this.scale.y,
+                change: value => {
+                    this.scale.y = value
+                },
+                steps: [{
+                    duration: 0.5,
+                    easing: 'easeInOut',
+                    target: 0.5
+                }, {
+                    duration: 1,
+                    easing: 'easeOut',
+                    target: 1
+                }]
+            }, {
+                label: 'scaleX',
+                getter: () => this.scale.x,
+                change: value => {
+                    this.scale.x = value
+                },
+                steps: [{
+                    duration: 0.5,
+                    easing: 'easeInOut',
+                    target: 3
+                }, {
+                    duration: 1,
+                    easing: 'easeOut',
+                    target: 0.5
+                }, {
+                    duration: 1,
+                    easing: 'easeOut',
+                    target: 1
+                }]
+            }]
         })
-
-
-        const trackA = this.squish.addPropertyTrack({
-            getter: () => this.scale.y,
-            change: value => {
-                this.scale.y = value
-            }
-        })
-
-        trackA.addStep({
-            duration: 0.5,
-            easing: 'easeInOut',
-            target: 0.5
-        })
-
-        trackA.addStep({
-            duration: 1,
-            easing: 'easeOut',
-            target: 1
-        })
-
-
-
-        const trackB = this.squish.addPropertyTrack({
-            getter: () => this.scale.x,
-            change: value => {
-                this.scale.x = value
-            }
-        })
-
-        trackB.addStep({
-            duration: 0.5,
-            easing: 'easeInOut',
-            target: 3
-        })
-
-        trackB.addStep({
-            duration: 1,
-            easing: 'easeOut',
-            target: 0.5
-        })
-
-        trackB.addStep({
-            duration: 1,
-            easing: 'easeOut',
-            target: 1
-        })
-
-
-        // this.squish1 = this.create('SmoothAnimation', {
-        //     value: () => this.scale.y,
-        //     change: value => {
-        //         this.scale.y = value
-        //     },
-        //     duration: 0.5,
-        //     easing: 'easeInOut',
-        //     target: 0
-        // })
-
-        // this.squish2 = this.create('SmoothAnimation', {
-        //     value: () => this.scale.x,
-        //     change: value => {
-        //         this.scale.x = value
-        //     },
-        //     duration: 1,
-        //     easing: 'easeInOut',
-        //     target: 2
-        // })
 
     }
 

@@ -18,8 +18,12 @@ export default class AnimationSequence extends Animation {
     }
 
 
-    addTrack (track = {}) {
-        return this.create('AnimationTrack', track)
+    addTrack (params = {}) {
+        if (typeof params.change === 'function' && typeof params.getter === 'function') {
+            return this.create('AnimationPropertyTrack', params)
+        }
+
+        return this.create('AnimationTrack', params)
     }
 
 
