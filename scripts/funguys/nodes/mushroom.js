@@ -33,23 +33,20 @@ export default class Mushroom extends Node2D {
         })
 
 
-        const trackA = this.squish.addTrack()
-
-        trackA.addStep({
+        const trackA = this.squish.addPropertyTrack({
             getter: () => this.scale.y,
             change: value => {
                 this.scale.y = value
-            },
+            }
+        })
+
+        trackA.addStep({
             duration: 0.5,
             easing: 'easeInOut',
             target: 0.5
         })
 
         trackA.addStep({
-            getter: () => this.scale.y,
-            change: value => {
-                this.scale.y = value
-            },
             duration: 1,
             easing: 'easeOut',
             target: 1
@@ -57,33 +54,26 @@ export default class Mushroom extends Node2D {
 
 
 
-        const trackB = this.squish.addTrack()
-
-        trackB.addStep({
+        const trackB = this.squish.addPropertyTrack({
             getter: () => this.scale.x,
             change: value => {
                 this.scale.x = value
-            },
+            }
+        })
+
+        trackB.addStep({
             duration: 0.5,
             easing: 'easeInOut',
             target: 3
         })
 
         trackB.addStep({
-            getter: () => this.scale.x,
-            change: value => {
-                this.scale.x = value
-            },
             duration: 1,
             easing: 'easeOut',
             target: 0.5
         })
 
         trackB.addStep({
-            getter: () => this.scale.x,
-            change: value => {
-                this.scale.x = value
-            },
             duration: 1,
             easing: 'easeOut',
             target: 1

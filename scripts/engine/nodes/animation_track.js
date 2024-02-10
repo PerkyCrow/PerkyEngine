@@ -13,10 +13,7 @@ export default class AnimationTrack extends Animation {
             value: params.label
         })
 
-        this.isAnimationTrack = true
-        this.duration         = 0
-        this.steps            = []
-        this.currentStepIndex = 0
+        this.initProperties(params)
 
         registerEvents(this)
 
@@ -25,6 +22,14 @@ export default class AnimationTrack extends Animation {
                 this.addStep(step)
             }
         }
+    }
+
+
+    initProperties () {
+        this.isAnimationTrack = true
+        this.duration         = 0
+        this.steps            = []
+        this.currentStepIndex = 0
     }
 
 

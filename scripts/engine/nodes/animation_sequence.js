@@ -3,7 +3,7 @@ import Animation from './animation'
 
 export default class AnimationSequence extends Animation {
 
-    constructor (params) {
+    constructor (params = {}) {
         super(params)
 
         this.duration = 0
@@ -20,6 +20,11 @@ export default class AnimationSequence extends Animation {
 
     addTrack (track = {}) {
         return this.create('AnimationTrack', track)
+    }
+
+
+    addPropertyTrack (params) {
+        return this.create('AnimationPropertyTrack', params)
     }
 
 
