@@ -126,6 +126,10 @@ export default class Vector2 {
         this.y = value
     }
 
+    isNull () {
+        return this.x === 0 && this.y === 0
+    }
+
     equals (other) {
         return this.x === other.x && this.y === other.y
     }

@@ -59,8 +59,13 @@ export default class Animation extends Node {
 
 
     update (...args) {
-        super.update(...args)
-        this.tick(...args)
+        if (super.update(...args)) {
+            this.tick(...args)
+
+            return true
+        }
+
+        return false
     }
 
 

@@ -5,6 +5,7 @@ describe(SmoothAnimation, () => {
 
     let actor
     let animation
+    let world = {emit: () => {}}
 
     beforeEach(() => {
         actor = {x: 0, y: 0}
@@ -17,6 +18,7 @@ describe(SmoothAnimation, () => {
             easing: 'linear',
             target: 1
         })
+        animation.setReady(world)
     })
 
 

@@ -6,9 +6,11 @@ describe(Timer, () => {
 
 
     let timer
+    let world = {emit: () => {}}
 
     beforeEach(() => {
         timer = new Timer()
+        timer.setReady(world)
     })
 
 
@@ -43,6 +45,7 @@ describe(Timer, () => {
 
     test('update', () => {
         const listener = jest.fn()
+
         timer.on('reached', listener)
         timer.start()
         timer.update(0.1)

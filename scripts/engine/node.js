@@ -133,7 +133,11 @@ export default class Node extends Model {
             this.emit('update', ...args)
             this.children.forEach(child => child.update(...args))
             this.emit('updated', ...args)
+
+            return true
         }
+
+        return false
     }
 
 

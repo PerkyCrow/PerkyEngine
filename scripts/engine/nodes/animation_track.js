@@ -55,13 +55,17 @@ export default class AnimationTrack extends Animation {
 
 
     update (...args) {
-        super.update(...args)
-
-        if (this.playing && this.overflow < 0) {
-            if (this.currentStep && !this.currentStep.playing) {
-                smartPlay(this)
+        if (super.update(...args)) {
+            if (this.playing && this.overflow < 0) {
+                if (this.currentStep && !this.currentStep.playing) {
+                    smartPlay(this)
+                }
             }
+
+            return true
         }
+
+        return false
     }
 
 

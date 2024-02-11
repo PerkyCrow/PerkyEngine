@@ -37,26 +37,30 @@ export default class SmoothAnimation extends Animation {
 
 
     update (...args) {
-        super.update(...args)
+        if (super.update(...args)) {
+            if (this.playing) {
 
-        if (this.playing) {
-
-            const {target, elapsedTime, duration, easing} = this
-            const currentValue = this.getValue()
-
-            const ratio = remap(elapsedTime, {
-                start:  0,
-                end:    duration,
-                easing: easing
-            })
-
-            const nextValue = interpolate(currentValue, target, ratio)
-
-            if (nextValue !== currentValue) {
-                this.value = nextValue
-                this.onValueChanged(nextValue)
+                const {target, elapsedTime, duration, easing} = this
+                const currentValue = this.getValue()
+    
+                const ratio = remap(elapsedTime, {
+                    start:  0,
+                    end:    duration,
+                    easing: easing
+                })
+    
+                const nextValue = interpolate(currentValue, target, ratio)
+    
+                if (nextValue !== currentValue) {
+                    this.value = nextValue
+                    this.onValueChanged(nextValue)
+                }
             }
+
+            return true
         }
+
+        return false
     }
 
 

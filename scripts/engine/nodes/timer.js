@@ -44,8 +44,13 @@ export default class Timer extends Node {
 
 
     update (...args) {
-        super.update(...args)
-        this.tick(...args)
+        if (super.update(...args)) {
+            this.tick(...args)
+
+            return true
+        }
+
+        return false
     }
 
 

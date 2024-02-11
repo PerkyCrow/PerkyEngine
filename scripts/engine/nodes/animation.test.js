@@ -5,9 +5,11 @@ import jest from 'jest-mock'
 describe(Animation, () => {
 
     let animation
+    let world = {emit: () => {}}
 
     beforeEach(() => {
         animation = new Animation()
+        animation.setReady(world)
     })
 
 

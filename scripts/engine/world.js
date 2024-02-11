@@ -29,7 +29,11 @@ export default class World extends Notifier {
             this.emit('update', delta)
             this.root.update(delta)
             this.emit('updated', delta)
+
+            return true
         }
+
+        return false
     }
 
 
