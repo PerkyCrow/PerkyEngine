@@ -1,0 +1,1 @@
+- AnimationTrack - track.emit('reached:step') sometimes fires twice. Why ?

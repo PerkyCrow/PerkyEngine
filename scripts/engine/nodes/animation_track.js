@@ -83,12 +83,23 @@ function registerEvents (track) {
         track.syncDuration()
     }
 
+    function notifyStepEnd () {
+        const step = this
+        const index = track.steps.indexOf(step)
+
+        if (index !== -1) {
+            track.emit('reached:step', step, index)
+        }
+    }
+
     track.on('attached:child', child => {
         if (child.isAnimation) {
             track.steps.push(child)
             track.emit('added:step', child)
             syncDuration()
             child.on('changed:duration', syncDuration)
+            child.on('end', notifyStepEnd)
+
         }
     })
 
@@ -98,6 +109,7 @@ function registerEvents (track) {
             if (index > -1) {
                 track.steps.splice(index, 1)
                 child.off('changed:duration', syncDuration)
+                child.off('end', notifyStepEnd)
                 track.emit('removed:step', child)
                 syncDuration()
             }
@@ -120,7 +132,7 @@ function getCurrentStepIndex (track) {
     for (let i = 0; i < steps.length; i++) {
         const step = steps[i]
         startAt += step.duration
-        if (startAt > elapsedTime) {
+        if (startAt >= elapsedTime) {
             return i
         }
     }

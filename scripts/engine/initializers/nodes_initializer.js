@@ -9,6 +9,7 @@ import SmoothAnimation from '../nodes/smooth_animation'
 import AnimationTrack from '../nodes/animation_track'
 import AnimationPropertyTrack from '../nodes/animation_property_track'
 import AnimationSequence from '../nodes/animation_sequence'
+import Physics2D from '../nodes/physics_2d'
 
 
 Node.addType(
@@ -22,5 +23,6 @@ Node.addType(
     SmoothAnimation,
     AnimationTrack,
     AnimationPropertyTrack,
-    AnimationSequence
+    AnimationSequence,
+    Physics2D
 )

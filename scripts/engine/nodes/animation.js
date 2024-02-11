@@ -9,6 +9,7 @@ export default class Animation extends Node {
         this.parentAnimation = null
         this.rootAnimation   = this
         this.playing         = false
+        this.ended           = false
 
         this.setAttribute('duration', {
             accessor: true,
@@ -48,10 +49,12 @@ export default class Animation extends Node {
 
 
     tick (deltaTime) {
-        if (this.playing) {
+        if (this.playing && !this.ended) {
             this.elapsedTime += deltaTime
 
             if (this.overflow >= 0) {
+                this.ended = true
+                this.emit('end')
                 this.stop()
             }
         }
@@ -74,6 +77,7 @@ export default class Animation extends Node {
             this.stop()
         }
 
+        this.ended = false
         this.playing = true
         setParams(this, params)
         this.emit('play', params)
