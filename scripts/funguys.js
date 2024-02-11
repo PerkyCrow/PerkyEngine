@@ -36,6 +36,12 @@ export default async function init () {
         type: 'texture'
     })
 
+    assets.add({
+        name: 'spore',
+        path: 'images/funguys/spore.png',
+        type: 'texture'
+    })
+
     await assets.loadAll()
 
     const engine = new Engine()

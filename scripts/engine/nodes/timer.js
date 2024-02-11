@@ -51,19 +51,18 @@ export default class Timer extends Node {
 
     tick (deltaTime) {
         if (this.started && !this.ended) {
-
             this.elapsedTime += deltaTime
 
-            if (this.elapsedTime >= this.duration) {
-                this.elapsedTime = 0
+            while (this.elapsedTime >= this.duration) {
+                this.elapsedTime -= this.duration
                 this.iteration += 1
                 this.emit('reached')
-
+    
                 if (this.iteration >= this.repeat) {
                     this.end()
+                    break
                 }
             }
-
         }
     }
 
