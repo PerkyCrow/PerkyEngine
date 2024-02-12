@@ -25,6 +25,7 @@ export default class Sprite extends Rectangle {
         this.setAttribute('anchor', {
             accessor: true,
             serializable: true,
+            type: 'ObservableVector2',
             defaultValue: new ObservableVector2(0, 0),
             value: params.anchor,
             watch: true,
@@ -32,7 +33,6 @@ export default class Sprite extends Rectangle {
                 onChange: this.emitter('changed:anchor')
             }
         })
-
     }
 
 }

@@ -18,6 +18,7 @@ export default class Node2D extends Node {
             accessor: true,
             serializable: true,
             watch: true,
+            type: 'ObservableVector2',
             defaultValue: new ObservableVector2(0, 0),
             value: params.position,
             options: {
@@ -37,6 +38,7 @@ export default class Node2D extends Node {
             accessor: true,
             serializable: true,
             watch: true,
+            type: 'ObservableVector2',
             defaultValue: new ObservableVector2(1, 1),
             value: params.scale,
             options: {
@@ -48,11 +50,20 @@ export default class Node2D extends Node {
             accessor: true,
             serializable: true,
             watch: true,
+            type: 'ObservableVector2',
             defaultValue: new ObservableVector2(0, 0),
             value: params.pivot,
             options: {
                 onChange: this.emitter('changed:pivot')
             }
+        })
+
+        this.setAttribute('opacity', {
+            accessor: true,
+            serializable: true,
+            defaultValue: 1,
+            value: params.opacity,
+            watch: true
         })
 
         this.parent2D = null

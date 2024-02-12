@@ -11,6 +11,7 @@ export default class Physics2D extends Node2D {
             accessor: true,
             serializable: true,
             watch: true,
+            type: 'ObservableVector2',
             defaultValue: new ObservableVector2(0, 0),
             value: params.velocity,
             options: {
@@ -22,6 +23,7 @@ export default class Physics2D extends Node2D {
             accessor: true,
             serializable: true,
             watch: true,
+            type: 'ObservableVector2',
             defaultValue: new ObservableVector2(0, 0),
             value: params.acceleration,
             options: {

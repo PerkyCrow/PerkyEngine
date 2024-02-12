@@ -17,6 +17,8 @@ export default class DisplayRenderer extends Renderer {
         this.onNode('changed:scale', scale => this.syncScale(scale))
 
         this.onNode('changed:pivot', pivot => this.syncPivot(pivot))
+
+        this.onNode('changed:opacity', opacity => this.syncOpacity(opacity))
     }
 
 
@@ -31,6 +33,7 @@ export default class DisplayRenderer extends Renderer {
             this.syncRotation(this.node.rotation)
             this.syncScale(this.node.scale)
             this.syncPivot(this.node.pivot)
+            this.syncOpacity(this.node.opacity)
         }
     }
 
@@ -55,6 +58,11 @@ export default class DisplayRenderer extends Renderer {
     syncPivot ({x, y}) {
         this.display.pivot.x = x
         this.display.pivot.y = y
+    }
+
+
+    syncOpacity (opacity) {
+        this.display.alpha = opacity
     }
 
 
