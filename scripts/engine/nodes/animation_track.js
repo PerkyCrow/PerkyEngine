@@ -132,7 +132,7 @@ function getCurrentStepIndex (track) {
     for (let i = 0; i < steps.length; i++) {
         const step = steps[i]
         startAt += step.duration
-        if (startAt >= elapsedTime) {
+        if (startAt > elapsedTime) {
             return i
         }
     }

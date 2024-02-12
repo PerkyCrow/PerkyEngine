@@ -1,5 +1,6 @@
 import AnimationTrack from './animation_track'
 import '../initializers/engine_initializer'
+import jest from 'jest-mock'
 
 
 describe(AnimationTrack, () => {
@@ -48,18 +49,45 @@ describe(AnimationTrack, () => {
 
 
     test('update', () => {
+        const endedStepListener = jest.fn()
+
+        track.on('reached:step', endedStepListener)
+
         track.play()
+        expect(track.currentStepIndex).toBe(0)
+
         track.update(0.5)
+        expect(track.currentStepIndex).toBe(0)
+        expect(track.progress).toBe(0.25)
         expect(actor.x).toBe(0.5)
 
         track.update(0.5)
         expect(actor.x).toBe(1)
+        expect(track.progress).toBe(0.5)
+        expect(track.currentStepIndex).toBe(1)
+        expect(endedStepListener).toHaveBeenCalledTimes(1)
 
         track.update(0.5)
+        expect(track.progress).toBe(0.75)
         expect(actor.x).toBe(0.5)
 
         track.update(0.5)
         expect(actor.x).toBe(0)
+        expect(endedStepListener).toHaveBeenCalledTimes(2)
+        expect(track.playing).toBe(false)
+
+        track.play()
+        expect(actor.x).toBe(0)
+        expect(track.elapsedTime).toBe(0)
+        expect(track.playing).toBe(true)
+        expect(track.progress).toBe(0)
+        expect(track.currentStepIndex).toBe(0)
+
+        // FIXME I think this should be the right behavior
+        // track.update(1.5)
+        // expect(track.progress).toBe(0.75)
+        // expect(track.currentStepIndex).toBe(1)
+        // expect(actor.x).toBe(0.5)
     })
 
 
