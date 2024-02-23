@@ -6,9 +6,8 @@ export default class MushroomRenderer extends SpriteRenderer {
         super(node)
 
         this.onDisplay('click', async () => {
-            console.log('click')
+            // await node.parent.spawnSpores()
             await node.parent.squish.play()
-            console.log('he')
 
             // node.parent.squish2.play()
             // await node.parent.squish1.play()

@@ -37,8 +37,20 @@ export default async function init () {
     })
 
     assets.add({
-        name: 'spore',
-        path: 'images/funguys/spore.png',
+        name: 'spore_scared',
+        path: 'images/funguys/spore_scared.png',
+        type: 'texture'
+    })
+
+    assets.add({
+        name: 'grass',
+        path: 'images/funguys/grass_01.png',
+        type: 'texture'
+    })
+
+    assets.add({
+        name: 'background',
+        path: 'images/funguys/background.jpg',
         type: 'texture'
     })
 
@@ -53,6 +65,17 @@ export default async function init () {
         height: 6
     })
 
+    const backgroundTexture = assets.getResource('background')
+    const backgroundAspectRatio = backgroundTexture.aspectRatio
+    camera.create('Sprite', {
+        texture: assets.getResource('background'),
+        width: 10 * backgroundAspectRatio,
+        height: 6,
+        anchor: {
+            x: 0.5,
+            y: 0.5
+        }
+    })
 
     const mushroom = camera.create('Mushroom', {
         position: {
@@ -60,6 +83,25 @@ export default async function init () {
             y: 1
         }
     })
+
+
+    const grassTexture = assets.getResource('grass')
+    const grassAspectRatio = grassTexture.aspectRatio
+
+    camera.create('Sprite', {
+        texture: grassTexture,
+        width: 0.85,
+        height: 0.85,
+        anchor: {
+            x: 0.5,
+            y: 0.9
+        },
+        position: {
+            x: 1,
+            y: 1
+        }
+    })
+
 
     document.body.appendChild(viewport.container)
 
