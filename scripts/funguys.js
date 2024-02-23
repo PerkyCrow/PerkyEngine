@@ -85,22 +85,7 @@ export default async function init () {
     })
 
 
-    const grassTexture = assets.getResource('grass')
-    const grassAspectRatio = grassTexture.aspectRatio
 
-    camera.create('Sprite', {
-        texture: grassTexture,
-        width: 0.85,
-        height: 0.85,
-        anchor: {
-            x: 0.5,
-            y: 0.9
-        },
-        position: {
-            x: 1,
-            y: 1
-        }
-    })
 
 
     document.body.appendChild(viewport.container)

@@ -1,7 +1,7 @@
 import Node2D from 'engine/nodes/node_2d'
 import assets from 'engine/assets'
 import useSquishAnimation from '../animations/squish_animation'
-import {randomBetween} from 'engine/utils'
+import {randomBetween, oneChanceIn} from 'engine/utils'
 
 export default class Mushroom extends Node2D {
 
@@ -15,7 +15,15 @@ export default class Mushroom extends Node2D {
 
         const aspectRatio = textures.idle.aspectRatio
 
-        this.sprite = this.create('Sprite', {
+
+        this.backgroundSpores = this.create('Node2D')
+
+        this.spriteContainer = this.create('Node2D')
+
+        this.foregroundSpores = this.create('Node2D')
+
+
+        this.sprite = this.spriteContainer.create('Sprite', {
             rendererName: 'Mushroom',
             texture: textures.idle,
             anchor: {
@@ -26,8 +34,21 @@ export default class Mushroom extends Node2D {
             height: 1 / aspectRatio
         })
 
-
-
+        const grassTexture = assets.getResource('grass')
+    
+        this.create('Sprite', {
+            texture: grassTexture,
+            width: 0.85,
+            height: 0.85,
+            anchor: {
+                x: 0.5,
+                y: 0.9
+            },
+            position: {
+                x: 0,
+                y: 0
+            }
+        })
 
         // this.physics2D = this.create('Physics2D', {})
 
@@ -38,16 +59,16 @@ export default class Mushroom extends Node2D {
         //     y: 0
         // }
 
-        useSquishAnimation(this)
+        useSquishAnimation(this.spriteContainer)
 
-        this.squish.tracks[0].on('reached:step', (step, index) => {
+        this.spriteContainer.squish.tracks[0].on('reached:step', (step, index) => {
             if (index === 0) {
                 this.spawnSpores()
             }
         })
 
         this.on('update', () => {
-            const scaleAspect = this.scale.y / this.scale.x
+            const scaleAspect = this.spriteContainer.scale.y / this.spriteContainer.scale.x
 
             this.sprite.texture = textures.idle
 
@@ -67,9 +88,12 @@ export default class Mushroom extends Node2D {
         }
 
         for (let i = 0; i < 25; i++) {
-            const spore = this.create('Physics2D', {
+
+            let container = oneChanceIn(3) ? this.foregroundSpores : this.backgroundSpores
+
+            const spore = container.create('Physics2D', {
                 position: {
-                    x: 0,
+                    x: randomBetween(-0.2, 0.2),
                     y: -0.5
                 },
                 velocity: {

@@ -152,6 +152,11 @@ export function randomPick (array) {
 }
 
 
+export function oneChanceIn (chance) {
+    return randomIntBetween(0, chance) === 0
+}
+
+
 export function sum (numbers) {
     return numbers.reduce((previous, current) => previous + current, 0)
 }
