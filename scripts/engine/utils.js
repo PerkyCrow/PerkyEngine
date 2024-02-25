@@ -157,6 +157,23 @@ export function oneChanceIn (chance) {
 }
 
 
+export function weightedChoice (choices) {
+    const totalWeight = choices.reduce((total, choice) => total + choice.weight, 0)
+
+    let random = Math.random() * totalWeight
+
+    for (let choice of choices) {
+        random -= choice.weight
+
+        if (random <= 0) {
+            return choice.value
+        }
+    }
+
+    return choices[choices.length - 1].value
+}
+
+
 export function sum (numbers) {
     return numbers.reduce((previous, current) => previous + current, 0)
 }

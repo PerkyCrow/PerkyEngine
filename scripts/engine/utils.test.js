@@ -12,6 +12,7 @@ import {
     randomBetween,
     randomIntBetween,
     randomPick,
+    weightedChoice,
     sum,
     pluck,
     compact,
@@ -103,6 +104,21 @@ describe('Utils', () => {
         const value = randomPick([1, 2, 3, 4, 5])
         expect(value).toBeGreaterThanOrEqual(1)
         expect(value).toBeLessThanOrEqual(5)
+    })
+
+
+    test('weightedChoice', () => {
+        const valuesCount = {
+            hello: 0,
+            world: 0
+        }
+
+        for (let i = 0; i < 100; i++) {
+            const value = weightedChoice([{value: 'hello', weight: 1}, {value: 'world', weight: 10}])
+            valuesCount[value] += 1
+        }
+
+        expect(valuesCount.hello).toBeLessThan(valuesCount.world)
     })
 
 

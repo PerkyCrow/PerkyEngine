@@ -65,19 +65,9 @@ export default async function init () {
         height: 6
     })
 
-    const backgroundTexture = assets.getResource('background')
-    const backgroundAspectRatio = backgroundTexture.aspectRatio
-    camera.create('Sprite', {
-        texture: assets.getResource('background'),
-        width: 10 * backgroundAspectRatio,
-        height: 6,
-        anchor: {
-            x: 0.5,
-            y: 0.5
-        }
-    })
+    camera.create('ForestBackground')
 
-    const mushroom = camera.create('Mushroom', {
+    camera.create('Mushroom', {
         position: {
             x: 1,
             y: 1
