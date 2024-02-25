@@ -1,58 +1,10 @@
 import Engine from 'engine/engine'
 import assets from 'engine/assets'
 
-import {
-    normalize,
-    remap,
-    smoothstep
-} from 'engine/utils'
-
-
 import './funguys/initialize'
 
 
 export default async function init () {
-
-    assets.add({
-        path: 'images/shroom_test.png',
-        type: 'texture'
-    })
-
-    assets.add({
-        name: 'shroom_scared_idle',
-        path: 'images/funguys/shroom_scared_idle.png',
-        type: 'texture'
-    })
-
-    assets.add({
-        name: 'shroom_scared_shrink',
-        path: 'images/funguys/shroom_scared_shrink.png',
-        type: 'texture'
-    })
-
-    assets.add({
-        name: 'shroom_scared_stretch',
-        path: 'images/funguys/shroom_scared_stretch.png',
-        type: 'texture'
-    })
-
-    assets.add({
-        name: 'spore_scared',
-        path: 'images/funguys/spore_scared.png',
-        type: 'texture'
-    })
-
-    assets.add({
-        name: 'grass',
-        path: 'images/funguys/grass_01.png',
-        type: 'texture'
-    })
-
-    assets.add({
-        name: 'background',
-        path: 'images/funguys/background.jpg',
-        type: 'texture'
-    })
 
     await assets.loadAll()
 
@@ -74,14 +26,8 @@ export default async function init () {
         }
     })
 
-
-
-
-
     document.body.appendChild(viewport.container)
 
-
-    engine.on('update', animate)
 
     function resize () {
         viewport.resize()
@@ -93,16 +39,5 @@ export default async function init () {
     window.addEventListener('resize', resize)
 
     resize()
-
-
-    function animate (deltaTime, elapsedTime) {
-        // console.log(smoothstep(elapsedTime, 0, 1))
-        // camera.position.x += deltaTime * 10
-        // mushroom.width = Math.sin(elapsedTime)
-        // mushroom.scale.x = smoothstep(elapsedTime, 0, 1)
-
-        // camera.position.x = 5
-        // mushroomSprite.position.x += deltaTime * 2
-    }
 
 }
