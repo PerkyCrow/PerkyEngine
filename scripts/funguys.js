@@ -11,11 +11,14 @@ export default async function init () {
     const engine = new Engine()
     const {root, viewport} = engine
 
+    engine.mount(document.body)
 
     const camera = root.create('Camera', {
         width: 10,
         height: 6
     })
+
+    viewport.setMainCamera(camera)
 
     camera.create('ForestBackground')
 
@@ -25,19 +28,5 @@ export default async function init () {
             y: 1
         }
     })
-
-    document.body.appendChild(viewport.container)
-
-
-    function resize () {
-        viewport.resize()
-        camera.scaleToFit(viewport.getSize())
-        Object.assign(camera.position, viewport.getCenter())
-    }
-
-
-    window.addEventListener('resize', resize)
-
-    resize()
 
 }

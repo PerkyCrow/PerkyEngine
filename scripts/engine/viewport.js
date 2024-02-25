@@ -20,6 +20,10 @@ export default class Viewport {
         })
 
         this.container.appendChild(this.pixiRenderer.view)
+
+        window.addEventListener('resize', () => {
+            this.autoResize()
+        })
     }
 
 
@@ -48,6 +52,22 @@ export default class Viewport {
 
     render (scene) {
         this.pixiRenderer.render(scene)
+    }
+
+
+    setMainCamera (camera) {
+        this.mainCamera = camera
+        this.autoResize()
+    }
+
+
+    autoResize () {
+        this.resize()
+
+        if (this.mainCamera) {
+            this.mainCamera.scaleToFit(this.getSize())
+            Object.assign(this.mainCamera.position, this.getCenter())
+        }
     }
 
 }

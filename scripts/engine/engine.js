@@ -29,6 +29,11 @@ export default class Engine extends Notifier {
         this.viewport.render(this.view.scene)
     }
 
+    mount (container) {
+        container.appendChild(this.viewport.container)
+        this.viewport.resize()
+    }
+
 }
 
 
