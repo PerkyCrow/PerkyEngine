@@ -17,6 +17,7 @@ export default class Node extends Model {
         this.ready        = false
         this.destroyed    = false
         this.children     = []
+        this.renderers    = []
         this.parent       = null
         this.world        = null
         this.root         = this

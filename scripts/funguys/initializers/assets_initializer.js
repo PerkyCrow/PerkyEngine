@@ -40,3 +40,9 @@ assets.add({
     path: 'images/funguys/background.jpg',
     type: 'texture'
 })
+
+assets.add({
+    name: 'sidebar',
+    path: 'images/funguys/sidebar.png',
+    type: 'texture'
+})

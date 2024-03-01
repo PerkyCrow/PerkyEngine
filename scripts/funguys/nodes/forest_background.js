@@ -11,8 +11,8 @@ export default class ForestBackground extends Sprite {
 
         this.sprite = this.create('Sprite', {
             texture: backgroundTexture,
-            width: 6 * backgroundAspectRatio,
-            height: 6,
+            width:  8 * backgroundAspectRatio,
+            height: 8,
             anchor: {
                 x: 0.5,
                 y: 0.5

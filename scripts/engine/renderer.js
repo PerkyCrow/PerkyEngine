@@ -12,6 +12,8 @@ export default class Renderer {
     constructor (node) {
         this.node = node
         this.nodeNotifier = new NotifierProxy({target: node})
+
+        node.renderer = this
     }
 
 

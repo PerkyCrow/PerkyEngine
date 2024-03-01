@@ -94,3 +94,53 @@ export default class DisplayRenderer extends Renderer {
     }
 
 }
+
+
+// const eventNames = [
+//     'pointercancel',
+//     'pointerdown',
+//     'pointerenter',
+//     'pointerleave',
+//     'pointermove',
+//     'globalpointermove',
+//     'pointerout',
+//     'pointerover',
+//     'pointertap',
+//     'pointerup',
+//     'pointerupoutside',
+//     'mousedown',
+//     'mouseenter',
+//     'mouseleave',
+//     'mousemove',
+//     'globalmousemove',
+//     'mouseout',
+//     'mouseover',
+//     'mouseup',
+//     'mouseupoutside',
+//     'click',
+//     'touchcancel',
+//     'touchend',
+//     'touchendoutside',
+//     'touchmove',
+//     'globaltouchmove',
+//     'touchstart',
+//     'tap',
+//     'wheel',
+//     'rightclick',
+//     'rightdown',
+//     'rightup',
+//     'rightupoutside'
+// ]
+
+// function forwardDisplayEvents (renderer) {
+//     const {display, node} = renderer
+
+//     if (display && node) {
+//         eventNames.forEach(eventName => {
+//             display.on(eventName, (event) => {
+//                 node.emit(eventName, event)
+//             })
+//         })
+//     }
+
+// }

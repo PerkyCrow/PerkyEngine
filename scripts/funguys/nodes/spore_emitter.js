@@ -49,7 +49,6 @@ export default class SporeEmitter extends Node2D {
             var scale = randomBetween(0.2, 0.5)
             const sprite = spore.create('Sprite', {
                 texture: textures.spore,
-                rendererName: 'Mushroom',
                 width: scale,
                 height: scale
             })

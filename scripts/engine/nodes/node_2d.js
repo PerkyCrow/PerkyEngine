@@ -78,6 +78,26 @@ export default class Node2D extends Node {
     }
 
 
+    get display () {
+        return this.renderer && this.renderer.display
+    }
+
+
+    get parentDisplay () {
+        return this.parent2D && this.parent2D.display
+    }
+
+
+    onDisplay (eventName, listener) {
+        return this.renderer && this.renderer.onDisplay(eventName, listener)
+    }
+
+
+    offDisplay (eventName, listener) {
+        return this.renderer && this.renderer.offDisplay(eventName, listener)
+    }
+
+
     translate (offset) {
         this.position = this.position.add(offset)
     }
@@ -110,6 +130,12 @@ export default class Node2D extends Node {
 
     lookAt (target) {
         this.rotation = this.getAngleTo(target)
+    }
+
+
+    localPositionFromEvent (event) {
+        const {parentDisplay, display} = this
+        return (parentDisplay || display).toLocal(event.data.global)
     }
 
 }

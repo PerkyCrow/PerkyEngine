@@ -15,16 +15,18 @@ export default async function init () {
 
     const camera = root.create('Camera', {
         width: 10,
-        height: 6
+        height: 8
     })
 
     viewport.setMainCamera(camera)
 
     camera.create('ForestBackground')
+    camera.create('Sidebar')
+
 
     camera.create('Mushroom', {
         position: {
-            x: 1,
+            x: 0,
             y: 1
         }
     })

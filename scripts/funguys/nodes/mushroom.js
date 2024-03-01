@@ -22,7 +22,6 @@ export default class Mushroom extends Node2D {
         this.foregroundSpores = this.create('Node2D')
 
         this.sprite = this.spriteContainer.create('Sprite', {
-            rendererName: 'Mushroom',
             texture: textures.idle,
             anchor: {
                 x: 0.5,
@@ -33,7 +32,7 @@ export default class Mushroom extends Node2D {
         })
 
         const grassTexture = assets.getResource('grass')
-    
+
         this.create('Sprite', {
             texture: grassTexture,
             width: 0.85,
@@ -46,6 +45,13 @@ export default class Mushroom extends Node2D {
                 x: 0,
                 y: 0
             }
+        })
+
+        this.sprite.onDisplay('pointerdown', async () => {
+            await this.sprite.parent.squish.play()
+
+            this.spriteContainer.scale.y = 1
+            this.spriteContainer.scale.x = 1
         })
 
         this.sporeEmitter = this.create('SporeEmitter')
