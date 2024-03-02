@@ -26,14 +26,6 @@ export default class Sidebar extends Node2D {
             }
         })
 
-        // this.create('Mushroom', {
-        //     position: {
-        //         x: 0,
-        //         y: 1.5
-        //     },
-        //     scale: 0.75
-        // })
-
         for (let i = 0; i < 7; i++) {
             this.create('Mushroom', {
                 position: {

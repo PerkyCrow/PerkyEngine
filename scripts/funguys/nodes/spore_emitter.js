@@ -1,5 +1,5 @@
 import Node2D from 'engine/nodes/node_2d'
-import {randomBetween, weightedChoice} from 'engine/utils'
+import {randomBetween, weightedChoice, clamp} from 'engine/utils'
 import assets from 'engine/assets'
 
 
@@ -40,7 +40,7 @@ export default class SporeEmitter extends Node2D {
                 },
                 velocity: {
                     x: randomBetween(-0.2, 0.2),
-                    y: randomBetween(-0.25, -0.75)
+                    y: randomBetween(-1.5, -3.5)
                 },
                 angularVelocity: randomBetween(-1, 1)
             })
@@ -59,10 +59,16 @@ export default class SporeEmitter extends Node2D {
             })
 
             spore.on('update', (deltaTime) => {
-                spore.scale.x -= deltaTime * (Math.abs(spore.velocity.y) * 0.75)
-                spore.scale.y -= deltaTime * (Math.abs(spore.velocity.y) * 0.75)
+                spore.scale.x -= deltaTime * (Math.abs(spore.velocity.y) * 0.25)
+                spore.scale.y -= deltaTime * (Math.abs(spore.velocity.y) * 0.25)
+                spore.velocity.y += deltaTime * 0.15
+                spore.velocity.y = clamp(spore.velocity.y, -3.5, 3.5)
 
-                if (spore.scale.x <= 0) {
+                if (spore.scale.x < 0.35) {
+                    spore.opacity -= deltaTime * 2
+                }
+
+                if (spore.scale.x <= 0 || spore.opacity <= 0) {
                     spore.destroy()
                 }
             })

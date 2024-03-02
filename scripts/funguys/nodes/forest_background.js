@@ -9,15 +9,12 @@ export default class ForestBackground extends Sprite {
         const backgroundTexture = assets.getResource('background')
         const backgroundAspectRatio = backgroundTexture.aspectRatio
 
-        this.sprite = this.create('Sprite', {
-            texture: backgroundTexture,
-            width:  8 * backgroundAspectRatio,
-            height: 8,
-            anchor: {
-                x: 0.5,
-                y: 0.5
-            }
-        })
+        this.width = backgroundAspectRatio * this.height
+        this.anchor = {
+            x: 0.5,
+            y: 0.5
+        }
+        this.texture = backgroundTexture
     }
 
 }
