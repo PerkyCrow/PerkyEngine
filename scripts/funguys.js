@@ -26,4 +26,14 @@ export default async function init () {
         }
     })
 
+
+    camera.create('Spore')
+
+    camera.create('GrowingSlot', {
+        position: {
+            x: 3,
+            y: 2
+        }
+    })
+
 }
