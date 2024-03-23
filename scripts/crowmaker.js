@@ -21,4 +21,24 @@ export default async function init () {
     })
 
 
+    const container = camera.create('Node2D', {
+        position: {x: 5, y: 4}
+    })
+
+    // container.position = {x: 5, y: 4}
+    // container.scale = 2
+
+    const dom = container.create('Dom', {
+        position: {x: 1, y: 1}
+    })
+
+    console.log(dom.display.getGlobalPosition())
+
+    setTimeout(() => {
+        container.position.y = 2
+        console.log(dom.display.getGlobalPosition())
+    }, 1000)
+
+    // console.log(this.display.getGlobalPosition())
+
 }
