@@ -1,5 +1,5 @@
-import {Graphics} from '@pixi/graphics'
-import {Container} from '@pixi/display'
+import {Graphics} from 'pixi.js'
+import {Container} from 'pixi.js'
 
 
 export default class Grid {

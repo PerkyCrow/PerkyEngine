@@ -1,8 +1,8 @@
 <script setup>
     import {ref, onMounted} from 'vue'
     import Engine from '../../../engine/engine'
-    import {Graphics} from '@pixi/graphics'
-    import {Container} from '@pixi/display'
+    import {Graphics} from 'pixi.js'
+    import {Container} from 'pixi.js'
     import ContextMenu from 'primevue/contextmenu'
     import {useViewportControls} from '../../use/use_viewport_controls'
     import Grid from '../../grid'

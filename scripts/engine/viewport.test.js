@@ -4,7 +4,7 @@
 
 
 import Viewport from './viewport'
-import {Renderer} from '@pixi/core'
+import {Renderer} from 'pixi.js'
 
 
 describe(Viewport, () => {

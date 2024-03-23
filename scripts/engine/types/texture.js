@@ -1,4 +1,4 @@
-import {Texture as PixiTexture} from '@pixi/core'
+import {Texture as PixiTexture} from 'pixi.js'
 
 
 export default class Texture extends PixiTexture {

@@ -1,4 +1,4 @@
-import {Renderer} from '@pixi/core'
+import {Renderer} from 'pixi.js'
 
 
 export default class Viewport {

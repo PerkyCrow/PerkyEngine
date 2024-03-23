@@ -1,6 +1,6 @@
 import Notifier from './notifier'
 import RendererRegistry from './renderer'
-import {Container} from '@pixi/display'
+import {Container} from 'pixi.js'
 
 
 export default class View extends Notifier {

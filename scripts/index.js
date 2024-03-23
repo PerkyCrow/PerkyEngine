@@ -1,6 +1,9 @@
 import 'engine/initializers/engine_initializer'
 
-import initFunguys from './funguys'
-import initCrowmaker from './crowmaker'
 
+// import initFunguys from './funguys'
+// initFunguys()
+
+
+import initCrowmaker from './crowmaker'
 initCrowmaker()

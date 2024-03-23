@@ -10,6 +10,7 @@ import AnimationTrack from '../nodes/animation_track'
 import AnimationPropertyTrack from '../nodes/animation_property_track'
 import AnimationSequence from '../nodes/animation_sequence'
 import Physics2D from '../nodes/physics_2d'
+import Dom from '../nodes/dom'
 
 
 Node.addType(
@@ -24,5 +25,6 @@ Node.addType(
     AnimationTrack,
     AnimationPropertyTrack,
     AnimationSequence,
-    Physics2D
+    Physics2D,
+    Dom
 )
