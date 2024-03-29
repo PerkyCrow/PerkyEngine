@@ -23,6 +23,13 @@ export default class Engine extends Notifier {
         init(this)
     }
 
+    async init ({container} = {
+        container: document.body
+    }) {
+        await this.viewport.init()
+        this.mount(container)
+    }
+
     update (deltaTime, elapsedTime) {
         this.world.update(deltaTime, elapsedTime)
         this.emit('update', deltaTime, elapsedTime)

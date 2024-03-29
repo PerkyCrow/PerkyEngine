@@ -28,9 +28,8 @@ export default class RectangleRenderer extends DisplayRenderer {
 
     updateDisplay () {
         this.display.clear()
-        this.display.beginFill(0xFF0000)
-        this.display.drawRect(0, 0, this.node.width, this.node.height)
-        this.display.endFill()
+        this.display.rect(0, 0, this.node.width, this.node.height)
+        this.display.fill(0xFF0000)
     }
 
 

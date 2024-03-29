@@ -16,7 +16,8 @@ export default async function init () {
     const engine = new Engine()
     const {root, viewport} = engine
 
-    engine.mount(document.body)
+    await engine.init({container: document.body})
+
 
     const camera = root.create('Camera', {width: 10, height: 8})
     viewport.setMainCamera(camera)
@@ -29,10 +30,8 @@ export default async function init () {
             x: 0.5,
             y: 0.5
         },
-        width: 2 * texture.aspectRatio,
-        height: 2
+        width: 1,
+        height: 1
     })
-
-
 
 }

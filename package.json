@@ -16,7 +16,9 @@
   },
   "jest": {
     "moduleNameMapper": {},
-    "setupFiles": ["jest-webgl-canvas-mock"]
+    "setupFiles": [
+      "jest-webgl-canvas-mock"
+    ]
   },
   "staticFiles": {
     "staticPath": "scripts/assets"
@@ -33,7 +35,7 @@
     "parcel": "^2.10.3",
     "parcel-reporter-static-files-copy": "^1.5.3",
     "pixi-filters": "^5.2.1",
-    "pixi.js": "^7.3.2",
+    "pixi.js": "^8.0.4",
     "primeicons": "^6.0.1",
     "primevue": "^3.43.0",
     "process": "^0.11.10",

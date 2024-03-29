@@ -5,7 +5,9 @@ import {Container} from 'pixi.js'
 export default class CameraRenderer extends RectangleRenderer {
 
     initDisplay () {
-        this.display = new Container()
+        this.display = new Container({
+            isRenderGroup: true
+        })
     }
 
 

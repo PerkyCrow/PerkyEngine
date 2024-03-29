@@ -1,4 +1,4 @@
-import {Renderer} from 'pixi.js'
+import {autoDetectRenderer} from 'pixi.js'
 
 
 export default class Viewport {
@@ -12,18 +12,15 @@ export default class Viewport {
             this.container.classList.add('perky_view')
         }
 
-        this.pixiRenderer = new Renderer({
-            width: container.offsetWidth,
-            height: container.offsetHeight,
-            antialias: true,
-            transparent: false
+    }
+
+    async init () {
+        this.adapter = await autoDetectRenderer({
+            width: this.container.offsetWidth,
+            height: this.container.offsetHeight
         })
 
-        this.container.appendChild(this.pixiRenderer.view)
-
-        window.addEventListener('resize', () => {
-            this.autoResize()
-        })
+        this.container.appendChild(this.adapter.canvas)
     }
 
 
@@ -46,12 +43,14 @@ export default class Viewport {
 
 
     resize () {
-        this.pixiRenderer.resize(this.container.offsetWidth, this.container.offsetHeight)
+        this.adapter.resize(this.container.offsetWidth, this.container.offsetHeight)
     }
 
 
     render (scene) {
-        this.pixiRenderer.render(scene)
+        if (this.adapter) {
+            this.adapter.render(scene)
+        }
     }
 
 
@@ -82,3 +81,4 @@ function createContainer () {
 
     return container
 }
+

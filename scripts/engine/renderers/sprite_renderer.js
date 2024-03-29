@@ -15,6 +15,8 @@ export default class SpriteRenderer extends RectangleRenderer {
         this.onNode('changed:position', position => this.syncPosition(position))
 
         this.onNode('changed:scale', scale => this.syncScale(scale))
+
+        this.syncAttributes()
     }
 
 
@@ -68,6 +70,7 @@ export default class SpriteRenderer extends RectangleRenderer {
 
     syncWidth (width) {
         this.display.width = width * this.node.scale.x
+        console.log(width)
     }
 
 

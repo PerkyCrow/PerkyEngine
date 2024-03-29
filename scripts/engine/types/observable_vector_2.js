@@ -43,6 +43,19 @@ export default class ObservableVector2 extends Vector2 {
     }
 
 
+    set (x, y) {
+        if (typeof x === 'object') {
+            y = x.y
+            x = x.x
+        } else if (typeof y === 'undefined') {
+            y = x
+        }
+
+        this.x = x
+        this.y = y
+    }
+
+
     static cast (value, {onChange} = {}) {
         if (!ObservableVector2.is(value)) {
             value = new ObservableVector2(Vector2.cast(value))

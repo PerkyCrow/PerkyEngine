@@ -26,7 +26,7 @@
 
         const graphics = new Graphics()
 
-        graphics.beginFill(0xFF0000)
+        graphics.fill(0xFF0000)
         graphics.drawCircle(0, 0, 75)
         graphics.endFill()
 

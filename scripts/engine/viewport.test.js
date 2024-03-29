@@ -4,7 +4,6 @@
 
 
 import Viewport from './viewport'
-import {Renderer} from 'pixi.js'
 
 
 describe(Viewport, () => {
@@ -13,12 +12,14 @@ describe(Viewport, () => {
 
     beforeEach(() => {
         viewport = new Viewport()
+
     })
 
 
-    test('constructor', () => {
+    test('constructor', async () => {
         expect(viewport.container).toBeInstanceOf(HTMLElement)
-        expect(viewport.pixiRenderer).toBeInstanceOf(Renderer)
+
+        // expect(viewport.adapter).toBeInstanceOf(AbstractRenderer)
     })
 
 
