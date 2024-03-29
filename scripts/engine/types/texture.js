@@ -28,12 +28,12 @@ export default class Texture extends PixiTexture {
 
 
     get originalWidth () {
-        return this.baseTexture ? this.baseTexture.width : 1
+        return this.source ? this.source.width : 1
     }
 
 
     get originalHeight () {
-        return this.baseTexture ? this.baseTexture.height : 1
+        return this.source ? this.source.height : 1
     }
 
 

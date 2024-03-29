@@ -17,7 +17,8 @@ export default class Viewport {
     async init () {
         this.adapter = await autoDetectRenderer({
             width: this.container.offsetWidth,
-            height: this.container.offsetHeight
+            height: this.container.offsetHeight,
+            antialias: true
         })
 
         this.container.appendChild(this.adapter.canvas)
