@@ -30,6 +30,30 @@ export default class Dom extends Rectangle {
         return this.parentDom && this.parentDom.domElement
     }
 
+
+    update (...args) {
+        super.update(...args)
+
+        const position = this.display.getGlobalPosition()
+        this.domElement.style.left = `${position.x}px`
+        this.domElement.style.top  = `${position.y}px`
+    }
+
+}
+
+function getGlobalScale (element) {
+    // Initialiser les échelles globales à 1
+    let globalScaleX = 1
+    let globalScaleY = 1
+    
+    // Parcourir les parents jusqu'à atteindre la racine
+    while (element) {
+        globalScaleX *= element.scale.x
+        globalScaleY *= element.scale.y
+        element = element.parent
+    }
+    
+    return {scaleX: globalScaleX, scaleY: globalScaleY}
 }
 
 

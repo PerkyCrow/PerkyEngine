@@ -93,4 +93,9 @@ export default class DisplayRenderer extends Renderer {
         this.display.eventMode = 'auto'
     }
 
+
+    getGlobalScale () {
+        return this.display.getGlobalScale()
+    }
+
 }

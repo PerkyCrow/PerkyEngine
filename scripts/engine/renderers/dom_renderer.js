@@ -22,7 +22,7 @@ export default class DomRenderer extends RectangleRenderer {
 
 
     updateDisplay () {
-
+        console.log('updateDisplay')
     }
 
 
