@@ -70,7 +70,6 @@ export default class SpriteRenderer extends RectangleRenderer {
 
     syncWidth (width) {
         this.display.width = width * this.node.scale.x
-        console.log(width)
     }
 
 

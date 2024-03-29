@@ -11,7 +11,7 @@ export default async function init () {
     const engine = new Engine()
     const {root, viewport} = engine
 
-    engine.mount(document.body)
+    await engine.init({container: document.body})
 
     const camera = root.create('Camera', {width: 10, height: 8})
     viewport.setMainCamera(camera)
@@ -24,8 +24,6 @@ export default async function init () {
     const container = camera.create('Node2D', {
         position: {x: 0, y: 0}
     })
-
-    console.log(container.display)
 
     // container.position = {x: 5, y: 4}
     // container.scale = 2
@@ -42,6 +40,5 @@ export default async function init () {
         console.log(dom.display.getGlobalPosition())
     }, 1000)
 
-    // console.log(this.display.getGlobalPosition())
 
 }

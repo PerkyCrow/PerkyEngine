@@ -21,6 +21,10 @@ export default class Viewport {
         })
 
         this.container.appendChild(this.adapter.canvas)
+
+        window.addEventListener('resize', () => {
+            this.autoResize()
+        })
     }
 
 

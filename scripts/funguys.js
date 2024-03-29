@@ -11,7 +11,7 @@ export default async function init () {
     const engine = new Engine()
     const {root, viewport} = engine
 
-    engine.mount(document.body)
+    await engine.init({container: document.body})
 
     const camera = root.create('Camera', {width: 10, height: 8})
     viewport.setMainCamera(camera)
