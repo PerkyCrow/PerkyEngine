@@ -5,5 +5,9 @@ import 'engine/initializers/engine_initializer'
 // initFunguys()
 
 
-import initCrowmaker from './crowmaker'
-initCrowmaker()
+// import initCrowmaker from './crowmaker'
+// initCrowmaker()
+
+
+import initPixiUpgrade from './pixi_upgrade'
+initPixiUpgrade()
