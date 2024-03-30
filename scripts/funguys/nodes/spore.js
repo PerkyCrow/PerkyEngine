@@ -16,36 +16,19 @@ export default class Spore extends Node2D {
             }
         })
 
-        let spriteMoving = false
-        let mousePosition = {x: 0, y: 0}
+        this.sprite.use('draggable')
 
-        this.sprite.onDisplay('pointerdown', () => {
-            spriteMoving = true
+        this.sprite.on('drag:start', () => {
             this.sprite.rotation = -(Math.PI / 8)
             this.sprite.scale = 1.25
         })
 
-        this.onDisplay('pointerup', () => {
-            spriteMoving = false
-            this.sprite.position = mousePosition
+        this.sprite.on('drag:end', () => {
             this.sprite.rotation = 0
             this.sprite.scale = 1
         })
 
-        this.onDisplay('globalmousemove', (event) => {
-            mousePosition = this.localPositionFromEvent(event)
-
-            if (spriteMoving) {
-                this.sprite.position = mousePosition
-            }
-        })
-
-        // this.on('update', () => {
-        //     if (spriteMoving) {
-
-        //     }
-        // })
-
+        console.log(this.sprite.listCapabilities())
     }
 
 }

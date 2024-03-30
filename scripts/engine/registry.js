@@ -8,6 +8,13 @@ export default class Registry extends Map {
     }
 
 
+    addCollection (collection) {
+        for (let key in collection) {
+            this.set(key, collection[key])
+        }
+    }
+
+
     instantiate (name, ...args) {
         const Item = this.get(name)
 

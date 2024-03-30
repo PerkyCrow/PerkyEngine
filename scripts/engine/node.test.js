@@ -26,6 +26,20 @@ describe(Node, () => {
     })
 
 
+    test('use', () => {
+        const capability = jest.fn()
+        node.use(capability)
+        expect(capability).toHaveBeenCalledWith(node)
+    })
+
+
+    test('hasCapability', () => {
+        const capability = jest.fn()
+        node.use(capability)
+        expect(node.hasCapability(capability)).toBe(true)
+    })
+
+
     test('root', () => {
         expect(node.root).toBe(node)
 

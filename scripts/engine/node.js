@@ -1,5 +1,6 @@
 import Model from './model'
 import Registry from './registry'
+import {getCapability} from './capabilities'
 
 
 export default class Node extends Model {
@@ -18,6 +19,7 @@ export default class Node extends Model {
         this.destroyed    = false
         this.children     = []
         this.renderers    = []
+        this.capabilities = new Set()
         this.parent       = null
         this.world        = null
         this.root         = this
@@ -55,6 +57,42 @@ export default class Node extends Model {
 
     add (node) {
         return this.addChild(node)
+    }
+
+
+    hasCapability (capability) {
+        let useCapability
+
+        if (typeof capability === 'string') {
+            useCapability = getCapability(capability)
+        } else if (typeof capability === 'function') {
+            useCapability = capability
+        }
+
+        return useCapability && this.capabilities.has(useCapability)
+    }
+
+
+    listCapabilities () {
+        return Array.from(this.capabilities).map(capability => capability.name)
+    }
+
+
+    use (capability, ...args) {
+        let useCapability
+
+        if (typeof capability === 'string') {
+            useCapability = getCapability(capability)
+        } else if (typeof capability === 'function') {
+            useCapability = capability
+        }
+
+        if (useCapability && !this.hasCapability(useCapability)) {
+            this.capabilities.add(useCapability)
+            return useCapability(this, ...args)
+        }
+
+        return null
     }
 
 
