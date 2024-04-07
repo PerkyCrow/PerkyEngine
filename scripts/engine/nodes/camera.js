@@ -25,4 +25,25 @@ export default class Camera extends Rectangle {
         this.scale = {x: scale, y: scale}
     }
 
+
+    scaleToCover (target) {
+        const {width, height} = target
+        const {width: cameraWidth, height: cameraHeight} = this
+
+        const scale = Math.max(width / cameraWidth, height / cameraHeight)
+
+        this.scale = {x: scale, y: scale}
+    }
+
+
+    stretchToCover (target) {
+        const {width, height} = target
+        const {width: cameraWidth, height: cameraHeight} = this
+
+        this.scale = {
+            x: width  / cameraWidth,
+            y: height / cameraHeight
+        }
+    }
+
 }
