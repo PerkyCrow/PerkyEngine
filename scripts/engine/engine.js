@@ -31,7 +31,6 @@ export default class Engine extends Notifier {
     }
 
     update (deltaTime, elapsedTime) {
-        this.autoResize()
         this.world.update(deltaTime, elapsedTime)
         this.emit('update', deltaTime, elapsedTime)
         this.viewport.render(this.view.scene)
@@ -39,6 +38,7 @@ export default class Engine extends Notifier {
 
     autoResize () {
         const {root, viewport} = this
+        viewport.autoResize()
         const size = viewport.getSize()
         const center = viewport.getCenter()
 
@@ -52,7 +52,7 @@ export default class Engine extends Notifier {
 
     mount (container) {
         container.appendChild(this.viewport.container)
-        this.viewport.resize()
+        this.viewport.autoResize()
     }
 
 }

@@ -22,10 +22,6 @@ export default class Viewport {
         })
 
         this.container.appendChild(this.renderAdapter.canvas)
-
-        window.addEventListener('resize', () => {
-            this.autoResize()
-        })
     }
 
 
@@ -47,7 +43,7 @@ export default class Viewport {
     }
 
 
-    resize () {
+    autoResize () {
         this.renderAdapter.resize(this.container.offsetWidth, this.container.offsetHeight)
     }
 
@@ -55,16 +51,6 @@ export default class Viewport {
     render (scene) {
         if (this.renderAdapter) {
             this.renderAdapter.render(scene)
-        }
-    }
-
-
-    autoResize () {
-        this.resize()
-
-        if (this.mainCamera) {
-            this.mainCamera.scaleToFit(this.getSize())
-            Object.assign(this.mainCamera.position, this.getCenter())
         }
     }
 
