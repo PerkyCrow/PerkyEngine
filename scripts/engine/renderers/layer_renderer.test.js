@@ -1,16 +1,16 @@
-import CameraRenderer from './camera_renderer'
-import Camera from '../nodes/camera'
+import LayerRenderer from './layer_renderer'
+import Layer from '../nodes/layer'
 import {Container} from 'pixi.js'
 
 
-describe(CameraRenderer, () => {
+describe(LayerRenderer, () => {
 
     let renderer
     let node
 
     beforeEach(() => {
-        node = new Camera()
-        renderer = new CameraRenderer(node)
+        node = new Layer()
+        renderer = new LayerRenderer(node)
     })
 
 

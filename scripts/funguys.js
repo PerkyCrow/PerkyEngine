@@ -9,17 +9,20 @@ export default async function init () {
     await assets.loadAll()
 
     const engine = new Engine()
-    const {root, viewport} = engine
+    const {root} = engine
 
     await engine.init({container: document.body})
 
-    const camera = root.create('Camera', {width: 10, height: 8})
-    viewport.setMainCamera(camera)
+    const main = root.create('Layer', {
+        width: 10,
+        height: 8,
+        autoScale: 'fit'
+    })
 
-    camera.create('ForestBackground', {height: camera.height})
-    camera.create('Sidebar')
+    main.create('ForestBackground', {height: main.height})
+    main.create('Sidebar')
 
-    camera.create('Mushroom', {
+    main.create('Mushroom', {
         position: {
             x: 0,
             y: 1
@@ -27,13 +30,14 @@ export default async function init () {
     })
 
 
-    camera.create('Spore')
+    main.create('Spore')
 
-    camera.create('GrowingSlot', {
+    main.create('GrowingSlot', {
         position: {
             x: 3,
             y: 2
         }
     })
+
 
 }

@@ -1,12 +1,12 @@
-import Camera from './camera'
+import Layer from './layer'
 
 
-describe(Camera, () => {
+describe(Layer, () => {
 
     let node
 
     beforeEach(() => {
-        node = new Camera()
+        node = new Layer()
     })
 
 
@@ -22,8 +22,8 @@ describe(Camera, () => {
     })
 
 
-    test('isCamera', () => {
-        expect(node.isCamera).toBe(true)
+    test('isLayer', () => {
+        expect(node.isLayer).toBe(true)
     })
 
 })

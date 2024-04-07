@@ -14,17 +14,16 @@ export default async function init () {
     await assets.loadAll()
 
     const engine = new Engine()
-    const {root, viewport} = engine
+    const {root} = engine
 
     await engine.init({container: document.body})
 
 
-    const camera = root.create('Camera', {width: 10, height: 8})
-    viewport.setMainCamera(camera)
+    const main = root.create('Main', {width: 10, height: 8})
 
     const texture = assets.getResource('shroom_scared_idle')
 
-    camera.create('Sprite', {
+    main.create('Sprite', {
         texture: texture,
         anchor: {
             x: 0.5,

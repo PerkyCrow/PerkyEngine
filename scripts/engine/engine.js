@@ -31,9 +31,23 @@ export default class Engine extends Notifier {
     }
 
     update (deltaTime, elapsedTime) {
+        this.autoResize()
         this.world.update(deltaTime, elapsedTime)
         this.emit('update', deltaTime, elapsedTime)
         this.viewport.render(this.view.scene)
+    }
+
+    autoResize () {
+        const {root, viewport} = this
+        const size = viewport.getSize()
+        const center = viewport.getCenter()
+
+        root.children.forEach(child => {
+            if (child.isLayer && child.autoScaleMethod) {
+                child.autoScale(size)
+                child.position = center
+            }
+        })
     }
 
     mount (container) {
@@ -49,6 +63,9 @@ function init (engine) {
 
     world.on('node:ready', node => {
         view.addRendererFor(node)
+        if (node.isLayer) {
+            engine.autoResize()
+        }
     })
 
     world.on('node:destroy', node => {
@@ -58,4 +75,10 @@ function init (engine) {
     world.attachRoot(root)
 
     animationLoop.start()
+
+    function autoResizeListener () {
+        engine.autoResize()
+    }
+
+    window.addEventListener('resize', autoResizeListener)
 }

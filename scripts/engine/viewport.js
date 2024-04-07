@@ -15,13 +15,13 @@ export default class Viewport {
     }
 
     async init () {
-        this.adapter = await autoDetectRenderer({
+        this.renderAdapter = await autoDetectRenderer({
             width: this.container.offsetWidth,
             height: this.container.offsetHeight,
             antialias: true
         })
 
-        this.container.appendChild(this.adapter.canvas)
+        this.container.appendChild(this.renderAdapter.canvas)
 
         window.addEventListener('resize', () => {
             this.autoResize()
@@ -48,20 +48,14 @@ export default class Viewport {
 
 
     resize () {
-        this.adapter.resize(this.container.offsetWidth, this.container.offsetHeight)
+        this.renderAdapter.resize(this.container.offsetWidth, this.container.offsetHeight)
     }
 
 
     render (scene) {
-        if (this.adapter) {
-            this.adapter.render(scene)
+        if (this.renderAdapter) {
+            this.renderAdapter.render(scene)
         }
-    }
-
-
-    setMainCamera (camera) {
-        this.mainCamera = camera
-        this.autoResize()
     }
 
 
