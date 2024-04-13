@@ -21,14 +21,16 @@ export default class Spore extends Node2D {
         this.sprite.on('drag:start', () => {
             this.sprite.rotation = -(Math.PI / 8)
             this.sprite.scale = 1.25
+            document.body.style.cursor = 'none'
         })
 
         this.sprite.on('drag:end', () => {
             this.sprite.rotation = 0
             this.sprite.scale = 1
+            document.body.style.cursor = 'auto'
         })
 
-        console.log(this.sprite.listCapabilities())
+
     }
 
 }

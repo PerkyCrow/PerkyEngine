@@ -17,6 +17,10 @@ export default function draggable (node) {
     })
 
     node.onDisplay('globalmousemove', (event) => {
+
+        // need to check if pointer is released if it goes out of the window
+        // then trigger an event maybe ? check event.pressure or event.buttons
+
         if (node.dragging) {
             node.mousePosition = node.localPositionFromEvent(event)
             node.position = node.mousePosition
