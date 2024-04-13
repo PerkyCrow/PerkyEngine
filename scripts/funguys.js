@@ -9,15 +9,16 @@ export default async function init () {
     await assets.loadAll()
 
     const engine = new Engine()
-    const {root} = engine
 
     await engine.init({container: document.body})
 
-    const main = root.create('Layer', {
+    const main = engine.addLayer({
         width: 10,
         height: 8,
-        autoScale: 'fit'
+        autoScale: 'contain'
     })
+
+
 
     main.create('ForestBackground', {height: main.height})
     main.create('Sidebar')
@@ -39,5 +40,10 @@ export default async function init () {
         }
     })
 
+    const ui = engine.addLayer({
+        width: 10,
+        height: 8,
+        autoScale: 'contain'
+    })
 
 }

@@ -36,6 +36,11 @@ export default class Engine extends Notifier {
         this.viewport.render(this.view.scene)
     }
 
+
+    addLayer (params = {}) {
+        return this.root.create('Layer', params)
+    }
+
     autoResize () {
         const {root, viewport} = this
         viewport.autoResize()
@@ -43,9 +48,14 @@ export default class Engine extends Notifier {
         const center = viewport.getCenter()
 
         root.children.forEach(child => {
-            if (child.isLayer && child.autoScaleMethod) {
-                child.autoScale(size)
-                child.position = center
+            if (child.isLayer) {
+                if (child.autoScale) {
+                    child.smartScale(size)
+                }
+
+                if (child.autoCenter) {
+                    child.position = center
+                }
             }
         })
     }

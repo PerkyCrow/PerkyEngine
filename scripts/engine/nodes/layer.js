@@ -14,29 +14,36 @@ export default class Layer extends Rectangle {
         this.isLayer = true
         this.rendererName = 'Layer'
 
-        this.setAttribute('autoScaleMethod', {
+        this.setAttribute('autoScale', {
             accessor: true,
             serializable: true,
-            value: params.autoScaleMethod,
-            defaultValue: 'scaleToFit'
+            value: params.autoScale,
+            defaultValue: 'contain'
+        })
+
+        this.setAttribute('autoCenter', {
+            accessor: true,
+            serializable: true,
+            value: params.autoCenter,
+            defaultValue: true
         })
     }
 
 
-    autoScale (target) {
-        const {autoScaleMethod} = this
+    smartScale (target) {
+        const {autoScale} = this
 
-        if (autoScaleMethod === 'scaleToFit') {
-            this.scaleToFit(target)
-        } else if (autoScaleMethod === 'scaleToCover') {
+        if (autoScale === 'contain') {
+            this.scaleToContain(target)
+        } else if (autoScale === 'cover') {
             this.scaleToCover(target)
-        } else if (autoScaleMethod === 'stretchToCover') {
+        } else if (autoScale === 'stretch') {
             this.stretchToCover(target)
         }
     }
 
 
-    scaleToFit (target) {
+    scaleToContain (target) {
         const {width, height} = target
         const {width: layerWidth, height: layerHeight} = this
 

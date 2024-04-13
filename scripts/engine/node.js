@@ -13,7 +13,7 @@ export default class Node extends Model {
 
     static rendererName = null
 
-    constructor ({renderable, rendererName} = {}) {
+    constructor ({renderable, rendererName, name} = {}) {
         super()
         this.ready        = false
         this.destroyed    = false
@@ -24,6 +24,7 @@ export default class Node extends Model {
         this.root         = this
         this.renderable   = renderable || this.constructor.renderable
         this.rendererName = rendererName || this.constructor.rendererName
+        this.name         = name || this.constructor.name
     }
 
 
