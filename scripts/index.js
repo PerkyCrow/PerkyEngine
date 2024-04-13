@@ -7,7 +7,3 @@ initFunguys()
 
 // import initCrowmaker from './crowmaker'
 // initCrowmaker()
-
-
-// import initPixiUpgrade from './pixi_upgrade'
-// initPixiUpgrade()

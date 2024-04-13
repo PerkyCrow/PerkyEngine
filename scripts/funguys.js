@@ -14,8 +14,7 @@ export default async function init () {
 
     const main = engine.addLayer({
         width: 10,
-        height: 8,
-        autoScale: 'contain'
+        height: 8
     })
 
 
@@ -40,10 +39,9 @@ export default async function init () {
         }
     })
 
-    const ui = engine.addLayer({
+    engine.addLayer({
         width: 10,
-        height: 8,
-        autoScale: 'contain'
+        height: 8
     })
 
 }
