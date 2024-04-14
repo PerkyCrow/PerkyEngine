@@ -1,5 +1,5 @@
 import DisplayRenderer from './display_renderer'
-import {Graphics} from 'pixi.js'
+import {Graphics, Container} from 'pixi.js'
 
 
 export default class RectangleRenderer extends DisplayRenderer {
@@ -14,7 +14,9 @@ export default class RectangleRenderer extends DisplayRenderer {
 
 
     initDisplay () {
-        this.display = new Graphics()
+        this.display = new Container()
+        this.graphics = new Graphics()
+        this.display.addChild(this.graphics)
     }
 
 
@@ -27,9 +29,9 @@ export default class RectangleRenderer extends DisplayRenderer {
 
 
     updateDisplay () {
-        this.display.clear()
-        this.display.rect(0, 0, this.node.width, this.node.height)
-        this.display.fill(0xFF0000)
+        this.graphics.clear()
+        this.graphics.rect(0, 0, this.node.width, this.node.height)
+        this.graphics.fill(this.node.color || 0xFF0000)
     }
 
 

@@ -1,5 +1,5 @@
 import RectangleRenderer from './rectangle_renderer'
-import {Sprite} from 'pixi.js'
+import {Sprite, Container} from 'pixi.js'
 import Vector2 from '../types/vector_2'
 import assets from '../assets'
 
@@ -21,7 +21,9 @@ export default class SpriteRenderer extends RectangleRenderer {
 
 
     initDisplay () {
-        this.display = new Sprite()
+        this.display = new Container()
+        this.sprite = new Sprite()
+        this.display.addChild(this.sprite)
     }
 
 
@@ -43,14 +45,14 @@ export default class SpriteRenderer extends RectangleRenderer {
             if (typeof texture === 'string') {
                 texture = assets.getResource(texture)
             }
-            this.display.texture = texture
+            this.sprite.texture = texture
         }
     }
 
 
     syncAnchor ({x, y}) {
-        this.display.anchor.x = x
-        this.display.anchor.y = y
+        this.sprite.anchor.x = x
+        this.sprite.anchor.y = y
     }
 
 
@@ -69,12 +71,12 @@ export default class SpriteRenderer extends RectangleRenderer {
 
 
     syncWidth (width) {
-        this.display.width = width * this.node.scale.x
+        this.sprite.width = width
     }
 
 
     syncHeight (height) {
-        this.display.height = height * this.node.scale.y
+        this.sprite.height = height
     }
 
 }
