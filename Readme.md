@@ -1,3 +1,5 @@
+![Status](https://img.shields.io/badge/status-in_development-orange)
+
 # Perky Engine
 
 Perky Engine is a JavaScript game engine currently in development, designed to simplify the game creation process. Integrating the rendering capabilities of PIXI.JS with the dynamic audio features of Tone.JS.
