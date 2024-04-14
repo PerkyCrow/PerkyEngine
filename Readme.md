@@ -7,7 +7,7 @@ Perky Engine is a JavaScript game engine currently in development, designed to s
 ## Key Features
 - **PIXI.JS Rendering**: Leverage the versatile rendering options of [PixiJS](https://pixijs.com/) for your game's graphics.
 - **Tone.JS Audio**: Easily manage game audio with the comprehensive capabilities of [Tone.js](https://tonejs.github.io/).
-- **Developer-Centric Design**: Influenced by the developer-friendly principles of [Ruby on Rails](https://rubyonrails.org/doctrine/), and structured around a node system reminiscent of [Godot](https://godotengine.org/).
+- **Developer-Centric Design**: Inspired by the developer-friendly principles of [Ruby on Rails](https://rubyonrails.org/doctrine/), and structured around a node system reminiscent of [Godot](https://godotengine.org/).
 
 
 ## Installation
