@@ -8,6 +8,10 @@
 
 - Shape2D (Rectangle, Circle)
 
+- Node tree view
+
+- CLI & Generators (like Ruby on Rails)
+
 
 ## Nodes
 
