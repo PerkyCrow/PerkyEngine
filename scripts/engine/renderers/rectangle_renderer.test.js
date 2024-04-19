@@ -4,7 +4,7 @@
 
 import RectangleRenderer from './rectangle_renderer'
 import Rectangle from '../nodes/rectangle'
-import {Graphics} from 'pixi.js'
+import {Graphics, Container} from 'pixi.js'
 
 
 describe(RectangleRenderer, () => {
@@ -19,7 +19,8 @@ describe(RectangleRenderer, () => {
 
 
     test('display', () => {
-        expect(renderer.display).toBeInstanceOf(Graphics)
+        expect(renderer.display).toBeInstanceOf(Container)
+        expect(renderer.graphics).toBeInstanceOf(Graphics)
     })
 
 

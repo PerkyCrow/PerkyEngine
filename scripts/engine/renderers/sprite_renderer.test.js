@@ -4,7 +4,7 @@
 
 import SpriteRenderer from './sprite_renderer'
 import Sprite from '../nodes/sprite'
-import {Sprite as PixiSprite} from 'pixi.js'
+import {Sprite as PixiSprite, Container} from 'pixi.js'
 
 
 describe(SpriteRenderer, () => {
@@ -19,7 +19,8 @@ describe(SpriteRenderer, () => {
 
 
     test('display', () => {
-        expect(renderer.display).toBeInstanceOf(PixiSprite)
+        expect(renderer.display).toBeInstanceOf(Container)
+        expect(renderer.sprite).toBeInstanceOf(PixiSprite)
     })
 
 })
