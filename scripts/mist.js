@@ -32,7 +32,7 @@ export default async function init () {
         }
     })
 
-    inputs.create('board', {
+    const boardInputs = inputs.create('board', {
         active: true,
         map: {
             left:  ['ArrowLeft'],
@@ -40,7 +40,8 @@ export default async function init () {
         }
     })
 
-    inputs.on('action:pressed:left', () => {
+
+    boardInputs.on('pressed:left', () => {
         sprite.position.x -= 1
     })
 
@@ -48,5 +49,12 @@ export default async function init () {
         sprite.position.x += 1
     })
 
+    inputs.on('input:pressed:ArrowUp', () => {
+        sprite.position.y -= 1
+    })
+
+    inputs.inputObserver.on('pressed:ArrowDown', () => {
+        sprite.position.y += 1
+    })
 
 }
