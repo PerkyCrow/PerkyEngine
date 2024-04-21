@@ -83,4 +83,35 @@ describe(InputMap, () => {
         expect(inputMap.isMapped('Space')).toBeFalsy()
     })
 
+
+    test('press', () => {
+        const callback = jest.fn()
+        inputMap.on('pressed:jump', callback)
+
+        inputMap.setInputFor('jump', 'Space')
+        inputMap.press('Space')
+
+        expect(callback).toHaveBeenCalled()
+    })
+
+
+    test('release', () => {
+        const callback = jest.fn()
+        inputMap.on('released:jump', callback)
+
+        inputMap.setInputFor('jump', 'Space')
+        inputMap.press('Space')
+        inputMap.release('Space')
+
+        expect(callback).toHaveBeenCalled()
+    })
+
+
+    test('isPressed', () => {
+        inputMap.setInputFor('jump', 'Space')
+        inputMap.press('Space')
+
+        expect(inputMap.isPressed('jump')).toBeTruthy()
+    })
+
 })

@@ -8,11 +8,11 @@ export default async function init () {
 
     await assets.loadAll()
 
-    const engine = new Application()
+    const app = new Application()
 
-    await engine.init({container: document.body})
+    await app.init({container: document.body})
 
-    const main = engine.addLayer({width: 10, height: 8})
+    const main = app.addLayer({width: 10, height: 8})
 
     main.create('Crow', {
         scale: 2

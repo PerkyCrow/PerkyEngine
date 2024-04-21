@@ -1,5 +1,6 @@
 import Application from 'engine/application'
 import assets from 'engine/assets'
+import inputs from 'engine/inputs'
 
 import './mist/initialize'
 
@@ -21,7 +22,7 @@ export default async function init () {
 
     const reagents = assets.get('reagents')
 
-    board.create('Sprite', {
+    const sprite = board.create('Sprite', {
         texture: reagents.get('flower_01'),
         width: 1,
         height: 1,
@@ -29,6 +30,22 @@ export default async function init () {
             x: 1,
             y: 1
         }
+    })
+
+    inputs.create('board', {
+        active: true,
+        map: {
+            left:  ['ArrowLeft'],
+            right: ['ArrowRight']
+        }
+    })
+
+    inputs.on('action:pressed:left', () => {
+        sprite.position.x -= 1
+    })
+
+    inputs.on('action:pressed:right', () => {
+        sprite.position.x += 1
     })
 
 

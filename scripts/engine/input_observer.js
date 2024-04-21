@@ -18,7 +18,7 @@ export default class InputObserver extends Notifier {
 
 
     press (inputName) {
-        if (this.listening && !this.isInputPressed(inputName)) {
+        if (this.listening && !this.isPressed(inputName)) {
             this.pressed[inputName] = 1
             this.emit(`pressed:${inputName}`)
             this.emit('pressed', inputName)
@@ -27,7 +27,7 @@ export default class InputObserver extends Notifier {
 
 
     release (inputName) {
-        if (this.listening && this.isInputPressed(inputName)) {
+        if (this.listening && this.isPressed(inputName)) {
             delete this.pressed[inputName]
             this.emit(`released:${inputName}`)
             this.emit('released', inputName)
@@ -35,7 +35,7 @@ export default class InputObserver extends Notifier {
     }
 
 
-    isInputPressed (inputName) {
+    isPressed (inputName) {
         return inputName in this.pressed
     }
 

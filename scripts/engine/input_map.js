@@ -3,9 +3,12 @@ import Notifier from './notifier'
 
 export default class InputMap extends Notifier {
 
-    constructor () {
+    constructor (map = {}) {
         super()
         this.map = new Map()
+        this.pressed = {}
+
+        this.restore(map)
     }
 
 
@@ -84,6 +87,46 @@ export default class InputMap extends Notifier {
 
     isMapped (input) {
         return Boolean(this.getActionFor(input))
+    }
+
+
+    press (input) {
+        const action = this.getActionFor(input)
+
+        if (action) {
+            this.pressed[action] = 1
+            this.emit(`pressed:${action}`)
+            this.emit('pressed', action)
+        }
+    }
+
+
+    release (input) {
+        const action = this.getActionFor(input)
+
+        if (action) {
+            delete this.pressed[action]
+            this.emit(`released:${action}`)
+            this.emit('released', action)
+        }
+    }
+
+
+    isPressed (action) {
+        return action in this.pressed
+    }
+
+
+    restore (map) {
+        for (let action in map) {
+            const actions = Array.isArray(map[action]) ? map[action] : [map[action]]
+
+            actions.forEach((input, slot) => {
+                if (input) {
+                    this.setInputFor(action, input, slot)
+                }
+            })
+        }
     }
 
 }

@@ -36,16 +36,16 @@ describe(InputObserver, () => {
     })
 
 
-    test('isInputPressed', () => {
+    test('isPressed', () => {
         inputObserver.press('Space')
-        expect(inputObserver.isInputPressed('Space')).toBeTruthy()
+        expect(inputObserver.isPressed('Space')).toBeTruthy()
     })
 
 
     test('clear', () => {
         inputObserver.press('Space')
         inputObserver.clear()
-        expect(inputObserver.isInputPressed('Space')).toBeFalsy()
+        expect(inputObserver.isPressed('Space')).toBeFalsy()
     })
 
 
@@ -58,7 +58,7 @@ describe(InputObserver, () => {
     test('stop', () => {
         inputObserver.press('Space')
         inputObserver.stop()
-        expect(inputObserver.isInputPressed('Space')).toBeFalsy()
+        expect(inputObserver.isPressed('Space')).toBeFalsy()
         expect(inputObserver.listening).toBeFalsy()
     })
 
