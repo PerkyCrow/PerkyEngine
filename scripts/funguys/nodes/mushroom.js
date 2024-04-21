@@ -8,9 +8,9 @@ export default class Mushroom extends Node2D {
     onReady () {
 
         const textures = {
-            idle: assets.getResource('shroom_scared_idle'),
-            shrink: assets.getResource('shroom_scared_shrink'),
-            spore: assets.getResource('spore')
+            idle: assets.get('shroom_scared_idle'),
+            shrink: assets.get('shroom_scared_shrink'),
+            spore: assets.get('spore')
         }
 
         const aspectRatio = textures.idle.aspectRatio
@@ -31,7 +31,7 @@ export default class Mushroom extends Node2D {
             height: 1 / aspectRatio
         })
 
-        const grassTexture = assets.getResource('grass')
+        const grassTexture = assets.get('grass')
 
         this.create('Sprite', {
             texture: grassTexture,

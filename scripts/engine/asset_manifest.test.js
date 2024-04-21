@@ -22,19 +22,19 @@ describe(AssetManifest, () => {
     })
 
 
-    test('get', () => {
+    test('getAsset', () => {
         const asset = new Asset({name: 'foo'})
         manifest.assets.foo = asset
 
-        expect(manifest.get('foo')).toBe(asset)
+        expect(manifest.getAsset('foo')).toBe(asset)
     })
 
 
-    test('getResource', () => {
+    test('get', () => {
         const asset = new Asset({name: 'foo', source: 'source'})
         manifest.assets.foo = asset
 
-        expect(manifest.getResource('foo')).toBe('source')
+        expect(manifest.get('foo')).toBe('source')
     })
 
 

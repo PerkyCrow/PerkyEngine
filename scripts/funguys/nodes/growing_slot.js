@@ -6,7 +6,7 @@ export default class GrowingSlot extends Node2D {
 
     onReady () {
 
-        const grassTexture = assets.getResource('grass')
+        const grassTexture = assets.get('grass')
 
         this.sprite = this.create('Sprite', {
             texture: grassTexture,

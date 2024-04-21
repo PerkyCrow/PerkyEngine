@@ -1,4 +1,4 @@
-import Engine from 'engine/engine'
+import Application from 'engine/application'
 import assets from 'engine/assets'
 
 import './crowmaker/initialize'
@@ -8,7 +8,7 @@ export default async function init () {
 
     await assets.loadAll()
 
-    const engine = new Engine()
+    const engine = new Application()
 
     await engine.init({container: document.body})
 

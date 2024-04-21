@@ -6,10 +6,11 @@ import AnimationLoop from './animation_loop'
 import Notifier from './notifier'
 
 
-export default class Engine extends Notifier {
+export default class Application extends Notifier {
 
-    constructor () {
+    constructor ({name = 'application'} = {}) {
         super()
+        this.name     = name
         this.world    = new World()
         this.root     = new Node()
         this.view     = new View()

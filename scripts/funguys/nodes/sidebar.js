@@ -13,7 +13,7 @@ export default class Sidebar extends Node2D {
     }
 
     onReady () {
-        const sidebarTexture = assets.getResource('sidebar')
+        const sidebarTexture = assets.get('sidebar')
         const sidebarAspectRatio = sidebarTexture.aspectRatio
     
         this.create('Sprite', {

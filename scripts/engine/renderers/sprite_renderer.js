@@ -43,7 +43,7 @@ export default class SpriteRenderer extends RectangleRenderer {
     syncTexture (texture) {
         if (texture) {
             if (typeof texture === 'string') {
-                texture = assets.getResource(texture)
+                texture = assets.get(texture)
             }
             this.sprite.texture = texture
         }

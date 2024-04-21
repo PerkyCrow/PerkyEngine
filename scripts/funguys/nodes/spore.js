@@ -7,7 +7,7 @@ export default class Spore extends Node2D {
     onReady () {
 
         this.sprite = this.create('Sprite', {
-            texture: assets.getResource('spore_scared'),
+            texture: assets.get('spore_scared'),
             width: 1 / 3,
             height: 1 / 3,
             anchor: {

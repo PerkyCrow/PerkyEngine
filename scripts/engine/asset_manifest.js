@@ -5,6 +5,7 @@ import imageLoader from './loaders/image_loader'
 import jsonLoader from './loaders/json_loader'
 import textLoader from './loaders/text_loader'
 import textureLoader from './loaders/texture_loader'
+import spritesheetLoader from './loaders/spritesheet_loader'
 
 
 export default class AssetManifest {
@@ -18,13 +19,13 @@ export default class AssetManifest {
     }
 
 
-    get (name) {
+    getAsset (name) {
         return this.assets[name]
     }
 
 
-    getResource (name) {
-        const asset = this.get(name)
+    get (name) {
+        const asset = this.getAsset(name)
         return asset && asset.source
     }
 
@@ -142,3 +143,4 @@ AssetManifest.setLoader(imageLoader)
 AssetManifest.setLoader(jsonLoader)
 AssetManifest.setLoader(textLoader)
 AssetManifest.setLoader(textureLoader)
+AssetManifest.setLoader(spritesheetLoader)

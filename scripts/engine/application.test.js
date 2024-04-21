@@ -3,7 +3,7 @@
  */
 
 
-import Engine from './engine'
+import Application from './application'
 import Node2D from './nodes/node_2d'
 import Renderer from './renderer'
 import ContainerRenderer from './renderers/container_renderer'
@@ -11,12 +11,12 @@ import ContainerRenderer from './renderers/container_renderer'
 Renderer.setRenderer('Container', ContainerRenderer)
 
 
-describe(Engine, () => {
+describe(Application, () => {
 
     let engine
 
     beforeEach(() => {
-        engine = new Engine()
+        engine = new Application()
     })
 
 

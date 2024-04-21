@@ -26,7 +26,7 @@ export default class SporeEmitter extends Node2D {
     emitSpores () {
 
         const textures = {
-            spore: assets.getResource('spore_scared')
+            spore: assets.get('spore_scared')
         }
 
         for (let i = 0; i < this.sporesCount; i++) {

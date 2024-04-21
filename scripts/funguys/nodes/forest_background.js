@@ -6,7 +6,7 @@ export default class ForestBackground extends Sprite {
     constructor (params) {
         super(params)
 
-        const backgroundTexture = assets.getResource('background')
+        const backgroundTexture = assets.get('background')
         const backgroundAspectRatio = backgroundTexture.aspectRatio
 
         this.width = backgroundAspectRatio * this.height

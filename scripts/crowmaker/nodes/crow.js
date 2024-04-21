@@ -7,7 +7,7 @@ export default class Crow extends Node2D {
     onReady () {
 
         this.body = this.create('Sprite', {
-            texture: assets.getResource('crow_body_01'),
+            texture: assets.get('crow_body_01'),
             width: 1,
             height: 1,
             anchor: {
@@ -17,7 +17,7 @@ export default class Crow extends Node2D {
         })
 
         this.leftEye = this.create('Sprite', {
-            texture: assets.getResource('crow_left_eye_01'),
+            texture: assets.get('crow_left_eye_01'),
             width: 1,
             height: 1,
             anchor: {
@@ -27,7 +27,7 @@ export default class Crow extends Node2D {
         })
 
         this.beak = this.create('Sprite', {
-            texture: assets.getResource('crow_beak_01'),
+            texture: assets.get('crow_beak_01'),
             width: 1,
             height: 1,
             anchor: {
@@ -37,7 +37,7 @@ export default class Crow extends Node2D {
         })
 
         this.rightEye = this.create('Sprite', {
-            texture: assets.getResource('crow_right_eye_03'),
+            texture: assets.get('crow_right_eye_03'),
             width: 1,
             height: 1,
             anchor: {
