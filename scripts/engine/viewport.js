@@ -4,9 +4,11 @@ import {autoDetectRenderer} from 'pixi.js'
 export default class Viewport {
 
     constructor ({
-        container = createContainer()
+        container = createContainer(),
+        autoDensity = true
     } = {}) {
         this.container = container
+        this.autoDensity = autoDensity
 
         if (!this.container.classList.contains('perky_view')) {
             this.container.classList.add('perky_view')
@@ -18,7 +20,9 @@ export default class Viewport {
         this.renderAdapter = await autoDetectRenderer({
             width: this.container.offsetWidth,
             height: this.container.offsetHeight,
-            antialias: true
+            antialias: true,
+            resolution: window.devicePixelRatio || 1,
+            autoDensity: this.autoDensity
         })
 
         this.container.appendChild(this.renderAdapter.canvas)
