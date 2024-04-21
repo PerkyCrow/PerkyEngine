@@ -4,13 +4,13 @@
 
 - Node2D editor : node.editMode() adds gizmos to the scene
 
-- InputMap
-
 - Shape2D (Rectangle, Circle)
 
 - Node tree view
 
 - CLI & Generators (like Ruby on Rails)
+
+- Spritesheet : Multi-sheets support
 
 
 ## Nodes
@@ -22,6 +22,8 @@
 - Camera2D
 
 - AudioPlayer
+
+- SpriteAnimation
 
 
 ## Capabilities
