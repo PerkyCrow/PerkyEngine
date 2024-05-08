@@ -1,6 +1,6 @@
 // import Grid from '../../engine/grid'
 
-import addGridCapabilities from '../../engine/extlibs/grid'
+import Grid from '../../engine/grid'
 
 const directions = {
     up:    {x:  0, y:  1},
@@ -405,10 +405,7 @@ function reset (board, {
     reagents = [],
     order    = 0
 }) {
-    board.grid = {}
-    addGridCapabilities(board.grid, {width, height})
-
-    // board.grid = new Grid({width, height})
+    board.grid = new Grid({width, height})
 
     board.order = order
 
