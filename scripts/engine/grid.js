@@ -1,3 +1,5 @@
+// Inspired by Toxilibs (toxicode.fr)
+
 export default class Grid {
 
     constructor ({width, height}) {
