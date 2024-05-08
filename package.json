@@ -15,7 +15,10 @@
     "engine": "./scripts/engine"
   },
   "jest": {
-    "moduleNameMapper": {},
+    "moduleNameMapper": {
+      "^vue$": "<rootDir>/vue/dist/vue.esm-bundler",
+      "^engine/(.*)$": "<rootDir>/scripts/engine/$1"
+    },
     "setupFiles": [
       "jest-webgl-canvas-mock"
     ]
