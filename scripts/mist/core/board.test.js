@@ -1,5 +1,5 @@
 import Board from './board'
-import random from '../../engine/random'
+import random from 'engine/random'
 
 
 const nil = null

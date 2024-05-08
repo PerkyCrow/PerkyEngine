@@ -1,5 +1,5 @@
 import Lab from './lab'
-import random from '../../engine/random'
+import random from 'engine/random'
 
 function createLab (params = {}) {
     return new Lab(Object.assign({

@@ -1,6 +1,4 @@
-// import Grid from '../../engine/grid'
-
-import Grid from '../../engine/grid'
+import Grid from 'engine/grid'
 
 const directions = {
     up:    {x:  0, y:  1},
