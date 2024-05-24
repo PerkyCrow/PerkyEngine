@@ -4,6 +4,14 @@
 
 Perky Engine is a JavaScript game engine currently in development, designed to simplify the game creation process. Integrating the rendering capabilities of PixiJS with the dynamic audio features of Tone.js.
 
+
+## Open Source Philosophy
+
+This engine is open source and will be documented as best as possible. It is primarily a personal project for my own game development needs, shared for those curious. While I'm open to making it a community project, I won't be leading that initiative.
+
+Feel free to adjust it further to better fit your style!
+
+
 ## Key Features
 
 - **Customizable Toolset**: Perky Engine is designed for developers to create and display their own graphical tools on-demand.
