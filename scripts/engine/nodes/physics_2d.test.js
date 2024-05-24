@@ -1,5 +1,5 @@
 import Physics2D from './physics_2d'
-import Vector2 from '../types/vector_2'
+import Vector2 from '../vector_2'
 
 
 

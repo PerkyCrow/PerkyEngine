@@ -1,6 +1,6 @@
 import jsonLoader from './json_loader'
 import textureLoader from './texture_loader'
-import Spritesheet from '../types/spritesheet'
+import Spritesheet from '../spritesheet'
 
 export default {
     type: 'spritesheet',

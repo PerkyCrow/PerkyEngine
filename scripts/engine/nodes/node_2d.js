@@ -1,5 +1,5 @@
 import Node from '../node'
-import ObservableVector2 from '../types/observable_vector_2'
+import ObservableVector2 from '../observable_vector_2'
 
 
 export default class Node2D extends Node {

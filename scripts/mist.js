@@ -45,6 +45,9 @@ export default async function init () {
         r.assetName = 'flower_03'
     }, 1000)
 
+
+
+
     const boardInputs = inputs.create('board', {
         active: true,
         map: {

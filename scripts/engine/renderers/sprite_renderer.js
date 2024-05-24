@@ -1,6 +1,6 @@
 import RectangleRenderer from './rectangle_renderer'
 import {Sprite, Container} from 'pixi.js'
-import Vector2 from '../types/vector_2'
+import Vector2 from '../vector_2'
 import assets from '../assets'
 
 export default class SpriteRenderer extends RectangleRenderer {

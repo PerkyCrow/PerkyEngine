@@ -1,5 +1,5 @@
 import canvasImageLoader from './canvas_image_loader'
-import Texture from '../types/texture'
+import Texture from '../texture'
 
 
 export default {
