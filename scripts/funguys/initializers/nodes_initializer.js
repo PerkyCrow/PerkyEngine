@@ -6,7 +6,7 @@ import Spore from '../nodes/spore'
 import SporeEmitter from '../nodes/spore_emitter'
 import GrowingSlot from '../nodes/growing_slot'
 
-Node.addType(
+Node.register(
     Mushroom,
     ForestBackground,
     Sidebar,

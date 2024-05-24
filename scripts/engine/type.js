@@ -7,7 +7,7 @@ export default class Type {
 
     static isTypeClass = true
 
-    static addType (...types) {
+    static register (...types) {
         this.registry.addClass(...types)
     }
 

@@ -1,7 +1,7 @@
 // Source: Toxilibs (toxicode.fr)
 
 /* eslint-disable no-magic-numbers */
-import alea from './embedded_extlibs/alea'
+import alea from './extlibs/alea'
 
 const allLetters = 'abcdefghijklmnopqrstuvwxyz'
 const allUnmistakableLetters = 'defghijkmnpqrtuvwxyz'

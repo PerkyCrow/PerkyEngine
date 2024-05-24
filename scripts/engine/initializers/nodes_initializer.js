@@ -13,7 +13,7 @@ import Physics2D from '../nodes/physics_2d'
 import Dom from '../nodes/dom'
 
 
-Node.addType(
+Node.register(
     Node,
     Node2D,
     Rectangle,

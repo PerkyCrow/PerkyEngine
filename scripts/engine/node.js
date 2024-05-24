@@ -242,10 +242,8 @@ export default class Node extends Model {
     }
 
 
-    static addType (...Items) {
-        Items.forEach((Item) => {
-            this.registry.set(Item.name, Item)
-        })
+    static register (...Nodes) {
+        Nodes.forEach(N => this.registry.set(N.name, N))
     }
 
 
@@ -279,4 +277,4 @@ function getRoot (node) {
 }
 
 
-Node.addType(Node)
+Node.register(Node)

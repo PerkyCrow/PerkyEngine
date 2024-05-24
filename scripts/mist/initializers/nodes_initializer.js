@@ -1,4 +1,5 @@
 import Node from 'engine/node'
 import Board from '../nodes/board'
+import Reagent from '../nodes/reagent'
 
-Node.addType(Board)
+Node.register(Board, Reagent)

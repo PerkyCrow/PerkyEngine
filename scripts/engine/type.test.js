@@ -5,7 +5,7 @@ describe(Type, () => {
 
     test('integration', () => {
         class TestType extends Type {}
-        Type.addType(TestType)
+        Type.register(TestType)
         expect(Type.getType('TestType')).toBe(TestType)
     })
 

@@ -32,6 +32,19 @@ export default async function init () {
         }
     })
 
+    const r = board.create('Reagent', {
+        texture: 'flower_02',
+        position: {
+            x: 0,
+            y: 0
+        }
+    })
+
+
+    setTimeout(() => {
+        r.assetName = 'flower_03'
+    }, 1000)
+
     const boardInputs = inputs.create('board', {
         active: true,
         map: {
