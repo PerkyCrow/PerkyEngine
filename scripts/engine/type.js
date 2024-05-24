@@ -9,7 +9,7 @@ export default class Type {
         this.registry.addClass(...types)
     }
 
-    static getType (name) {
+    static get (name) {
         return this.registry.get(name)
     }
 

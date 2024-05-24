@@ -53,7 +53,7 @@ export default class Model extends Notifier {
         const attribute = {type, exposable, serializable, watch, accessor, defaultValue, options}
         this.attributes[key] = attribute
 
-        const Type = TypeRegistry.getType(type)
+        const Type = TypeRegistry.get(type)
         const cast = Type && Type.cast
         const free = Type && Type.free
 
@@ -184,7 +184,7 @@ export default class Model extends Notifier {
 
 function serializeAttribute (attribute) {
     const {value, type} = attribute
-    const Type = TypeRegistry.getType(type)
+    const Type = TypeRegistry.get(type)
 
     if (Type && Type.serialize) {
         return Type.serialize(value, attribute.options)
