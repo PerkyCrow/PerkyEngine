@@ -9,7 +9,6 @@ export default class SporeEmitter extends Node2D {
         super(params)
         this.targets = []
         this.setAttribute('sporesCount', {
-            accessor: true,
             serializable: false,
             defaultValue: 200,
             value: params.sporesCount

@@ -6,8 +6,9 @@ export default class Reagent extends Node2D {
     constructor (params = {}) {
         super(params)
 
+        this.isReagent = true
+
         this.setAttribute('assetName', {
-            accessor: true,
             serializable: true,
             watch: true,
             defaultValue: 'flower_01',

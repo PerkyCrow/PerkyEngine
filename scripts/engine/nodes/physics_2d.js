@@ -8,7 +8,6 @@ export default class Physics2D extends Node2D {
         this.isPhysics2D = true
 
         this.setAttribute('velocity', {
-            accessor: true,
             serializable: true,
             watch: true,
             type: 'ObservableVector2',
@@ -20,7 +19,6 @@ export default class Physics2D extends Node2D {
         })
 
         this.setAttribute('acceleration', {
-            accessor: true,
             serializable: true,
             watch: true,
             type: 'ObservableVector2',
@@ -32,7 +30,6 @@ export default class Physics2D extends Node2D {
         })
 
         this.setAttribute('angularVelocity', {
-            accessor: true,
             serializable: true,
             watch: true,
             defaultValue: 0,

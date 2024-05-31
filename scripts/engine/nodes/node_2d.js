@@ -15,7 +15,6 @@ export default class Node2D extends Node {
         this.is2D = true
 
         this.setAttribute('position', {
-            accessor: true,
             serializable: true,
             watch: true,
             type: 'ObservableVector2',
@@ -27,7 +26,6 @@ export default class Node2D extends Node {
         })
 
         this.setAttribute('rotation', {
-            accessor: true,
             serializable: true,
             watch: true,
             defaultValue: 0,
@@ -35,7 +33,6 @@ export default class Node2D extends Node {
         })
 
         this.setAttribute('scale', {
-            accessor: true,
             serializable: true,
             watch: true,
             type: 'ObservableVector2',
@@ -47,7 +44,6 @@ export default class Node2D extends Node {
         })
 
         this.setAttribute('pivot', {
-            accessor: true,
             serializable: true,
             watch: true,
             type: 'ObservableVector2',
@@ -59,7 +55,6 @@ export default class Node2D extends Node {
         })
 
         this.setAttribute('opacity', {
-            accessor: true,
             serializable: true,
             defaultValue: 1,
             value: params.opacity,

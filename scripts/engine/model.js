@@ -43,7 +43,7 @@ export default class Model extends Notifier {
         exposable  = true,
         serializable = false,
         watch      = false,
-        accessor   = false,
+        accessor   = true,
         defaultValue,
         value      = typeof defaultValue === 'function' ? defaultValue() : defaultValue,
         type       = (typeof value === 'object' && value.type) || typeof value,

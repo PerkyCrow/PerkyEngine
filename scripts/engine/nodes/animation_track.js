@@ -8,7 +8,6 @@ export default class AnimationTrack extends Animation {
         super(params)
 
         this.setAttribute('label', {
-            accessor: true,
             defaultValue: 'track',
             value: params.label
         })

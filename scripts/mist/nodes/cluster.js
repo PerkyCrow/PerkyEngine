@@ -1,5 +1,5 @@
-import Node2D from 'engine/nodes/node_2d'
-
+import Rectangle from 'engine/nodes/rectangle'
+import ObservableVector2 from 'engine/observable_vector_2'
 
 const positionsMap = [
     [{x: 0, y: 0}, {x: 1, y: 0}],
@@ -9,12 +9,24 @@ const positionsMap = [
 ]
 
 
-export default class Cluster extends Node2D {
+export default class Cluster extends Rectangle {
 
     constructor (params = {}) {
         super(params)
 
-        reset(this, params)
+        // cluster.x             = typeof x === 'undefined' ? Math.floor(width * 0.5 - cluster.reagents.length * 0.5) : x
+        // cluster.y             = y || 0
+
+        this.setAttribute('gridPosition', {
+            serializable: true,
+            watch: true,
+            defaultValue: new ObservableVector2(this.position),
+            options: {
+                onChange: this.emitter('changed:gridPosition')
+            }
+        })
+
+        spawnReagents(this, params.reagents)
     }
 
 
@@ -24,13 +36,13 @@ export default class Cluster extends Node2D {
             this.positionIndex %= positionsMap.length
             syncReagents(this)
 
-            updatePosition(this, this.x)
+            updatePosition(this, this.gridPosition.x)
         }
     }
 
 
     move (step) {
-        updatePosition(this, this.x + step.x)
+        updatePosition(this, this.gridPosition.x + step.x)
     }
 
 
@@ -48,7 +60,12 @@ export default class Cluster extends Node2D {
         const {reagents} = this
         const [first] = reagents
 
-        return reagents.every(reagent => reagent.y === first.y)
+        return reagents.every(reagent => reagent.gridPosition.y === first.gridPosition.y)
+    }
+
+
+    get reagents () {
+        return this.findChildren(child => child.isReagent)
     }
 
 
@@ -60,8 +77,8 @@ export default class Cluster extends Node2D {
         return reagents.sort(sortY).map(reagent => {
             return {
                 name: reagent.name,
-                x:    reagent.x,
-                y:    height + reagent.y
+                x:    reagent.gridPosition.x,
+                y:    height + reagent.gridPosition.y
             }
         })
     }
@@ -73,6 +90,16 @@ export default class Cluster extends Node2D {
 
 }
 
+
+function spawnReagents (cluster, reagentNames) {
+    if (Array.isArray(reagentNames) && reagentNames.length) {
+        reagentNames = reagentNames.slice(0, 2)
+
+        reagentNames.forEach(name => {
+            cluster.create('Reagent', {assetName: name})
+        })
+    }
+}
 
 function reset (cluster, {
     reagents      = [],
@@ -110,8 +137,8 @@ function syncReagents (cluster) {
     reagents.forEach((reagent, index) => {
         const position = positions[index]
 
-        reagent.x = cluster.x + position.x
-        reagent.y = cluster.y + position.y
+        reagent.gridPosition.x = cluster.gridPosition.x + position.gridPosition.x
+        reagent.gridPosition.y = cluster.gridPosition.y + position.gridPosition.y
     })
 }
 

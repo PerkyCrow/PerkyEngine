@@ -12,13 +12,11 @@ export default class SmoothAnimation extends Animation {
         this.value          = this.getValue()
 
         this.setAttribute('easing', {
-            accessor: true,
             defaultValue: 'easeInOut',
             value: params.easing
         })
 
         this.setAttribute('target', {
-            accessor: true,
             defaultValue: 1,
             value: params.target
         })

@@ -8,7 +8,6 @@ export default class Board extends Node2D {
         super(params)
 
         this.setAttribute('width', {
-            accessor: true,
             serializable: true,
             watch: true,
             defaultValue: 6,
@@ -16,7 +15,6 @@ export default class Board extends Node2D {
         })
 
         this.setAttribute('height', {
-            accessor: true,
             serializable: true,
             watch: true,
             defaultValue: 9,

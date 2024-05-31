@@ -14,7 +14,6 @@ export default class Rectangle extends Node2D {
         this.isRectangle = true
 
         this.setAttribute('width', {
-            accessor: true,
             serializable: true,
             watch: true,
             defaultValue: 1,
@@ -22,7 +21,6 @@ export default class Rectangle extends Node2D {
         })
 
         this.setAttribute('height', {
-            accessor: true,
             serializable: true,
             watch: true,
             defaultValue: 1,

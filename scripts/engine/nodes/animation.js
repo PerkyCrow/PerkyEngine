@@ -12,14 +12,12 @@ export default class Animation extends Node {
         this.ended           = false
 
         this.setAttribute('duration', {
-            accessor: true,
             defaultValue: 1,
             watch: true,
             value: params.duration
         })
 
         this.setAttribute('elapsedTime', {
-            accessor: true,
             defaultValue: 0,
             value: params.elapsedTime
         })

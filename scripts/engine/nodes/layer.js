@@ -15,14 +15,12 @@ export default class Layer extends Rectangle {
         this.rendererName = 'Layer'
 
         this.setAttribute('autoScale', {
-            accessor: true,
             serializable: true,
             value: params.autoScale,
             defaultValue: 'contain'
         })
 
         this.setAttribute('autoCenter', {
-            accessor: true,
             serializable: true,
             value: params.autoCenter,
             defaultValue: true
