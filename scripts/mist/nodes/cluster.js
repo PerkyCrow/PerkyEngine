@@ -1,7 +1,8 @@
 import Rectangle from 'engine/nodes/rectangle'
 import ObservableVector2 from 'engine/observable_vector_2'
 
-const positionsMap = [
+
+const rotationsMap = [
     [{x: 0, y: 0}, {x: 1, y: 0}],
     [{x: 0, y: 1}, {x: 0, y: 0}],
     [{x: 1, y: 0}, {x: 0, y: 0}],
@@ -12,10 +13,16 @@ const positionsMap = [
 export default class Cluster extends Rectangle {
 
     constructor (params = {}) {
+
         super(params)
 
-        // cluster.x             = typeof x === 'undefined' ? Math.floor(width * 0.5 - cluster.reagents.length * 0.5) : x
-        // cluster.y             = y || 0
+        this.setAttribute('width', {
+            defaultValue: 6
+        })
+
+        this.setAttribute('height', {
+            defaultValue: 6
+        })
 
         this.setAttribute('gridPosition', {
             serializable: true,
@@ -26,14 +33,34 @@ export default class Cluster extends Rectangle {
             }
         })
 
+
+        this.setAttribute('rotationsIndex', {
+            serializable: true,
+            watch: true,
+            defaultValue: 0,
+            options: {
+                onChange: this.emitter('changed:rotationsIndex')
+            }
+        })
+
         spawnReagents(this, params.reagents)
+
+        this.gridPosition.x = typeof params.x === 'undefined' ? Math.floor(this.width * 0.5 - this.reagents.length * 0.5) : params.x
+        this.gridPosition.y = params.y || 0
+
+        syncReagents(this)
+    }
+
+
+    get reagents () {
+        return this.findChildren(child => child.isReagent)
     }
 
 
     rotate () {
         if (this.reagents.length > 1) {
-            this.positionIndex += 1
-            this.positionIndex %= positionsMap.length
+            this.rotationsIndex += 1
+            this.rotationsIndex %= rotationsMap.length
             syncReagents(this)
 
             updatePosition(this, this.gridPosition.x)
@@ -63,31 +90,6 @@ export default class Cluster extends Rectangle {
         return reagents.every(reagent => reagent.gridPosition.y === first.gridPosition.y)
     }
 
-
-    get reagents () {
-        return this.findChildren(child => child.isReagent)
-    }
-
-
-    forBoard (board) {
-        const {reagents} = this
-
-        const height = board.height - this.height
-
-        return reagents.sort(sortY).map(reagent => {
-            return {
-                name: reagent.name,
-                x:    reagent.gridPosition.x,
-                y:    height + reagent.gridPosition.y
-            }
-        })
-    }
-
-
-    clear () {
-        this.reagents.length = 0
-    }
-
 }
 
 
@@ -101,46 +103,30 @@ function spawnReagents (cluster, reagentNames) {
     }
 }
 
-function reset (cluster, {
-    reagents      = [],
-    width         = 6,
-    height        = 2,
-    positionIndex = 0,
-    x,
-    y = 0
-} = {}) {
-    cluster.reagents      = reagents.slice(0, 2)
-    cluster.width         = width
-    cluster.height        = height
-    cluster.positionIndex = positionIndex
-    cluster.x             = typeof x === 'undefined' ? Math.floor(width * 0.5 - cluster.reagents.length * 0.5) : x
-    cluster.y             = y || 0
-    syncReagents(cluster)
-}
-
 
 function updatePosition (cluster, x) {
 
     const {width, horizontal, reagents} = cluster
     let maxX = (horizontal ? width : width + 1) - reagents.length
 
-    cluster.x = Math.min(Math.max(x, 0), maxX)
+    cluster.gridPosition.x = Math.min(Math.max(x, 0), maxX)
 
     syncReagents(cluster)
 }
 
 
 function syncReagents (cluster) {
-    const {reagents, positionIndex} = cluster
-    const positions = positionsMap[positionIndex]
+    const {reagents, rotationsIndex} = cluster
+    const positions = rotationsMap[rotationsIndex]
 
     reagents.forEach((reagent, index) => {
         const position = positions[index]
 
-        reagent.gridPosition.x = cluster.gridPosition.x + position.gridPosition.x
-        reagent.gridPosition.y = cluster.gridPosition.y + position.gridPosition.y
+        reagent.gridPosition.x = cluster.gridPosition.x + position.x
+        reagent.gridPosition.y = cluster.gridPosition.y + position.y
     })
 }
+
 
 function sortY (a, b) {
     return a.y - b.y
